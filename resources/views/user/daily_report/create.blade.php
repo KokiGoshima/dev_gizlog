@@ -24,7 +24,7 @@
       @endif
       <span class="help-block"></span>
     </div>
-    {!! Form::submit("Add", ["class" => "btn btn-success pull-right"]) !!}
+    {!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}
   </div>
 </div>
 {!! Form::close() !!}

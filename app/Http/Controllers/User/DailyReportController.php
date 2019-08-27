@@ -39,7 +39,7 @@ class DailyReportController extends Controller
 		return view("user.daily_report.edit", compact('report'));
 	}
 
-	public function update($id){
-		dd(1223);
+	public function update(Request $request, $id){
+		
 	}
 }
