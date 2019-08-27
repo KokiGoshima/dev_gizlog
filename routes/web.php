@@ -97,5 +97,6 @@ Route::get("daily_report", "User\DailyReportController@index")->name("daily_repo
 Route::get("daily_report/create", "User\DailyReportController@create")->name("daily_report.create");
 Route::post("daily_report/store", "User\DailyReportController@store")->name("daily_report.store");
 Route::get("daily_report/{id}/show", "User\DailyReportController@show")->name("daily_report.show");
+Route::get("daily_report/{id}/edit", "User\DailyReportController@edit")->name("daily_report.edit");
 Route::put("daily_report/{id}/update", "User\DailyReportController@update")->name("daily_report.update");
 

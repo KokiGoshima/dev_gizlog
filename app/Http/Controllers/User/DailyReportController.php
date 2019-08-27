@@ -37,11 +37,14 @@ class DailyReportController extends Controller
 
 	public function show($id){
 		$report = $this->daily_report->find($id);
-
 		$dt = new Carbon($report->reporting_time);
 		$day = $dt->format('D');
-
 		return view("user.daily_report.show", compact('report', 'day'));
+	}
+
+	public function edit($id){
+		$report = $this->daily_report->find($id);
+		return view("user.daily_report.edit", compact('report'));
 	}
 
 	public function update(Request $request, $id){
