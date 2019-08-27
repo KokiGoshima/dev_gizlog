@@ -63,4 +63,13 @@ class DailyReportController extends Controller
 		$report->save();
 		return redirect()->route('daily_report.index');
 	}
+
+	public function search(Request $request){
+		$searchedMonth = $request->month;
+		$reports = $this->daily_report
+		->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
+		->orderBy('created_at', 'desc')
+		->get();
+		return view("user.daily_report.index", compact('reports'));
+	}
 }

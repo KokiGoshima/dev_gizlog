@@ -100,3 +100,4 @@ Route::get("daily_report/{id}/show", "User\DailyReportController@show")->name("d
 Route::get("daily_report/{id}/edit", "User\DailyReportController@edit")->name("daily_report.edit");
 Route::put("daily_report/{id}/update", "User\DailyReportController@update")->name("daily_report.update");
 Route::post("daily_report/{id}/delete", "User\DailyReportController@delete")->name("daily_report.delete");
+Route::post("daily_report/search", "User\DailyReportController@search")->name("daily_report.search");
