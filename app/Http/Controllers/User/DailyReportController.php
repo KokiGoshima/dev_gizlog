@@ -38,4 +38,8 @@ class DailyReportController extends Controller
 		$report = $this->daily_report->find($id);
 		return view("user.daily_report.edit", compact('report'));
 	}
+
+	public function update($id){
+		dd(1223);
+	}
 }
