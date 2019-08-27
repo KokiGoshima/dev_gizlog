@@ -47,7 +47,10 @@ class DailyReportController extends Controller
 		return view("user.daily_report.edit", compact('report'));
 	}
 
-	public function update(Request $request, $id){
-		
+	public function update(DailyReportRequest $request, $id){
+		$input = $request->all();
+		$report = $this->daily_report->find($id);
+		$report->fill($input)->save();
+		return redirect()->route('daily_report.index');
 	}
 }
