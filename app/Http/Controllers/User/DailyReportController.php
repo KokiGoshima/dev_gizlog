@@ -33,4 +33,9 @@ class DailyReportController extends Controller
 		$this->daily_report->fill($input)->save();
 		return redirect()->route('daily_report.index');
 	}
+
+	public function show($id){
+		$report = $this->daily_report->find($id);
+		return view("user.daily_report.edit", compact('report'));
+	}
 }

@@ -96,4 +96,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 Route::get("daily_report", "User\DailyReportController@index")->name("daily_report.index");
 Route::get("daily_report/create", "User\DailyReportController@create")->name("daily_report.create");
 Route::post("daily_report/store", "User\DailyReportController@store")->name("daily_report.store");
+Route::get("daily_report/{id}/show", "User\DailyReportController@show")->name("daily_report.show");
 
