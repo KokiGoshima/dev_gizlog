@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DailyReportRequest;
 use App\Models\DailyReport;
+use Carbon\Carbon;
 use Auth;
 
 class DailyReportController extends Controller
@@ -36,7 +37,11 @@ class DailyReportController extends Controller
 
 	public function show($id){
 		$report = $this->daily_report->find($id);
-		return view("user.daily_report.edit", compact('report'));
+
+		$dt = new Carbon($report->reporting_time);
+		$day = $dt->format('D');
+
+		return view("user.daily_report.show", compact('report', 'day'));
 	}
 
 	public function update(Request $request, $id){
