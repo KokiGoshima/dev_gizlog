@@ -20,7 +20,10 @@ class DailyReportController extends Controller
 	}
 
 	public function index(){
-		$reports = $this->daily_report->all();
+		$reports = $this->daily_report
+		->where('deleted_at', null)
+		->orderBy('created_at', 'desc')
+		->get();
 		return view("user.daily_report.index", compact('reports'));
 	}
 
@@ -51,6 +54,13 @@ class DailyReportController extends Controller
 		$input = $request->all();
 		$report = $this->daily_report->find($id);
 		$report->fill($input)->save();
+		return redirect()->route('daily_report.index');
+	}
+
+	public function delete($id){
+		$report = $this->daily_report->find($id);
+		$report->deleted_at = Carbon::now();
+		$report->save();
 		return redirect()->route('daily_report.index');
 	}
 }
