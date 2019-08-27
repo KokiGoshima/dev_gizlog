@@ -18,7 +18,7 @@
       <span class="help-block"></span>
     </div>
     <div class="form-group">
-      {!! Form::text("content", null, ["class" => "form-control", "placeholder" => "Content"]) !!}
+      {!! Form::textarea("content", null, ["class" => "form-control", "placeholder" => "Content"]) !!}
       @if ($errors->has('content'))
       <p class="text-danger">{{ $errors->first('content') }}</p>
       @endif
