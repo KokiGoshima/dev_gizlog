@@ -22,8 +22,8 @@
     </div>
     <div class="form-group">
       {{-- <textarea class="form-control" placeholder="Content" name="contents" cols="50" rows="10"></textarea> --}}
-      {!! Form::text("contents", null, ["class" => "form-control", "placeholder" => "Content"]) !!}
-      @if ($errors->has('contents'))
+      {!! Form::text("content", null, ["class" => "form-control", "placeholder" => "Content"]) !!}
+      @if ($errors->has('content'))
       <p class="text-danger">{{ $errors->first('contents') }}</p>
       @endif
       <span class="help-block"></span>

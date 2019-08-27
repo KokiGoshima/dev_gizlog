@@ -25,7 +25,7 @@ class DailyReportRequest extends FormRequest
     {
         return [
             "title" => "required",
-            "contents" => "required",
+            "content" => "required",
         ];
     }
   
@@ -33,7 +33,7 @@ class DailyReportRequest extends FormRequest
     {
         return [
             "title.required" => "入力必須の項目です。",
-            "contents.required" => "入力必須の項目です。",
+            "content.required" => "入力必須の項目です。",
         ];
     }
 }
