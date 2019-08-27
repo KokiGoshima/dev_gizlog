@@ -68,6 +68,7 @@ class DailyReportController extends Controller
 		$searchedMonth = $request->month;
 		$reports = $this->daily_report
 		->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
+		->where('deleted_at', null)
 		->orderBy('created_at', 'desc')
 		->get();
 		return view("user.daily_report.index", compact('reports'));
