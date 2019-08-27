@@ -32,8 +32,8 @@ class DailyReportRequest extends FormRequest
     public function messages()
     {
         return [
-            "title.required" => "入力必須の項目です",
-            "contents.required" => "入力必須の項目です",
+            "title.required" => "入力必須の項目です。",
+            "contents.required" => "入力必須の項目です。",
         ];
     }
 }

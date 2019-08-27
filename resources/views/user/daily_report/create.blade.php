@@ -15,11 +15,17 @@
     <div class="form-group">
       {{-- <input class="form-control" placeholder="Title" name="title" type="text"> --}}
       {!! Form::input("text", "title", null, ["class" => "form-control"]) !!}
+      @if ($errors->has('title'))
+      <p class="text-danger">{{ $errors->first('title') }}</p>
+      @endif
       <span class="help-block"></span>
     </div>
     <div class="form-group">
       {{-- <textarea class="form-control" placeholder="Content" name="contents" cols="50" rows="10"></textarea> --}}
       {!! Form::text("contents", null, ["class" => "form-control", "placeholder" => "Content"]) !!}
+      @if ($errors->has('contents'))
+      <p class="text-danger">{{ $errors->first('contents') }}</p>
+      @endif
       <span class="help-block"></span>
     </div>
     {{-- <button type="submit" class="btn btn-success pull-right">Add</button> --}}
