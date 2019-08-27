@@ -5,11 +5,17 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DailyReportRequest;
+use App\Models\DailyReport;
+use Auth;
 
 class DailyReportController extends Controller
 {
-	public function __construct(){
+
+	private $daily_report;
+
+	public function __construct(DailyReport $instanceClass){
 		$this->middleware("auth");
+		$this->daily_report = $instanceClass;
 	}
 
 	public function index(){
@@ -21,6 +27,8 @@ class DailyReportController extends Controller
 	}
 
 	public function store(DailyReportRequest $request){
-		dd($request->title);
+		$input = $request->all();
+		$input['user_id'] = Auth::id();
+		$this->daily_report->fill($input)->save();
 	}
 }
