@@ -20,6 +20,11 @@ class DailyReportController extends Controller
         $this->dailyReport = $dailyReportClass;
     }
 
+    /**
+    *データーベースに格納されている全件を表表示
+    *もしメソッドの引数にパラメーターが来ていたら、検索している月に該当する日報のみを表示。
+    *@param Request $request --検索する月の値がmonthをキーとしてRequestインスタンスに格納される。
+    */
     public function index(Request $request)
     {
         if ($request){
