@@ -20,14 +20,14 @@ class DailyReport extends Model
 
     public function getAllUserReports($id){
         return $this->where('user_id', $id)
-                    ->orderBy('reporting_time', 'desc')
-                    ->get();
+            ->orderBy('reporting_time', 'desc')
+            ->get();
     }
 
     public function getAllUserReportsBySearchedMonth($id, $searchedMonth){
         return $this->where('user_id', $id)
-                    ->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
-                    ->orderBy('reporting_time', 'desc')
-                    ->get();
+            ->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
+            ->orderBy('reporting_time', 'desc')
+            ->get();
     }
 }
