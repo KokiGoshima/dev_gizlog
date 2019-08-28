@@ -23,7 +23,6 @@
       <tbody>
         @foreach ($reports as $report)
           <tr class="row">
-            {{-- <td class="col-xs-2">{{ $report->reporting_time. '('. $report->reporting_time->format('D'). ')' }}</td> --}}
             <td class="col-xs-2">{{ $report->reporting_time->format('m/d()D') }}</td>
             <td class="col-xs-3">{{ $report->title }}</td>
             <td class="col-xs-5">{{ $report->content }}</td>
