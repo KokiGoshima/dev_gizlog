@@ -23,7 +23,6 @@ class DailyReportController extends Controller
     public function index()
     {
         $reports = $this->dailyReport
-        ->where('deleted_at', null)
         ->orderBy('reporting_time', 'desc')
         ->get();
         return view("user.daily_report.index", compact('reports'));
@@ -77,7 +76,6 @@ class DailyReportController extends Controller
         $searchedMonth = $request->month;
         $reports = $this->dailyReport
         ->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
-        ->where('deleted_at', null)
         ->orderBy('reporting_time', 'desc')
         ->get();
         return view("user.daily_report.index", compact('reports'));
