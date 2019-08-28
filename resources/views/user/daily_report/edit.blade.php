@@ -6,7 +6,7 @@
 <div class="main-wrap">
   <div class="container">
     <div class="form-group form-size-small">
-      {!! Form::input("date", "reporting_time", $report->reporting_time, ["class" => "form-control"]) !!}
+      {!! Form::input("date", "reporting_time", $report->reporting_time->format('Y-m-d'), ["class" => "form-control"]) !!}
       @if ($errors->has('reporting_time'))
       <p class="text-danger">{{ $errors->first('reporting_time') }}</p>
       @endif
