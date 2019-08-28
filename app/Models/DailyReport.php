@@ -19,4 +19,10 @@ class DailyReport extends Model
         'reporting_time',
         'deleted_at',
     ];
+
+    public function getAllUserReports($id){
+        return $this->where('user_id', $id)
+                    ->orderBy('reporting_time', 'desc')
+                    ->get();
+    }
 }

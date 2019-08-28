@@ -22,9 +22,7 @@ class DailyReportController extends Controller
 
     public function index()
     {
-        $reports = $this->dailyReport
-        ->orderBy('reporting_time', 'desc')
-        ->get();
+        $reports = $this->dailyReport->getAllUserReports(Auth::id());
         return view("user.daily_report.index", compact('reports'));
     }
 
