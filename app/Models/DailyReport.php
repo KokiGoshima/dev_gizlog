@@ -17,7 +17,6 @@ class DailyReport extends Model
         'title',
         'content',
         'reporting_time',
-        'deleted_at',
     ];
 
     public function getAllUserReports($id){
