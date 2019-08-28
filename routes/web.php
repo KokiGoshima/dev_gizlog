@@ -47,7 +47,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::resource('question', QuestionController::class);
 
     Route::resource('dailyReport', 'DailyReportController');
-    Route::post("dailyReport/{id}/delete", "DailyReportController@delete")->name("dailyReport.delete");
+    // Route::post("dailyReport/{id}/delete", "DailyReportController@delete")->name("dailyReport.delete");
 
 });
 
