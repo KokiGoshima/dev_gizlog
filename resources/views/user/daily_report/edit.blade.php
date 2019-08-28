@@ -7,6 +7,9 @@
   <div class="container">
     <div class="form-group form-size-small">
       {!! Form::input("date", "reporting_time", $report->reporting_time, ["class" => "form-control"]) !!}
+      @if ($errors->has('reporting_time'))
+      <p class="text-danger">{{ $errors->first('reporting_time') }}</p>
+      @endif
       <span class="help-block"></span>
     </div>
     <div class="form-group">
