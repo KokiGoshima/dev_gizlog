@@ -71,10 +71,7 @@ class DailyReportController extends Controller
     public function search(Request $request)
     {
         $searchedMonth = $request->month;
-        $reports = $this->dailyReport
-        ->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
-        ->orderBy('reporting_time', 'desc')
-        ->get();
+        $reports = $this->dailyReport->getAllUserReportsBySearchedMonth(Auth::id(), $searchedMonth);
         return view("user.daily_report.index", compact('reports'));
     }
 }
