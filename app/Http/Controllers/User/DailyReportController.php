@@ -64,8 +64,7 @@ class DailyReportController extends Controller
     public function delete($id)
     {
         $report = $this->dailyReport->find($id);
-        $report->deleted_at = Carbon::now();
-        $report->save();
+        $report->delete();
         return redirect()->route('dailyReport.index');
     }
 
