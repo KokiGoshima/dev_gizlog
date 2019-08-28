@@ -53,7 +53,6 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::get("dailyReport/{id}/edit", "DailyReportController@edit")->name("dailyReport.edit");
     Route::put("dailyReport/{id}/update", "DailyReportController@update")->name("dailyReport.update");
     Route::post("dailyReport/{id}/delete", "DailyReportController@delete")->name("dailyReport.delete");
-    Route::post("dailyReport/search", "DailyReportController@search")->name("dailyReport.search");
 
 });
 

@@ -4,7 +4,7 @@
 <h2 class="brand-header">日報一覧</h2>
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
-    {!! Form::open(['route' => 'dailyReport.search']) !!}
+    {!! Form::open(['route' => 'dailyReport.index', 'method' => 'GET']) !!}
       {!! Form::input('month', 'month', null, ['class' => "form-control"]) !!}
       <button type="submit" class="btn btn-icon"><i class="fa fa-search"></i></button>
     {!! Form::close() !!}
