@@ -14,12 +14,14 @@ class DailyReportController extends Controller
 
 	private $dailyReport;
 
-	public function __construct(DailyReport $instanceClass){
+	public function __construct(DailyReport $instanceClass)
+	{
 		$this->middleware("auth");
 		$this->dailyReport = $instanceClass;
 	}
 
-	public function index(){
+	public function index()
+	{
 		$reports = $this->dailyReport
 		->where('deleted_at', null)
 		->orderBy('reporting_time', 'desc')
@@ -27,44 +29,51 @@ class DailyReportController extends Controller
 		return view("user.daily_report.index", compact('reports'));
 	}
 
-	public function create(){
+	public function create()
+	{
 		return view("user.daily_report.create");
 	}
 
-	public function store(DailyReportRequest $request){
+	public function store(DailyReportRequest $request)
+	{
 		$input = $request->all();
 		$input['user_id'] = Auth::id();
 		$this->dailyReport->fill($input)->save();
 		return redirect()->route('dailyReport.index');
 	}
 
-	public function show($id){
+	public function show($id)
+	{
 		$report = $this->dailyReport->find($id);
 		$dt = new Carbon($report->reporting_time);
 		$day = $dt->format('D');
 		return view("user.daily_report.show", compact('report', 'day'));
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
 		$report = $this->dailyReport->find($id);
 		return view("user.daily_report.edit", compact('report'));
 	}
 
-	public function update(DailyReportRequest $request, $id){
+	public function update(DailyReportRequest $request, $id)
+	{
 		$input = $request->all();
 		$report = $this->dailyReport->find($id);
 		$report->fill($input)->save();
 		return redirect()->route('dailyReport.index');
 	}
 
-	public function delete($id){
+	public function delete($id)
+	{
 		$report = $this->dailyReport->find($id);
 		$report->deleted_at = Carbon::now();
 		$report->save();
 		return redirect()->route('dailyReport.index');
 	}
 
-	public function search(Request $request){
+	public function search(Request $request)
+	{
 		$searchedMonth = $request->month;
 		$reports = $this->dailyReport
 		->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
