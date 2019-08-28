@@ -46,6 +46,15 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
     Route::resource('question', QuestionController::class);
 
+    Route::get("dailyReport", "DailyReportController@index")->name("dailyReport.index");
+    Route::get("dailyReport/create", "DailyReportController@create")->name("dailyReport.create");
+    Route::post("dailyReport/store", "DailyReportController@store")->name("dailyReport.store");
+    Route::get("dailyReport/{id}/show", "DailyReportController@show")->name("dailyReport.show");
+    Route::get("dailyReport/{id}/edit", "DailyReportController@edit")->name("dailyReport.edit");
+    Route::put("dailyReport/{id}/update", "DailyReportController@update")->name("dailyReport.update");
+    Route::post("dailyReport/{id}/delete", "DailyReportController@delete")->name("dailyReport.delete");
+    Route::post("dailyReport/search", "DailyReportController@search")->name("dailyReport.search");
+
 });
 
 
@@ -90,12 +99,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::get('/register/', 'Auth\AdminRegisterController@showAdminRegistrationForm');
 
 });
-
-Route::get("dailyReport", "User\DailyReportController@index")->name("dailyReport.index");
-Route::get("dailyReport/create", "User\DailyReportController@create")->name("dailyReport.create");
-Route::post("dailyReport/store", "User\DailyReportController@store")->name("dailyReport.store");
-Route::get("dailyReport/{id}/show", "User\DailyReportController@show")->name("dailyReport.show");
-Route::get("dailyReport/{id}/edit", "User\DailyReportController@edit")->name("dailyReport.edit");
-Route::put("dailyReport/{id}/update", "User\DailyReportController@update")->name("dailyReport.update");
-Route::post("dailyReport/{id}/delete", "User\DailyReportController@delete")->name("dailyReport.delete");
-Route::post("dailyReport/search", "User\DailyReportController@search")->name("dailyReport.search");
