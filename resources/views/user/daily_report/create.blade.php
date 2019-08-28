@@ -5,7 +5,6 @@
 {!! Form::open(["route" => "dailyReport.store"]) !!}
 <div class="main-wrap">
   <div class="container">
-    {!! Form::input("hidden", "user_id", null, ["class" => "form-control"]) !!}
     <div class="form-group form-size-small">
       {!! Form::input("date", "reporting_time", null, ["class" => "form-control"]) !!}
       <span class="help-block"></span>
