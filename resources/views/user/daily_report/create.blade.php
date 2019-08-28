@@ -6,18 +6,18 @@
 <div class="main-wrap">
   <div class="container">
     <div class="form-group form-size-small">
-      {!! Form::input("date", "reporting_time", null, ["class" => "form-control"]) !!}
+      {!! Form::input('date', 'reporting_time', null, ['class' => 'form-control']) !!}
       <span class="help-block"></span>
     </div>
     <div class="form-group">
-      {!! Form::input("text", "title", null, ["class" => "form-control"]) !!}
+      {!! Form::text('title', null, ['class' => 'form-control']) !!}
       @if ($errors->has('title'))
       <p class="text-danger">{{ $errors->first('title') }}</p>
       @endif
       <span class="help-block"></span>
     </div>
     <div class="form-group">
-      {!! Form::textarea("content", null, ["class" => "form-control", "placeholder" => "Content"]) !!}
+      {!! Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => 'Content']) !!}
       @if ($errors->has('content'))
       <p class="text-danger">{{ $errors->first('content') }}</p>
       @endif
