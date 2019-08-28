@@ -27,7 +27,7 @@ class DailyReportController extends Controller
     */
     public function index(Request $request)
     {
-        if ($request){
+        if ($request->month){
             $searchedMonth = $request->month;
             $reports = $this->dailyReport->getAllUserReportsBySearchedMonth(Auth::id(), $searchedMonth);
             return view("user.daily_report.index", compact('reports'));
