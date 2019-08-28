@@ -93,11 +93,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
 // DailyReportController
 
-Route::get("daily_report", "User\DailyReportController@index")->name("daily_report.index");
-Route::get("daily_report/create", "User\DailyReportController@create")->name("daily_report.create");
-Route::post("daily_report/store", "User\DailyReportController@store")->name("daily_report.store");
-Route::get("daily_report/{id}/show", "User\DailyReportController@show")->name("daily_report.show");
-Route::get("daily_report/{id}/edit", "User\DailyReportController@edit")->name("daily_report.edit");
-Route::put("daily_report/{id}/update", "User\DailyReportController@update")->name("daily_report.update");
-Route::post("daily_report/{id}/delete", "User\DailyReportController@delete")->name("daily_report.delete");
-Route::post("daily_report/search", "User\DailyReportController@search")->name("daily_report.search");
+Route::get("dailyReport", "User\DailyReportController@index")->name("dailyReport.index");
+Route::get("dailyReport/create", "User\DailyReportController@create")->name("dailyReport.create");
+Route::post("dailyReport/store", "User\DailyReportController@store")->name("dailyReport.store");
+Route::get("dailyReport/{id}/show", "User\DailyReportController@show")->name("dailyReport.show");
+Route::get("dailyReport/{id}/edit", "User\DailyReportController@edit")->name("dailyReport.edit");
+Route::put("dailyReport/{id}/update", "User\DailyReportController@update")->name("dailyReport.update");
+Route::post("dailyReport/{id}/delete", "User\DailyReportController@delete")->name("dailyReport.delete");
+Route::post("dailyReport/search", "User\DailyReportController@search")->name("dailyReport.search");

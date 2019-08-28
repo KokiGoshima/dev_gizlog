@@ -2,7 +2,7 @@
 @section ('content')
 
 <h1 class="brand-header">日報編集</h1>
-{!! Form::open(['route' => ['daily_report.update', $report->id], 'method' => 'PUT']) !!}
+{!! Form::open(['route' => ['dailyReport.update', $report->id], 'method' => 'PUT']) !!}
 <div class="main-wrap">
   <div class="container">
     {!! Form::input('hidden', 'user_id', $report->user_id, ['class' => 'form-control']) !!}

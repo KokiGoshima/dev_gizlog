@@ -12,15 +12,15 @@ use Auth;
 class DailyReportController extends Controller
 {
 
-	private $daily_report;
+	private $dailyReport;
 
 	public function __construct(DailyReport $instanceClass){
 		$this->middleware("auth");
-		$this->daily_report = $instanceClass;
+		$this->dailyReport = $instanceClass;
 	}
 
 	public function index(){
-		$reports = $this->daily_report
+		$reports = $this->dailyReport
 		->where('deleted_at', null)
 		->orderBy('reporting_time', 'desc')
 		->get();
@@ -34,39 +34,39 @@ class DailyReportController extends Controller
 	public function store(DailyReportRequest $request){
 		$input = $request->all();
 		$input['user_id'] = Auth::id();
-		$this->daily_report->fill($input)->save();
-		return redirect()->route('daily_report.index');
+		$this->dailyReport->fill($input)->save();
+		return redirect()->route('dailyReport.index');
 	}
 
 	public function show($id){
-		$report = $this->daily_report->find($id);
+		$report = $this->dailyReport->find($id);
 		$dt = new Carbon($report->reporting_time);
 		$day = $dt->format('D');
 		return view("user.daily_report.show", compact('report', 'day'));
 	}
 
 	public function edit($id){
-		$report = $this->daily_report->find($id);
+		$report = $this->dailyReport->find($id);
 		return view("user.daily_report.edit", compact('report'));
 	}
 
 	public function update(DailyReportRequest $request, $id){
 		$input = $request->all();
-		$report = $this->daily_report->find($id);
+		$report = $this->dailyReport->find($id);
 		$report->fill($input)->save();
-		return redirect()->route('daily_report.index');
+		return redirect()->route('dailyReport.index');
 	}
 
 	public function delete($id){
-		$report = $this->daily_report->find($id);
+		$report = $this->dailyReport->find($id);
 		$report->deleted_at = Carbon::now();
 		$report->save();
-		return redirect()->route('daily_report.index');
+		return redirect()->route('dailyReport.index');
 	}
 
 	public function search(Request $request){
 		$searchedMonth = $request->month;
-		$reports = $this->daily_report
+		$reports = $this->dailyReport
 		->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
 		->where('deleted_at', null)
 		->orderBy('reporting_time', 'desc')

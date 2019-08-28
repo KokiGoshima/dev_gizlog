@@ -2,7 +2,7 @@
 @section ('content')
 
 <h2 class="brand-header">日報作成</h2>
-{!! Form::open(["route" => "daily_report.store"]) !!}
+{!! Form::open(["route" => "dailyReport.store"]) !!}
 <div class="main-wrap">
   <div class="container">
     {!! Form::input("hidden", "user_id", null, ["class" => "form-control"]) !!}
