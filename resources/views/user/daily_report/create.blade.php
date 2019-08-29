@@ -5,7 +5,7 @@
 {!! Form::open(["route" => "dailyReport.store"]) !!}
 <div class="main-wrap">
   <div class="container">
-    <div class="form-group form-size-small @if($errors->has('title')) has-error @endif">
+    <div class="form-group form-size-small @if($errors->has('reporting_time')) has-error @endif">
       {!! Form::input('date', 'reporting_time', null, ['class' => 'form-control']) !!}
       @if ($errors->has('reporting_time'))
       <p class="text-danger">{{ $errors->first('reporting_time') }}</p>
@@ -19,7 +19,7 @@
       @endif
       <span class="help-block"></span>
     </div>
-    <div class="form-group @if($errors->has('title')) has-error @endif">
+    <div class="form-group @if($errors->has('content')) has-error @endif">
       {!! Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => 'Content']) !!}
       @if ($errors->has('content'))
       <p class="text-danger">{{ $errors->first('content') }}</p>
