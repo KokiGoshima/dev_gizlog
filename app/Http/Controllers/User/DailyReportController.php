@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DailyReportRequest;
 use App\Models\DailyReport;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Auth;
 
 class DailyReportController extends Controller
@@ -25,8 +26,10 @@ class DailyReportController extends Controller
     *もしメソッドの引数にパラメーターが来ていたら、検索している月に該当する日報のみを表示。
     *@param Request $request --検索する月の値がmonthをキーとしてRequestインスタンスに格納される。
     */
-    public function index(Request $request)
+    public function index(Request $request, Str $strClass)
     {
+        $str = $strClass;
+
         if ($request->month){
             $searchedMonth = $request->month;
             $reports = $this->dailyReport->getAllUserReportsBySearchedMonth(Auth::id(), $searchedMonth);
@@ -34,7 +37,7 @@ class DailyReportController extends Controller
             $reports = $this->dailyReport->getAllUserReports(Auth::id());
         }
 
-        return view("user.daily_report.index", compact('reports'));
+        return view("user.daily_report.index", compact('reports', 'str'));
     }
 
     public function create()
