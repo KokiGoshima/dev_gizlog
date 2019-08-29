@@ -30,11 +30,11 @@ class DailyReportController extends Controller
         if ($request->month){
             $searchedMonth = $request->month;
             $reports = $this->dailyReport->getAllUserReportsBySearchedMonth(Auth::id(), $searchedMonth);
-            return view("user.daily_report.index", compact('reports'));
         }else {
             $reports = $this->dailyReport->getAllUserReports(Auth::id());
-            return view("user.daily_report.index", compact('reports'));
         }
+
+        return view("user.daily_report.index", compact('reports'));
     }
 
     public function create()
@@ -73,8 +73,7 @@ class DailyReportController extends Controller
 
     public function destroy($id)
     {
-        $report = $this->dailyReport->find($id);
-        $report->delete();
+        $this->dailyReport->find($id)->delete();
         return redirect()->route('dailyReport.index');
     }
 
