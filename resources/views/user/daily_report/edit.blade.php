@@ -8,23 +8,20 @@
     <div class="form-group form-size-small @if($errors->has('reporting_time')) has-error @endif">
       {!! Form::input("date", "reporting_time", $report->reporting_time->format('Y-m-d'), ["class" => "form-control"]) !!}
       @if ($errors->has('reporting_time'))
-      <p class="text-danger">{{ $errors->first('reporting_time') }}</p>
+        <span class="help-block">{{ $errors->first('reporting_time') }}</span>
       @endif
-      <span class="help-block"></span>
     </div>
     <div class="form-group @if($errors->has('title')) has-error @endif">
       {!! Form::text('title', $report->title, ['class' => 'form-control']) !!}
       @if ($errors->has('title'))
-      <p class="text-danger">{{ $errors->first('title') }}</p>
+        <span class="help-block">{{ $errors->first('title') }}</span>
       @endif
-      <span class="help-block"></span>
     </div>
     <div class="form-group @if($errors->has('content')) has-error @endif">
       {!! Form::textarea('content', $report->content, ['class' => 'form-control']) !!}
       @if ($errors->has('content'))
-      <p class="text-danger">{{ $errors->first('content') }}</p>
+        <span class="help-block">{{ $errors->first('content') }}</span>
       @endif
-      <span class="help-block"></span>
     </div>
     {!! Form::submit('UPDATE', ['class' => 'btn btn-success pull-right']) !!}
   </div>
