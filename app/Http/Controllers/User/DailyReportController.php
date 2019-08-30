@@ -14,6 +14,9 @@ class DailyReportController extends Controller
 
     private $dailyReport;
 
+    /**
+    * @param DailyReportInstance $dailyReportClass
+    */
     public function __construct(DailyReport $dailyReportClass)
     {
         $this->middleware("auth");
@@ -21,9 +24,11 @@ class DailyReportController extends Controller
     }
 
     /**
-    *データーベースに格納されている全件を表示
-    *もしメソッドの引数にパラメーターが来ていたら、検索している月に該当する日報のみを表示。
-    *@param Request $request --検索する月の値がmonthをキーとしてRequestインスタンスに格納される。
+    * @param RequestInstance $request
+    * @param StrInstance $strClass
+    * @return ViewInstance
+    * @see DailyReport::getAllReport
+    * @see DailyReport::getReportByMonth
     */
     public function index(Request $request, Str $strClass)
     {
@@ -39,11 +44,18 @@ class DailyReportController extends Controller
         return view("user.daily_report.index", compact('reports', 'str'));
     }
 
+    /**
+    * @return ViewInstance
+    */
     public function create()
     {
         return view("user.daily_report.create");
     }
 
+    /**
+    * @param DailyReportRequest $request
+    * @return RedirectResponse
+    */
     public function store(DailyReportRequest $request)
     {
         $input = $request->all();
@@ -52,18 +64,31 @@ class DailyReportController extends Controller
         return redirect()->route('dailyReport.index');
     }
 
+    /**
+    * @param integer $id
+    * @return ViewInstance
+    */
     public function show($id)
     {
         $report = $this->dailyReport->find($id);
         return view("user.daily_report.show", compact('report'));
     }
 
+    /**
+    * @param integer $id
+    * @return ViewInstance
+    */
     public function edit($id)
     {
         $report = $this->dailyReport->find($id);
         return view("user.daily_report.edit", compact('report'));
     }
 
+    /**
+    * @param DailyReportRequest $request
+    * @param integer $id
+    * @return RedirectResponse
+    */
     public function update(DailyReportRequest $request, $id)
     {
         $input = $request->all();
@@ -75,6 +100,10 @@ class DailyReportController extends Controller
         return redirect()->route('dailyReport.index');
     }
 
+    /**
+    * @param integer $id
+    * @return RedirectResponse
+    */
     public function destroy($id)
     {
         $this->dailyReport->find($id)->delete();

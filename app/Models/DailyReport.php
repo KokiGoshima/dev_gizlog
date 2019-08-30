@@ -17,12 +17,21 @@ class DailyReport extends Model
         'reporting_time',
     ];
 
+    /**
+    * @param integer $id
+    * @return Collection
+    */
     public function getAllReport($id){
         return $this->where('user_id', $id)
             ->orderBy('reporting_time', 'desc')
             ->get();
     }
 
+    /**
+    * @param integer $id
+    * @param String $searchedMonth xxxx-xxの形で
+    * @return Collection
+    */
     public function getReportByMonth($id, $searchedMonth){
         return $this->where('user_id', $id)
             ->where('reporting_time', 'LIKE', "%{$searchedMonth}%")
