@@ -16,6 +16,7 @@ class DailyReportController extends Controller
 
     /**
     * @param DailyReportInstance $dailyReportClass
+    * @return void
     */
     public function __construct(DailyReport $dailyReportClass)
     {
@@ -45,6 +46,7 @@ class DailyReportController extends Controller
     }
 
     /**
+    * @param void
     * @return ViewInstance
     */
     public function create()
