@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DailyReportRequest;
 use App\Models\DailyReport;
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Auth;
 
