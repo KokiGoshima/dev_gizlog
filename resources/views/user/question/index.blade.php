@@ -31,19 +31,21 @@
           <th class="col-xs-2"></th>
         </tr>
       </thead>
-      <tbody>
-        <tr class="row">
-          <td class="col-xs-1"><img src="" class="avatar-img"></td>
-          <td class="col-xs-2"></td>
-          <td class="col-xs-6"></td>
-          <td class="col-xs-1"><span class="point-color"></span></td>
-          <td class="col-xs-2">
-            <a class="btn btn-success" href="">
-              <i class="fa fa-comments-o" aria-hidden="true"></i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
+      @foreach($questions as $question)
+        <tbody>
+          <tr class="row">
+            <td class="col-xs-1"><img src="" class="avatar-img"></td>
+            <td class="col-xs-2"></td>
+            <td class="col-xs-6">{{ $question->content }}</td>
+            <td class="col-xs-1"><span class="point-color"></span></td>
+            <td class="col-xs-2">
+              <a class="btn btn-success" href="">
+                <i class="fa fa-comments-o" aria-hidden="true"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      @endforeach
     </table>
     <div aria-label="Page navigation example" class="text-center"></div>
   </div>
