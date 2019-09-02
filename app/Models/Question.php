@@ -15,17 +15,17 @@ class Question extends Model
 
     public function comments()
     {
-        $this->hasMany('App\Models\Comment');
+        return $this->hasMany('App\Models\Comment');
     }
 
     public function user()
     {
-        $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function tag_category()
     {
-        $this->belongsTo('App\Models\TagCategory');
+        return $this->belongsTo('App\Models\TagCategory');
     }
 }
 
