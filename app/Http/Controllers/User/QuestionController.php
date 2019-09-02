@@ -4,9 +4,17 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Question;
 
 class QuestionController extends Controller
 {
+    protected $question;
+
+    public function __construct(Question $questionInstance)
+    {
+        $this->middleware('auth');
+        $this->question = $questionInstance;
+    }
 
     /**
      * Display a listing of the resource.
@@ -15,6 +23,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
+
         return view('user.question.index');
     }
 
