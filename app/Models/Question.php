@@ -22,5 +22,10 @@ class Question extends Model
     {
         $this->belongsTo('App\Models\User');
     }
+
+    public function tag_category()
+    {
+        $this->belongsTo('App\Models\TagCategory');
+    }
 }
 

@@ -13,5 +13,10 @@ class TagCategory extends Model
     protected $table = 'tag_categories';
     protected $dates = ['deleted_at'];
 
+    public function questions()
+    {
+        $this->hasMany('App\Models\Question');
+    }
+
 }
 
