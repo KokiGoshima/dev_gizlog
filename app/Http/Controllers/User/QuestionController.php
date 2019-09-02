@@ -25,6 +25,7 @@ class QuestionController extends Controller
     {
         $questions = $this->question::with('user')
             ->with('tag_category')
+            ->with('comments')
             ->orderBy('created_at', 'desc')
             ->get();
         return view('user.question.index', compact('questions'));
