@@ -12,5 +12,10 @@ class Question extends Model
         'title',
         'content',
     ];
+
+    public function comments()
+    {
+        $this->hasMany('App\Models\Comment');
+    }
 }
 
