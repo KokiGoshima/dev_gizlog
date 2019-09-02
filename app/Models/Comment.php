@@ -16,4 +16,9 @@ class Comment extends Model
     {
         $this->belongsTo('App\Models\Question');
     }
+
+    public function user()
+    {
+        $this->belongsTo('App\Models\User');
+    }
 }
