@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'question_id',
+        'content',
+    ]
+
     public function question()
     {
         $this->belongsTo('App\Models\Question');
