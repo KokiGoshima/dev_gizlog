@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.question.index');
     }
 
     /**
