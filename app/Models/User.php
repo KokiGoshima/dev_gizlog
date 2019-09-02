@@ -72,5 +72,10 @@ class User extends Authenticatable
             $this->withTrashed()->where('user_info_id', $userInfoId)->update(['deleted_at' => null]);
         });
     }
+
+    public function questions()
+    {
+        $this->hasMany('App\Models\Question');
+    }
 }
 

@@ -17,5 +17,10 @@ class Question extends Model
     {
         $this->hasMany('App\Models\Comment');
     }
+
+    public function user()
+    {
+        $this->belongsTo('App\Models\User');
+    }
 }
 
