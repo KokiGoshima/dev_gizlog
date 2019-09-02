@@ -23,8 +23,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        // $questions = $this->question->all();
         $questions = $this->question::with('user')
+            ->with('tag_category')
             ->orderBy('created_at', 'desc')
             ->get();
         return view('user.question.index', compact('questions'));
