@@ -4,9 +4,19 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\User\CommentRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    protected $comment;
+
+    public function __construct(Comment $comment)
+    {
+        $this->middleware('auth');
+        $this->comment = $comment;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +45,7 @@ class CommentController extends Controller
      */
     public function store(CommentRequest $request)
     {
-
+        
     }
 
     /**
