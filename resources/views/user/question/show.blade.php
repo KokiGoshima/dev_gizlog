@@ -46,10 +46,7 @@
         <span class="help-block"></span>
       </div>
       <div class="comment-bottom">
-        {{-- <button type="submit" class="btn btn-success">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-        </button> --}}
-          {!! Form::submit('<i class="fa fa-pencil" aria-hidden="true"></i>', ['class' => 'btn btn-success']) !!}
+        {!! Form::button('<i class="fa fa-pencil" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
       </div>
     {!! Form::close() !!}
   </div>
