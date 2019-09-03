@@ -4,7 +4,7 @@
 <h2 class="brand-header">質問投稿</h2>
 <div class="main-wrap">
   <div class="container">
-    <form>
+    {!! Form::open(['route' => 'question.store']) !!}
       <div class="form-group">
         <select name='tag_category_id' class = "form-control selectpicker form-size-small" id="pref_id">
           <option value="">Select category</option>
@@ -24,7 +24,7 @@
         <span class="help-block"></span>
       </div>
       {!! Form::submit('create', ['class' => 'btn btn-success pull-right', 'name' => 'confirm']) !!}
-    </form>
+    {!! Form::close() !!}
   </div>
 </div>
 
