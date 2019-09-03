@@ -106,6 +106,7 @@ class QuestionController extends Controller
 
     public function showMypage()
     {
-        
+        $user = Auth::user();
+        return view('user.question.mypage', compact('user'));
     }
 }
