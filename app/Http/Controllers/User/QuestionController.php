@@ -78,7 +78,8 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = $this->question->find($id);
+        return view('user.question.edit', compact('question'));
     }
 
     /**

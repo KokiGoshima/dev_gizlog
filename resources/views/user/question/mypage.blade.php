@@ -25,7 +25,7 @@
             <td class="col-xs-5">{{ $question->title }}</td>
             <td class="col-xs-2"><span class="point-color">{{ count($question->comments) }}</span></td>
             <td class="col-xs-1">
-              <a class="btn btn-success" href="">
+              <a class="btn btn-success" href="{{ route('question.edit', $question->id) }}">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </a>
             </td>
