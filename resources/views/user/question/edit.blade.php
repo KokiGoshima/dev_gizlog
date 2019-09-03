@@ -5,7 +5,7 @@
 
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => 'question.update', 'method' => 'PUT']) !!}
+    {!! Form::open(['route' => ['question.update', $question->id], 'method' => 'PUT']) !!}
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
         {!! Form::select('tag_category_id',
          ['Select category', 'front', 'back', 'infra', 'others'],

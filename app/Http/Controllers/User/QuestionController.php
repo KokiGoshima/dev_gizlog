@@ -89,9 +89,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionsRequest $request, $id)
     {
-        
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        $this->question->find($id)->fill($input)->save();
+        return redirect()->route('question.mypage');
     }
 
     /**
