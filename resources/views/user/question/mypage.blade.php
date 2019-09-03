@@ -18,24 +18,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="row">
-          <td class="col-xs-2"></td>
-          <td class="col-xs-1"></td>
-          <td class="col-xs-5"></td>
-          <td class="col-xs-2"><span class="point-color"></span></td>
-          <td class="col-xs-1">
-            <a class="btn btn-success" href="">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-          </td>
-          <td class="col-xs-1">
-            <form>
-              <button class="btn btn-danger" type="submit">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </button>
-            </form>
-          </td>
-        </tr>
+        @foreach($questions as $question)
+          <tr class="row">
+            <td class="col-xs-2">{{ $question->created_at->format('Y/m/d') }}</td>
+            <td class="col-xs-1">{{ $question->tag_category->name }}</td>
+            <td class="col-xs-5">{{ $question->title }}</td>
+            <td class="col-xs-2"><span class="point-color">{{ count($question->comments) }}</span></td>
+            <td class="col-xs-1">
+              <a class="btn btn-success" href="">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </a>
+            </td>
+            <td class="col-xs-1">
+              <form>
+                <button class="btn btn-danger" type="submit">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
