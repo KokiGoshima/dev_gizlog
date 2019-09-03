@@ -16,7 +16,7 @@ class CommentTableSeeder extends Seeder
             [
                 'user_id' => 3,
                 'question_id' => 1,
-                'content' => 'test',
+                'comment' => 'test',
                 'created_at' => '2017-12-03 10:04:23',
                 'updated_at' => '2017-12-03 10:04:23',
                 'deleted_at' => '2017-12-03 10:04:23',
@@ -24,7 +24,7 @@ class CommentTableSeeder extends Seeder
             [
                 'user_id' => 4,
                 'question_id' => 1,
-                'content' => 'wwwwwwww',
+                'comment' => 'wwwwwwww',
                 'created_at' => '2017-12-03 10:04:23',
                 'updated_at' => '2017-12-03 10:04:23',
                 'deleted_at' => '2017-12-03 10:04:23',
@@ -32,7 +32,7 @@ class CommentTableSeeder extends Seeder
             [
                 'user_id' => 4,
                 'question_id' => 2,
-                'content' => 'xxxxxxxxx',
+                'comment' => 'xxxxxxxxx',
                 'created_at' => '2017-12-03 10:04:23',
                 'updated_at' => '2017-12-03 10:04:23',
                 'deleted_at' => '2017-12-03 10:04:23',
