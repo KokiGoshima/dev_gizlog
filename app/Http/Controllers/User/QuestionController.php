@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Http\Requests\User\QuestionsRequest;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -50,7 +51,10 @@ class QuestionController extends Controller
      */
     public function store(QuestionsRequest $request)
     {
-
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        $this->question->fill($input)->save();
+        return redirect()->to('question');
     }
 
     /**
