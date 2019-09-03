@@ -107,6 +107,7 @@ class QuestionController extends Controller
     public function showMypage()
     {
         $user = Auth::user();
-        return view('user.question.mypage', compact('user'));
+        $questions = $user->questions()->orderBy('created_at', 'desc')->get();
+        return view('user.question.mypage', compact('questions'));
     }
 }
