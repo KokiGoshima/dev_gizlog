@@ -5,14 +5,13 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => 'question.store']) !!}
+    {!! Form::input('hidden', 'user_id', Auth::id()) !!}
       <div class="form-group">
-        <select name='tag_category_id' class = "form-control selectpicker form-size-small" id="pref_id">
-          <option value="">Select category</option>
-            <option value= "1">front</option>
-            <option value= "2">back</option>
-            <option value= "3">infra</option>
-            <option value= "4">others</option>
-        </select>
+       {!! Form::select('tag_category_id',
+         ['Select category', 'front', 'back', 'infra', 'others'],
+         0,
+         ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id'])
+       !!}
         <span class="help-block"></span>
       </div>
       <div class="form-group">
