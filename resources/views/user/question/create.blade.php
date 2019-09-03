@@ -5,7 +5,6 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => 'question.store']) !!}
-    {!! Form::input('hidden', 'user_id', Auth::id()) !!}
       <div class="form-group">
        {!! Form::select('tag_category_id',
          ['Select category', 'front', 'back', 'infra', 'others'],
