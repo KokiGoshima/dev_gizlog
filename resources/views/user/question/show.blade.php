@@ -32,18 +32,19 @@
         <p>{{ $comment->user->name }}</p>
         <p class="comment-date">{{ $comment->created_at }}</p>
       </div>
-      <div class="comment-body">{{ $comment->content }}</div>
+      <div class="comment-body">{{ $comment->comment }}</div>
     </div>
   </div>
   @endforeach
   <div class="comment-box">
     {!! Form::open(['route' => 'comment.store']) !!}
+    {!! Form::input('hidden', 'question_id', $question->id) !!}
       <div class="comment-title">
         <img src="{{ $user->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
       </div>
-      <div class="comment-body">
+      <div class="comment-body @if(!empty($errors->first('comment'))) has-error @endif">
         {!! Form::textarea('comment', null, ['class' => 'form-control', 'placeholder'  => 'Add your comment...']) !!}
-        <span class="help-block"></span>
+        <span class="help-block">{{ $errors->first('comment') }}</span>
       </div>
       <div class="comment-bottom">
         {!! Form::button('<i class="fa fa-pencil" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
