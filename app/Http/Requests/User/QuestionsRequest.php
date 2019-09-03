@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class QuestionsRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class QuestionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'tag_category_id' => 'required',
+            'tag_category_id' => Rule::notIn([0]),
             'title' => 'required|max:30',
             'content' => 'required|max:250',
         ];
