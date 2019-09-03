@@ -5,7 +5,7 @@
 <div class="main-wrap">
   <div class="panel panel-success">
     <div class="panel-heading">
-      <img src="" class="avatar-img">
+      <img src="{{ $question->user->avatar }}" class="avatar-img">
       <p>&nbsp;{{ $question->user->name }}さんの質問&nbsp;&nbsp;(&nbsp;&nbsp;{{ $question->tag_category->name }})</p>
       <p class="question-date"></p>
     </div>
