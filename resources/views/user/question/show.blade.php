@@ -6,7 +6,7 @@
   <div class="panel panel-success">
     <div class="panel-heading">
       <img src="" class="avatar-img">
-      <p>&nbsp;さんの質問&nbsp;&nbsp;(&nbsp;&nbsp;)</p>
+      <p>&nbsp;{{ $question->user->name }}さんの質問&nbsp;&nbsp;(&nbsp;&nbsp;)</p>
       <p class="question-date"></p>
     </div>
     <div class="table-responsive">
@@ -14,26 +14,28 @@
         <tbody>
           <tr>
             <th class="table-column">Title</th>
-            <td class="td-text"></td>
+            <td class="td-text">{{ $question->title }}</td>
           </tr>
           <tr>
             <th class="table-column">Question</th>
-            <td class='td-text'></td>
+            <td class='td-text'>{{ $question->content}}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-    <div class="comment-list">
-        <div class="comment-wrap">
-          <div class="comment-title">
-            <img src="" class="avatar-img">
-            <p></p>
-            <p class="comment-date"></p>
-          </div>
-          <div class="comment-body"></div>
-        </div>
+  @foreach($question->comments as $comment)
+  <div class="comment-list">
+    <div class="comment-wrap">
+      <div class="comment-title">
+        <img src="{{ $comment->user->avatar }}" class="avatar-img">
+        <p>{{ $comment->user->name }}</p>
+        <p class="comment-date">{{ $comment->created_at }}</p>
+      </div>
+      <div class="comment-body">{{ $comment->content }}</div>
     </div>
+  </div>
+  @endforeach
   <div class="comment-box">
     <form>
       <input name="user_id" type="hidden" value="">
