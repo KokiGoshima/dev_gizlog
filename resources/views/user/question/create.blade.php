@@ -8,7 +8,10 @@
       <div class="form-group">
         <select name='tag_category_id' class = "form-control selectpicker form-size-small" id="pref_id">
           <option value="">Select category</option>
-            <option value= ""></option>
+            <option value= "1">front</option>
+            <option value= "2">back</option>
+            <option value= "3">infra</option>
+            <option value= "4">others</option>
         </select>
         <span class="help-block"></span>
       </div>
