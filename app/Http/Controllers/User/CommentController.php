@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\User\CommentRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -45,7 +46,10 @@ class CommentController extends Controller
      */
     public function store(CommentRequest $request)
     {
-        
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        $this->comment->fill($input)->save();
+        return redirect()->route('question.show', $request->question_id);
     }
 
     /**
