@@ -29,7 +29,7 @@
       {!! Form::input('hidden', 'title', $question->title) !!}
       {!! Form::input('hidden', 'content', $question->content) !!}
       {!! Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
-    </form>
+    {!! Form::close() !!}
   </div>
 </div>
 
