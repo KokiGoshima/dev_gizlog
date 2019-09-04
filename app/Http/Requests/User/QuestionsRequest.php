@@ -26,7 +26,7 @@ class QuestionsRequest extends FormRequest
     {
         return [
             'tag_category_id' => Rule::notIn([0]),
-            'title' => 'required|max:30',
+            'title' => 'required|max:50',
             'content' => 'required|max:250',
         ];
     }
@@ -35,7 +35,7 @@ class QuestionsRequest extends FormRequest
     {
         return [
             'required' => '入力必須項目です。',
-            'title.max' => '30文字以内で入力してください。',
+            'title.max' => '50文字以内で入力してください。',
             'content.max' => '250文字以内で入力してください。',
         ];
     }
