@@ -27,22 +27,12 @@ class QuestionController extends Controller
     {
         if ($request->tag_category_id && $request->tag_category_id !== 0){
             $category_num = $request->tag_category_id;
-            $questions = $this->question
-                ->where( 'tag_category_id', $category_num)
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $questions = $this->question->getQuestionsByCategory($category_num);
         }elseif ($request->search_word) {
             $searched_word = $request->search_word;
-            $questions = $this->question
-                ->where('title', 'LIKE', "%$searched_word%")
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $questions = $this->question->getQuestionsByTitleWord($searched_word);
         }else {
-            $questions = $this->question::with('user')
-                ->with('tag_category')
-                ->with('comments')
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $questions = $this->question->getAllQuestions();
         }
 
         return view('user.question.index', compact('questions'));
