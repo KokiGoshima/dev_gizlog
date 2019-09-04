@@ -111,6 +111,14 @@ class QuestionController extends Controller
         return redirect()->route('question.mypage');
     }
 
+    public function confirm(QuestionsRequest $request)
+    {
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        $question = $this->question->fill($input);
+        return view('user.question.confirm', compact('question'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -134,4 +142,5 @@ class QuestionController extends Controller
         $questions = $user->questions()->orderBy('created_at', 'desc')->get();
         return view('user.question.mypage', compact('questions', 'str'));
     }
+
 }
