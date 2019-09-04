@@ -23,13 +23,22 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $questions = $this->question::with('user')
-            ->with('tag_category')
-            ->with('comments')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        if ($request->tag_category_id && $request->tag_category_id !== 0){
+            $category_num = $request->tag_category_id;
+            $questions = $this->question
+                ->where( 'tag_category_id', $category_num)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }else {
+            $questions = $this->question::with('user')
+                ->with('tag_category')
+                ->with('comments')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
+
         return view('user.question.index', compact('questions'));
     }
 
