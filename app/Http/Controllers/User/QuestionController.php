@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Http\Requests\User\QuestionsRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
@@ -27,8 +28,10 @@ class QuestionController extends Controller
      * @see Question::getQuestionsByTitleWord
      * @see Question::getAllQuestions
      */
-    public function index(Request $request)
+    public function index(Request $request, Str $strInstance)
     {
+        $str = $strInstance;
+
         if ($request->tag_category_id && $request->tag_category_id !== 0){
             $category_num = $request->tag_category_id;
             $questions = $this->question->getQuestionsByCategory($category_num);
@@ -39,7 +42,7 @@ class QuestionController extends Controller
             $questions = $this->question->getAllQuestions();
         }
 
-        return view('user.question.index', compact('questions'));
+        return view('user.question.index', compact('questions', 'str'));
     }
 
     /**
