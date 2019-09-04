@@ -121,6 +121,9 @@ class QuestionController extends Controller
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
+        if ($request->id){
+            $input['id'] = $request->id;
+        }
         $question = $this->question->fill($input);
         return view('user.question.confirm', compact('question'));
     }
