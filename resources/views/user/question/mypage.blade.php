@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($questions as $question)
+        @foreach ($questions as $question)
           <tr class="row">
             <td class="col-xs-2">{{ $question->created_at->format('Y/m/d') }}</td>
             <td class="col-xs-1">{{ $question->tag_category->name }}</td>
@@ -42,4 +42,3 @@
 </div>
 
 @endsection
-

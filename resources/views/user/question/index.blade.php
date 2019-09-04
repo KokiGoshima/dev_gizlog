@@ -36,7 +36,7 @@
           <th class="col-xs-2"></th>
         </tr>
       </thead>
-      @foreach($questions as $question)
+      @foreach ($questions as $question)
         <tbody>
           <tr class="row">
             <td class="col-xs-1"><img src="{{ $question->user->avatar }}" class="avatar-img"></td>
@@ -57,4 +57,3 @@
 </div>
 
 @endsection
-
