@@ -16,7 +16,7 @@
       </a>
     </div>
     <div class="category-wrap">
-      <div class="btn all" id="5">all</div>
+      <div class="btn all" id="0">all</div>
       <div class="btn front" id="1">front</div>
       <div class="btn back" id="2">back</div>
       <div class="btn infra" id="3">infra</div>
