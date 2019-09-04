@@ -21,7 +21,11 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @see Question::getQuestionsByCategory
+     * @see Question::getQuestionsByTitleWord
+     * @see Question::getAllQuestions
      */
     public function index(Request $request)
     {
@@ -41,6 +45,7 @@ class QuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param void
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -114,6 +119,10 @@ class QuestionController extends Controller
         return redirect()->route('question.mypage');
     }
 
+    /**
+    * @param void
+    * @return \Illuminate\Http\Response
+    */
     public function showMypage()
     {
         $user = Auth::user();
