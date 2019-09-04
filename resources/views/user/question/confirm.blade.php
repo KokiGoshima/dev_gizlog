@@ -24,11 +24,11 @@
   </div>
   <div class="btn-bottom-wrapper">
     {!! Form::open(['route' => 'question.store']) !!}
-      <input name="user_id" type="hidden" value="">
-      <input name="tag_category_id" type="hidden" value="">
-      <input name="title" type="hidden" value="">
-      <input name="content" type="hidden" value="">
-      <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+      {!! Form::input('hidden', 'user_id', $question->user_id) !!}
+      {!! Form::input('hidden', 'tag_category_id', $question->tag_category_id) !!}
+      {!! Form::input('hidden', 'title', $question->title) !!}
+      {!! Form::input('hidden', 'content', $question->content) !!}
+      {!! Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
     </form>
   </div>
 </div>
