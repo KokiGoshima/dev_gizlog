@@ -43,7 +43,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::get('question/mypage', 'QuestionController@showMypage')->name('question.mypage');
     Route::resource('report', DailyReportController::class);
     Route::resource('question', QuestionController::class);
-    Route::resource('comment', CommentController::class);
+    Route::resource('comment', CommentController::class, ['only' => ['store']]);
 
 });
 
