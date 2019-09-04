@@ -6,7 +6,6 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => 'question.confirm', 'method' => 'GET']) !!}
-    {{-- パラメータにquestionのidカラム番号を持たせるのではなく、requestのidキーに持たせています。 --}}
     {!! Form::input('hidden', 'id', $question->id) !!}
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
         {!! Form::select('tag_category_id',
