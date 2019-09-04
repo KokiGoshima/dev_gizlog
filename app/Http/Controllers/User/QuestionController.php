@@ -31,6 +31,12 @@ class QuestionController extends Controller
                 ->where( 'tag_category_id', $category_num)
                 ->orderBy('created_at', 'desc')
                 ->get();
+        }elseif ($request->search_word) {
+            $searched_word = $request->search_word;
+            $questions = $this->question
+                ->where('title', 'LIKE', "%$searched_word%")
+                ->orderBy('created_at', 'desc')
+                ->get();
         }else {
             $questions = $this->question::with('user')
                 ->with('tag_category')
