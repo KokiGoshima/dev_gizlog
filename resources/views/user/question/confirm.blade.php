@@ -23,7 +23,13 @@
     </div>
   </div>
   <div class="btn-bottom-wrapper">
-    {!! Form::open(['route' => 'question.store']) !!}
+
+    @if (strpos(parse_url($_SERVER['HTTP_REFERER'])['path'], 'create'))
+       {!! Form::open(['route' => 'question.store']) !!}
+    @else
+       {!! Form::open(['route' => ['question.update', $question->id], 'method' => 'PUT']) !!}
+    @endif
+
       {!! Form::input('hidden', 'user_id', $question->user_id) !!}
       {!! Form::input('hidden', 'tag_category_id', $question->tag_category_id) !!}
       {!! Form::input('hidden', 'title', $question->title) !!}
