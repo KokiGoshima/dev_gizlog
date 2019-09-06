@@ -33,13 +33,13 @@ class QuestionController extends Controller
     {
         $str = $this->str;
 
-        if (isset($request->tag_category_id) && $request->tag_category_id != 0){
-            $category_num = $request->tag_category_id;
-            $questions = $this->question->getQuestionsByCategory($category_num);
-        }elseif (isset($request->search_word) && isset($request->tag_category_id)) {
+        if (isset($request->search_word) && isset($request->tag_category_id) && $request->tag_category_id != 0){
             $searched_word = $request->search_word;
             $category_num = $request->tag_category_id;
             $questions = $this->question->getQuestionsByTitleWordandCategory($searched_word, $category_num);
+        }elseif (isset($request->tag_category_id) && $request->tag_category_id != 0) {
+            $category_num = $request->tag_category_id;
+            $questions = $this->question->getQuestionsByCategory($category_num);
         }elseif (isset($request->search_word)) {
             $searched_word = $request->search_word;
             $questions = $this->question->getQuestionsByTitleWord($searched_word);
@@ -47,7 +47,7 @@ class QuestionController extends Controller
             $questions = $this->question->getAllQuestions();
         }
 
-        return view('user.question.index', compact('questions', 'str'));
+        return view('user.question.index', compact('questions', 'str', 'category_num'));
     }
 
     /**

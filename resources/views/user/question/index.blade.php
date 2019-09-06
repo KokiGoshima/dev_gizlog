@@ -6,6 +6,9 @@
   <div class="btn-wrapper">
     <div class="search-box">
       {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
+        @if(isset($category_num))
+          {!! Form::input('hidden', 'tag_category_id', $category_num) !!}
+        @endif
         {!! Form::text('search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
         {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-icon', 'type' => 'submit']) !!}
       {!! Form::close() !!}
