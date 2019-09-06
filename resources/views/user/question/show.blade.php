@@ -6,7 +6,7 @@
   <div class="panel panel-success">
     <div class="panel-heading">
       <img src="{{ $question->user->avatar }}" class="avatar-img">
-      <p>&nbsp;{{ $question->user->name }}さんの質問&nbsp;&nbsp;(&nbsp;{{ $question->tag_category->name }}&nbsp;)</p>
+      <p>&nbsp;{{ $question->user->name }}さんの質問&nbsp;&nbsp;(&nbsp;{{ $question->tagCategory->name }}&nbsp;)</p>
       <p class="question-date"></p>
     </div>
     <div class="table-responsive">

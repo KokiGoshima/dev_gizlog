@@ -10,7 +10,7 @@
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
         {!! Form::select('tag_category_id',
          ['Select category', 'front', 'back', 'infra', 'others'],
-         $question->tag_category->id,
+         $question->tagCategory->id,
          ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id'])
        !!}
         <span class="help-block">{{ $errors->first('tag_category_id') }}</span>

@@ -87,7 +87,7 @@ class Question extends Model
     * @param void
     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
     */
-    public function tag_category()
+    public function tagCategory()
     {
         return $this->belongsTo('App\Models\TagCategory');
     }
