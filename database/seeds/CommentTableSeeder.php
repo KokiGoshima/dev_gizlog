@@ -19,7 +19,7 @@ class CommentTableSeeder extends Seeder
                 'comment' => 'test',
                 'created_at' => '2017-12-03 10:04:23',
                 'updated_at' => '2017-12-03 10:04:23',
-                'deleted_at' => '2017-12-03 10:04:23',
+                'deleted_at' => '2017-12-04 12:04:33',
             ],
             [
                 'user_id' => 4,
@@ -27,7 +27,7 @@ class CommentTableSeeder extends Seeder
                 'comment' => 'wwwwwwww',
                 'created_at' => '2017-12-03 10:04:23',
                 'updated_at' => '2017-12-03 10:04:23',
-                'deleted_at' => '2017-12-03 10:04:23',
+                'deleted_at' => '2017-12-04 10:30:23',
             ],
             [
                 'user_id' => 4,
@@ -35,7 +35,7 @@ class CommentTableSeeder extends Seeder
                 'comment' => 'xxxxxxxxx',
                 'created_at' => '2017-12-03 10:04:23',
                 'updated_at' => '2017-12-03 10:04:23',
-                'deleted_at' => '2017-12-03 10:04:23',
+                'deleted_at' => '2017-12-05 09:03:09',
             ],
         ]);
     }
