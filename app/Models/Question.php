@@ -10,7 +10,6 @@ class Question extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id',
         'user_id',
         'tag_category_id',
         'title',
