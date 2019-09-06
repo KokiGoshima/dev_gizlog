@@ -35,7 +35,8 @@ class Question extends Model
     public function getQuestionsByTitleWord($searched_word)
     {
         return $this
-            ->where('title', 'LIKE', "%$searched_word%")
+            ->where('title', 'LIKE', '%'. $searched_word .'%')
+            // ->where('title', 'LIKE', "%$searched_word%")
             ->orderBy('created_at', 'desc')
             ->get();
     }
@@ -47,7 +48,7 @@ class Question extends Model
     public function getQuestionsByTitleWordandCategory($searched_word, $category_num)
     {
         return $this
-            ->where('title', 'LIKE', "%$searched_word%")
+            ->where('title', 'LIKE', '%'. $searched_word .'%')
             ->where('tag_category_id', $category_num)
             ->orderBy('created_at', 'desc')
             ->get();
