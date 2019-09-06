@@ -37,13 +37,14 @@ class QuestionController extends Controller
             $category_num = $request->tag_category_id;
             $questions = $this->question->getQuestionsByCategory($category_num);
         }elseif (isset($request->search_word) === true) {
+            $category_num = $request->category_num;
             $searched_word = $request->search_word;
-            $questions = $this->question->getQuestionsByTitleWord($searched_word);
+            $questions = $this->question->getQuestionsByTitleWord($searched_word, $category_num);
         }else {
             $questions = $this->question->getAllQuestions();
         }
 
-        return view('user.question.index', compact('questions', 'str'));
+        return view('user.question.index', compact('questions', 'str', 'category_num'));
     }
 
     /**

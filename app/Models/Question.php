@@ -33,10 +33,11 @@ class Question extends Model
     * @param int|string|null $searched_word
     * @return Collection
     */
-    public function getQuestionsByTitleWord($searched_word)
+    public function getQuestionsByTitleWord($searched_word, $category_num)
     {
         return $this
             ->where('title', 'LIKE', "%$searched_word%")
+            ->where('tag_category_id', $category_num)
             ->orderBy('created_at', 'desc')
             ->get();
     }
