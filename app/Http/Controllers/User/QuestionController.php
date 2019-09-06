@@ -33,10 +33,10 @@ class QuestionController extends Controller
     {
         $str = $this->str;
 
-        if (isset($request->tag_category_id) && $request->tag_category_id != 0){
+        if (isset($request->tag_category_id) === true && $request->tag_category_id != 0){
             $category_num = $request->tag_category_id;
             $questions = $this->question->getQuestionsByCategory($category_num);
-        }elseif (isset($request->search_word)) {
+        }elseif (isset($request->search_word) === true) {
             $searched_word = $request->search_word;
             $questions = $this->question->getQuestionsByTitleWord($searched_word);
         }else {
