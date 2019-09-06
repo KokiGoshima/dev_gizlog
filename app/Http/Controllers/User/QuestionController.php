@@ -26,6 +26,7 @@ class QuestionController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      * @see Question::getQuestionsByCategory
+     * @see Question::getQuestionsByCategoryandCategory
      * @see Question::getQuestionsByTitleWord
      * @see Question::getAllQuestions
      */
@@ -33,11 +34,14 @@ class QuestionController extends Controller
     {
         $str = $this->str;
 
-        if (isset($request->tag_category_id) === true && $request->tag_category_id != 0){
+        if (isset($request->search_word) && isset($request->tag_category_id) && $request->tag_category_id != 0){
+            $searched_word = $request->search_word;
+            $category_num = $request->tag_category_id;
+            $questions = $this->question->getQuestionsByTitleWordandCategory($searched_word, $category_num);
+        }elseif (isset($request->tag_category_id) && $request->tag_category_id != 0) {
             $category_num = $request->tag_category_id;
             $questions = $this->question->getQuestionsByCategory($category_num);
-        }elseif (isset($request->search_word) === true) {
-            $category_num = $request->category_num;
+        }elseif (isset($request->search_word)) {
             $searched_word = $request->search_word;
             $questions = $this->question->getQuestionsByTitleWord($searched_word, $category_num);
         }else {
@@ -69,7 +73,7 @@ class QuestionController extends Controller
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->question->fill($input)->save();
-        return redirect()->to('question');
+        return redirect()->route('question.index');
     }
 
     /**
@@ -122,7 +126,7 @@ class QuestionController extends Controller
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
-        if ($request->id){
+        if (isset($request->id)){
             $input['id'] = $request->id;
         }
         $question = $this->question->fill($input);
