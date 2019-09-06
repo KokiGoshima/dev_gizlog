@@ -72,7 +72,7 @@ class QuestionController extends Controller
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->question->fill($input)->save();
-        return redirect()->to('question');
+        return redirect()->route('question.index');
     }
 
     /**
