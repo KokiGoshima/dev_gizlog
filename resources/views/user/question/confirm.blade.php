@@ -24,7 +24,8 @@
   </div>
   <div class="btn-bottom-wrapper">
 
-    @if (strpos(parse_url($_SERVER['HTTP_REFERER'])['path'], 'create'))
+    {{-- @if (strpos(parse_url($_SERVER['HTTP_REFERER'])['path'], 'create')) --}}
+    @if (strpos(url()->previous(), 'create') !== false)
        {!! Form::open(['route' => 'question.store']) !!}
     @else
        {!! Form::open(['route' => ['question.update', $input['id']], 'method' => 'PUT']) !!}
