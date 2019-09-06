@@ -13,4 +13,3 @@ npm-debug.log
 yarn-error.log
 .env
 package-lock.json
-storage/*
