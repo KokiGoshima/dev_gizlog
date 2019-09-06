@@ -13,11 +13,11 @@ class QuestionController extends Controller
 {
     protected $question;
 
-    public function __construct(Question $questionInstance, Str $strInstance)
+    public function __construct(Question $question, Str $str)
     {
         $this->middleware('auth');
-        $this->question = $questionInstance;
-        $this->strInstance = $strInstance;
+        $this->question = $question;
+        $this->str = $str;
     }
 
     /**
@@ -31,7 +31,7 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $str = $this->strInstance;
+        $str = $this->str;
 
         if ($request->tag_category_id && $request->tag_category_id !== 0){
             $category_num = $request->tag_category_id;
@@ -146,7 +146,7 @@ class QuestionController extends Controller
     */
     public function showMypage()
     {
-        $str = $this->strInstance;
+        $str = $this->str;
         $user = Auth::user();
         $questions = $user->questions()->orderBy('created_at', 'desc')->get();
         return view('user.question.mypage', compact('questions', 'str'));
