@@ -43,7 +43,7 @@ class QuestionController extends Controller
             $questions = $this->question->getQuestionsByCategory($category_num);
         }elseif (isset($request->search_word)) {
             $searched_word = $request->search_word;
-            $questions = $this->question->getQuestionsByTitleWord($searched_word, $category_num);
+            $questions = $this->question->getQuestionsByTitleWord($searched_word);
         }else {
             $questions = $this->question->getAllQuestions();
         }
@@ -124,13 +124,12 @@ class QuestionController extends Controller
      */
     public function confirm(QuestionsRequest $request)
     {
+        $user = Auth::user();
         $input = $request->all();
-        $input['user_id'] = Auth::id();
         if (isset($request->id)){
             $input['id'] = $request->id;
         }
-        $question = $this->question->fill($input);
-        return view('user.question.confirm', compact('question'));
+        return view('user.question.confirm', compact('user', 'input'));
     }
 
     /**
