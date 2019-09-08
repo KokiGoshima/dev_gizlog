@@ -37,6 +37,7 @@ class QuestionController extends Controller
     public function index(Request $request)
     {
         $str = $this->str;
+        $tag_categories = $this->tag_category->setTagCategories();
 
         if (isset($request->search_word) && isset($request->tag_category_id) && $request->tag_category_id != 0){
             $searched_word = $request->search_word;
@@ -52,7 +53,7 @@ class QuestionController extends Controller
             $questions = $this->question->getAllQuestions();
         }
 
-        return view('user.question.index', compact('questions', 'str', 'category_num'));
+        return view('user.question.index', compact('questions', 'str', 'category_num', 'tag_categories'));
     }
 
     /**

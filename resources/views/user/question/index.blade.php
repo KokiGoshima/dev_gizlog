@@ -21,10 +21,9 @@
   {!! Form::open(['route' => 'question.index', 'method' => 'GET', 'id' => 'category-form']) !!}
     <div class="category-wrap">
       <div class="btn all" id="0">all</div>
-      <div class="btn front" id="1">front</div>
-      <div class="btn back" id="2">back</div>
-      <div class="btn infra" id="3">infra</div>
-      <div class="btn others" id="4">others</div>
+      @foreach($tag_categories as $key => $tag_category)
+        <div class="btn {{ $tag_category }}" id="{{ $key + 1 }}">{{ $tag_category }}</div>
+      @endforeach
       {!! Form::input('hidden', 'tag_category_id', '', ['id' => 'category-val']) !!}
     </div>
   {!! Form::close() !!}
