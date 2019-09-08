@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\TagCategory;
 use App\Http\Requests\User\QuestionsRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -12,12 +13,15 @@ use Illuminate\Support\Str;
 class QuestionController extends Controller
 {
     protected $question;
+    protected $str;
+    protected $tag_category;
 
-    public function __construct(Question $question, Str $str)
+    public function __construct(Question $question, Str $str, TagCategory $tag_category)
     {
         $this->middleware('auth');
         $this->question = $question;
         $this->str = $str;
+        $this->tag_category = $tag_category;
     }
 
     /**
@@ -59,6 +63,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
+        dd($this->tag_category->setTagCategories());
         return view('user.question.create');
     }
 
