@@ -63,8 +63,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        dd($this->tag_category->setTagCategories());
-        return view('user.question.create');
+        $tag_category = $this->tag_category;
+        return view('user.question.create', compact('tag_category'));
     }
 
     /**

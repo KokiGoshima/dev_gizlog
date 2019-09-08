@@ -16,17 +16,9 @@ class TagCategory extends Model
     public function setTagCategories()
     {
         $tag_categories = $this::all();
-        $count = 1;
-        $length = count($tag_categories);
-        $res = '';
+        $res = [];
         foreach ($tag_categories as $tag_category){
-            if ($count < $length){
-                $res = $res. $tag_category->name. ',';
-            }else {
-                $res = $res. $tag_category->name;
-            }
-
-        $count++;
+            $res[] = $tag_category->name;
         }
 
         return $res;
