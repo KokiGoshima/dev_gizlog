@@ -36,7 +36,6 @@ class Question extends Model
     {
         return $this
             ->where('title', 'LIKE', '%'. $searched_word .'%')
-            // ->where('title', 'LIKE', "%$searched_word%")
             ->orderBy('created_at', 'desc')
             ->get();
     }
