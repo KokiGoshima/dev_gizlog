@@ -6,11 +6,6 @@
   <div class="container">
     {!! Form::open(['route' => 'question.confirm', 'method' => 'GET']) !!}
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
-       {{-- {!! Form::select('tag_category_id',
-         $tag_category->setTagCategories(),
-         0,
-         ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id'])
-       !!} --}}
        <select name="tag_category_id" class="form-control selectpicker form-size-small" id="pref_id">
          <option value="">Select category</option>
          @foreach($tag_categories as $key => $tag_category)
