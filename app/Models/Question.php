@@ -17,66 +17,6 @@ class Question extends Model
     ];
 
     /**
-    * @param int $category_num
-    * @return QuestionCollection
-    */
-    public function getQuestionsByCategory($category_num)
-    {
-        return $this
-            ->where('tag_category_id', $category_num)
-            ->orderBy('created_at', 'desc')
-            ->with('comments')
-            ->with('user')
-            ->with('tagCategory')
-            ->get();
-    }
-
-    /**
-    * @param int|string|null $searched_word
-    * @return Collection
-    */
-    public function getQuestionsByTitleWord($searched_word)
-    {
-        return $this
-            ->where('title', 'LIKE', '%'. $searched_word .'%')
-            ->orderBy('created_at', 'desc')
-            ->with('comments')
-            ->with('user')
-            ->with('tagCategory')
-            ->get();
-    }
-
-    /**
-    * @param int|string|null $searched_word, int $category_num
-    * @return Collection
-    */
-    public function getQuestionsByTitleWordandCategory($searched_word, $category_num)
-    {
-        return $this
-            ->where('title', 'LIKE', '%'. $searched_word .'%')
-            ->where('tag_category_id', $category_num)
-            ->orderBy('created_at', 'desc')
-            ->with('comments')
-            ->with('user')
-            ->with('tagCategory')
-            ->get();
-    }
-
-    /**
-    * @param void
-    * @return Collection
-    */
-    public function getAllQuestions()
-    {
-        return $this
-            ->orderBy('created_at', 'desc')
-            ->with('comments')
-            ->with('user')
-            ->with('tagCategory')
-            ->get();
-    }
-
-    /**
     * @param void
     * @return Illuminate\Database\Eloquent\Relations\HasMany
     */
@@ -102,4 +42,61 @@ class Question extends Model
     {
         return $this->belongsTo('App\Models\TagCategory');
     }
+
+   /**
+    * @param int $category_num
+    * @param int|string|null $search_word
+    * @return Collection
+    */
+    public function getQuestionsWithSearch($category_num, $search_word)
+    {
+        $query = $this::query();
+        $this->getQuestionsByCategory($query, $category_num);
+        $this->getQuestionsByTitle($query, $search_word);
+        return $query->orderBy('created_at', 'desc')
+            ->with('comments')
+            ->with('user')
+            ->with('tagCategory')
+            ->get();
+    }
+
+
+   /**
+    * @param Illuminate\Database\Query\Builder $query int $category_num
+    * @param int $category_num
+    * @return Illuminate\Database\Query\Builder
+    */
+    public function getQuestionsByCategory($query, $category_num)
+    {
+        if ($category_num){
+            $query->where('tag_category_id', $category_num);
+        }
+    }
+
+   /**
+    * @param Illuminate\Database\Query\Builder $query int $category_num
+    * @param int|string|null $search_word
+    * @return Illuminate\Database\Query\Builder
+    */
+    public function getQuestionsByTitle($query, $search_word)
+    {
+        if (isset($search_word)){
+            $query->where('title', 'LIKE', '%'. $search_word .'%');
+        }
+    }
+
+    /**
+    * @param void
+    * @return Collection
+    */
+    public function getAllQuestions()
+    {
+        return $this
+            ->orderBy('created_at', 'desc')
+            ->with('comments')
+            ->with('user')
+            ->with('tagCategory')
+            ->get();
+    }
+
 }

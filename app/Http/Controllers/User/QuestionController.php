@@ -29,26 +29,18 @@ class QuestionController extends Controller
      *
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     * @see Question::getQuestionsByCategory
-     * @see Question::getQuestionsByCategoryandCategory
-     * @see Question::getQuestionsByTitleWord
+     * @see Question::getQuestionsWithSearch
      * @see Question::getAllQuestions
      */
     public function index(Request $request)
     {
         $str = $this->str;
         $tag_categories = $this->tag_category->all();
+        $category_num = $request->tag_category_id;
+        $search_word = $request->search_word;
 
-        if (isset($request->search_word) && isset($request->tag_category_id) && $request->tag_category_id != 0){
-            $searched_word = $request->search_word;
-            $category_num = $request->tag_category_id;
-            $questions = $this->question->getQuestionsByTitleWordandCategory($searched_word, $category_num);
-        }elseif (isset($request->tag_category_id) && $request->tag_category_id != 0) {
-            $category_num = $request->tag_category_id;
-            $questions = $this->question->getQuestionsByCategory($category_num);
-        }elseif (isset($request->search_word)) {
-            $searched_word = $request->search_word;
-            $questions = $this->question->getQuestionsByTitleWord($searched_word);
+        if ($category_num || isset($search_word)){
+            $questions = $this->question->getQuestionsWithSearch($category_num, $search_word);
         }else {
             $questions = $this->question->getAllQuestions();
         }
