@@ -25,6 +25,9 @@ class Question extends Model
         return $this
             ->where('tag_category_id', $category_num)
             ->orderBy('created_at', 'desc')
+            ->with('comments')
+            ->with('user')
+            ->with('tagCategory')
             ->get();
     }
 
@@ -37,6 +40,9 @@ class Question extends Model
         return $this
             ->where('title', 'LIKE', '%'. $searched_word .'%')
             ->orderBy('created_at', 'desc')
+            ->with('comments')
+            ->with('user')
+            ->with('tagCategory')
             ->get();
     }
 
@@ -50,6 +56,9 @@ class Question extends Model
             ->where('title', 'LIKE', '%'. $searched_word .'%')
             ->where('tag_category_id', $category_num)
             ->orderBy('created_at', 'desc')
+            ->with('comments')
+            ->with('user')
+            ->with('tagCategory')
             ->get();
     }
 
@@ -61,6 +70,9 @@ class Question extends Model
     {
         return $this
             ->orderBy('created_at', 'desc')
+            ->with('comments')
+            ->with('user')
+            ->with('tagCategory')
             ->get();
     }
 
