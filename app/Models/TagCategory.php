@@ -13,6 +13,10 @@ class TagCategory extends Model
     protected $table = 'tag_categories';
     protected $dates = ['deleted_at'];
 
+    /**
+    * @param void
+    * @return Illuminate\Database\Eloquent\Relations\HasMany
+    */
     public function questions()
     {
         return $this->hasMany('App\Models\Question');
