@@ -39,7 +39,7 @@ class QuestionController extends Controller
         $category_num = $request->tag_category_id;
         $search_word = $request->search_word;
 
-        if ($category_num || isset($search_word)){
+        if ($category_num !== '0' || isset($search_word)){
             $questions = $this->question->getQuestionsWithSearch($category_num, $search_word);
         }else {
             $questions = $this->question->getAllQuestions();

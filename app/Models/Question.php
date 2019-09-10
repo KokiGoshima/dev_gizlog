@@ -68,7 +68,7 @@ class Question extends Model
     */
     public function getQuestionsByCategory($query, $category_num)
     {
-        if ($category_num){
+        if ($category_num !== '0' && $category_num !== null){
             $query->where('tag_category_id', $category_num);
         }
     }
