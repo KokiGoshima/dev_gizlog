@@ -45,7 +45,7 @@ class QuestionController extends Controller
             $questions = $this->question->getAllQuestions();
         }
 
-        return view('user.question.index', compact('questions', 'str', 'category_num', 'tag_categories'));
+        return view('user.question.index', compact('str', 'tag_categories', 'category_num', 'questions'));
     }
 
     /**
@@ -150,7 +150,12 @@ class QuestionController extends Controller
     {
         $str = $this->str;
         $user = Auth::user();
-        $questions = $user->questions()->orderBy('created_at', 'desc')->get();
+        $questions = $this->question
+            ->where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->with('comments')
+            ->with('tagCategory')
+            ->get();
         return view('user.question.mypage', compact('questions', 'str'));
     }
 
