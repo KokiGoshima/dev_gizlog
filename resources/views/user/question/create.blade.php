@@ -6,12 +6,11 @@
   <div class="container">
     {!! Form::open(['route' => 'question.confirm', 'method' => 'GET']) !!}
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
-       <select name="tag_category_id" class="form-control selectpicker form-size-small" id="pref_id">
-         <option value="">Select category</option>
-         @foreach($tag_categories as $key => $tag_category)
-           <option value="{{ $key+1 }}">{{ $tag_category->name }}</option>
-         @endforeach
-       </select>
+       {!! Form::select('tag_category_id',
+         $category_array,
+         0,
+         ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id'])
+        !!}
         <span class="help-block">{{ $errors->first('tag_category_id') }}</span>
       </div>
       <div class="form-group @if(!empty($errors->first('title'))) has-error @endif">
