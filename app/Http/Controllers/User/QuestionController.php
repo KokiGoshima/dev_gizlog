@@ -101,7 +101,7 @@ class QuestionController extends Controller
     public function update(QuestionsRequest $request, $id)
     {
         $input = $request->all();
-        $input['user_id'] = Auth::id();
+        $this->question->user_id = Auth::id();
         $this->question->find($id)->fill($input)->save();
         return redirect()->route('question.mypage');
     }
