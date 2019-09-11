@@ -146,8 +146,8 @@ class QuestionController extends Controller
         $categories = $this->tag_category->all();
         $res = [];
         $res[''] = 'Select category';
-        foreach ($categories as $key => $category) {
-            $res[$key+1] = $category->name;
+        foreach ($categories as $category) {
+            $res[$category->id] = $category->name;
         }
         return $res;
     }
