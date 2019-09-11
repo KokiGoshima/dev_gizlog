@@ -8,19 +8,16 @@ use App\Models\Question;
 use App\Models\TagCategory;
 use App\Http\Requests\User\QuestionsRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
     protected $question;
-    protected $str;
     protected $tag_category;
 
-    public function __construct(Question $question, Str $str, TagCategory $tag_category)
+    public function __construct(Question $question, TagCategory $tag_category)
     {
         $this->middleware('auth');
         $this->question = $question;
-        $this->str = $str;
         $this->tag_category = $tag_category;
     }
 
@@ -34,7 +31,6 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $str = $this->str;
         $tag_categories = $this->tag_category->all();
         $category_num = $request->tag_category_id;
         $search_word = $request->search_word;
@@ -45,7 +41,7 @@ class QuestionController extends Controller
             $questions = $this->question->getAllQuestions();
         }
 
-        return view('user.question.index', compact('str', 'tag_categories', 'category_num', 'questions'));
+        return view('user.question.index', compact('tag_categories', 'category_num', 'questions'));
     }
 
     /**
@@ -150,7 +146,6 @@ class QuestionController extends Controller
     */
     public function showMypage()
     {
-        $str = $this->str;
         $user = Auth::user();
         $questions = $this->question
             ->where('user_id', Auth::id())
@@ -158,7 +153,7 @@ class QuestionController extends Controller
             ->with('comments')
             ->with('tagCategory')
             ->get();
-        return view('user.question.mypage', compact('questions', 'str'));
+        return view('user.question.mypage', compact('questions'));
     }
 
     public function setCategoryArray()

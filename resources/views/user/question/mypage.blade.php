@@ -22,7 +22,7 @@
           <tr class="row">
             <td class="col-xs-2">{{ $question->created_at->format('Y/m/d') }}</td>
             <td class="col-xs-1">{{ $question->tagCategory->name }}</td>
-            <td class="col-xs-5">{{ $str::limit($question->title, 30, ' ...') }}</td>
+            <td class="col-xs-5">{{ Str::limit($question->title, 30, ' ...') }}</td>
             <td class="col-xs-2"><span class="point-color">{{ count($question->comments) }}</span></td>
             <td class="col-xs-1">
               <a class="btn btn-success" href="{{ route('question.edit', $question->id) }}">

@@ -214,6 +214,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Carbon' => Carbon\Carbon::class,
+        'Str' => Illuminate\Support\Str::class,
     ],
 
 ];
