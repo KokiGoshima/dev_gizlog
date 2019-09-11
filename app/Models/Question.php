@@ -49,12 +49,11 @@ class Question extends Model
     * @param int|string|null $search_word
     * @return Collection
     */
-    public function getQuestions($category_num, $search_word)
+    public function scopeGetQuestions($query, $category_num, $search_word)
     {
-        $query = $this::query();
-        $this->searchQuestionsByCategory($query, $category_num);
-        $this->searchQuestionsByTitle($query, $search_word);
-        return $query->orderBy('created_at', 'desc')
+        return $query->searchByCategory($category_num)
+            ->searchByTitle($search_word)
+            ->orderBy('created_at', 'desc')
             ->with('comments')
             ->with('user')
             ->with('tagCategory')
@@ -67,10 +66,10 @@ class Question extends Model
     * @param int $category_num
     * @return Illuminate\Database\Query\Builder
     */
-    public function searchQuestionsByCategory($query, $category_num)
+    public function scopeSearchByCategory($query, $category_num)
     {
         if ($category_num !== '0' && $category_num !== null){
-            $query->where('tag_category_id', $category_num);
+            return $query->where('tag_category_id', $category_num);
         }
     }
 
@@ -79,10 +78,10 @@ class Question extends Model
     * @param int|string|null $search_word
     * @return Illuminate\Database\Query\Builder
     */
-    public function searchQuestionsByTitle($query, $search_word)
+    public function scopeSearchByTitle($query, $search_word)
     {
         if (isset($search_word)){
-            $query->where('title', 'LIKE', '%'. $search_word .'%');
+            return $query->where('title', 'LIKE', '%'. $search_word .'%');
         }
     }
 
