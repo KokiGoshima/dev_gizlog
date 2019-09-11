@@ -12,11 +12,11 @@
         <tbody>
           <tr>
             <th class="table-column">Title</th>
-            <td class="td-text">{{ $input['title'] }}</td>
+            <td class="td-text">{{ $request->title }}</td>
           </tr>
           <tr>
             <th class="table-column">Question</th>
-            <td class='td-text'>{!! nl2br(e($input['content'])) !!}</td>
+            <td class='td-text'>{!! nl2br(e($request->content)) !!}</td>
           </tr>
         </tbody>
       </table>
@@ -27,11 +27,11 @@
     @if (strpos(url()->previous(), 'create') !== false)
        {!! Form::open(['route' => 'question.store']) !!}
     @else
-       {!! Form::open(['route' => ['question.update', $input['id']], 'method' => 'PUT']) !!}
+       {!! Form::open(['route' => ['question.update', $request->id], 'method' => 'PUT']) !!}
     @endif
-      {!! Form::input('hidden', 'tag_category_id', $input['tag_category_id']) !!}
-      {!! Form::input('hidden', 'title', $input['title']) !!}
-      {!! Form::input('hidden', 'content', $input['content']) !!}
+      {!! Form::input('hidden', 'tag_category_id', $request->tag_category_id) !!}
+      {!! Form::input('hidden', 'title', $request->title) !!}
+      {!! Form::input('hidden', 'content', $request->content) !!}
       {!! Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
     {!! Form::close() !!}
   </div>

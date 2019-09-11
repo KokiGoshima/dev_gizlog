@@ -115,11 +115,7 @@ class QuestionController extends Controller
     public function confirm(QuestionsRequest $request)
     {
         $user = Auth::user();
-        $input = $request->all();
-        if (isset($request->id)){
-            $input['id'] = $request->id;
-        }
-        return view('user.question.confirm', compact('user', 'input'));
+        return view('user.question.confirm', compact('user', 'request'));
     }
 
     /**
