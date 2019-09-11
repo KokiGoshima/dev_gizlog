@@ -60,7 +60,6 @@ class Question extends Model
             ->get();
     }
 
-
    /**
     * @param Illuminate\Database\Query\Builder $query int $category_num
     * @param int $category_num

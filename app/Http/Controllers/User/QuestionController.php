@@ -141,6 +141,10 @@ class QuestionController extends Controller
         return view('user.question.mypage', compact('questions'));
     }
 
+/**
+    * @param void
+    * @return array
+    */
     public function setCategoryArray()
     {
         $categories = $this->tag_category->all();

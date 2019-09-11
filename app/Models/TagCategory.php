@@ -23,4 +23,3 @@ class TagCategory extends Model
     }
 
 }
-
