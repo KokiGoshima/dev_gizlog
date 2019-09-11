@@ -3,28 +3,23 @@
 
 <h2 class="brand-header">質問一覧</h2>
 <div class="main-wrap">
-  <div class="btn-wrapper">
-    <div class="search-box">
-      {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
-        @if(isset($category_num))
-          {!! Form::input('hidden', 'tag_category_id', $category_num) !!}
-        @endif
+  {!! Form::open(['route' => 'question.index', 'method' => 'GET', 'id' => 'category-form']) !!}
+    <div class="btn-wrapper">
+      <div class="search-box">
         {!! Form::text('search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
         {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-icon', 'type' => 'submit']) !!}
-      {!! Form::close() !!}
+      </div>
+      <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      <a class="btn" href="{{ route('question.mypage') }}">
+        <i class="fa fa-user" aria-hidden="true"></i>
+      </a>
     </div>
-    <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
-    <a class="btn" href="{{ route('question.mypage') }}">
-      <i class="fa fa-user" aria-hidden="true"></i>
-    </a>
-  </div>
-  {!! Form::open(['route' => 'question.index', 'method' => 'GET', 'id' => 'category-form']) !!}
     <div class="category-wrap">
       <div class="btn all" id="0">all</div>
       @foreach($tag_categories as $tag_category)
         <div class="btn {{ $tag_category->name }}" id="{{ $tag_category->id }}">{{ $tag_category->name }}</div>
       @endforeach
-      {!! Form::input('hidden', 'tag_category_id', '', ['id' => 'category-val']) !!}
+      {!! Form::input('hidden', 'tag_category_id', $category_num, ['id' => 'category-val']) !!}
     </div>
   {!! Form::close() !!}
   <div class="content-wrapper table-responsive">
