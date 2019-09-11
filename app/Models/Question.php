@@ -96,6 +96,7 @@ class Question extends Model
             ->orderBy('created_at', 'desc')
             ->with('comments')
             ->with('tagCategory')
+            ->with('user')
             ->get();
     }
 
