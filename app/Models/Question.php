@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Question extends Model
 {
@@ -95,6 +96,19 @@ class Question extends Model
             ->orderBy('created_at', 'desc')
             ->with('comments')
             ->with('user')
+            ->with('tagCategory')
+            ->get();
+    }
+
+/**
+    * @param void
+    * @return Collection
+    */
+    public function getYourQuestions()
+    {
+        return $this->where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->with('comments')
             ->with('tagCategory')
             ->get();
     }

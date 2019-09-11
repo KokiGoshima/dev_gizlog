@@ -143,16 +143,12 @@ class QuestionController extends Controller
     /**
     * @param void
     * @return \Illuminate\Http\Response
+    * @see Question::getYourQuestions
     */
     public function showMypage()
     {
         $user = Auth::user();
-        $questions = $this->question
-            ->where('user_id', Auth::id())
-            ->orderBy('created_at', 'desc')
-            ->with('comments')
-            ->with('tagCategory')
-            ->get();
+        $questions = $this->question->getYourQuestions();
         return view('user.question.mypage', compact('questions'));
     }
 
