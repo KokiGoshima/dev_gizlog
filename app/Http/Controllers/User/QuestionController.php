@@ -147,7 +147,6 @@ class QuestionController extends Controller
     */
     public function showMypage()
     {
-        $user = Auth::user();
         $questions = $this->question->getYourQuestions();
         return view('user.question.mypage', compact('questions'));
     }
