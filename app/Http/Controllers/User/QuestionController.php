@@ -34,13 +34,7 @@ class QuestionController extends Controller
         $tag_categories = $this->tag_category->all();
         $category_num = $request->tag_category_id;
         $search_word = $request->search_word;
-
-        if ($category_num !== '0' || isset($search_word)){
-            $questions = $this->question->getQuestionsWithSearch($category_num, $search_word);
-        }else {
-            $questions = $this->question->getAllQuestions();
-        }
-
+        $questions = $this->question->getQuestions($category_num, $search_word);
         return view('user.question.index', compact('tag_categories', 'category_num', 'questions'));
     }
 

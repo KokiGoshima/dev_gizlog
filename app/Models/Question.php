@@ -49,7 +49,7 @@ class Question extends Model
     * @param int|string|null $search_word
     * @return Collection
     */
-    public function getQuestionsWithSearch($category_num, $search_word)
+    public function getQuestions($category_num, $search_word)
     {
         $query = $this::query();
         $this->searchQuestionsByCategory($query, $category_num);
@@ -87,20 +87,6 @@ class Question extends Model
     }
 
     /**
-    * @param void
-    * @return Collection
-    */
-    public function getAllQuestions()
-    {
-        return $this
-            ->orderBy('created_at', 'desc')
-            ->with('comments')
-            ->with('user')
-            ->with('tagCategory')
-            ->get();
-    }
-
-/**
     * @param void
     * @return Collection
     */
