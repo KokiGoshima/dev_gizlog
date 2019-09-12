@@ -25,16 +25,16 @@
     </div>
   </div>
   @foreach ($question->comments as $comment)
-  <div class="comment-list">
-    <div class="comment-wrap">
-      <div class="comment-title">
-        <img src="{{ $comment->user->avatar }}" class="avatar-img">
-        <p>{{ $comment->user->name }}</p>
-        <p class="comment-date">{{ $comment->created_at }}</p>
+    <div class="comment-list">
+      <div class="comment-wrap">
+        <div class="comment-title">
+          <img src="{{ $comment->user->avatar }}" class="avatar-img">
+          <p>{{ $comment->user->name }}</p>
+          <p class="comment-date">{{ $comment->created_at }}</p>
+        </div>
+        <div class="comment-body">{!! nl2br(e($comment->comment)) !!}</div>
       </div>
-      <div class="comment-body">{!! nl2br(e($comment->comment)) !!}</div>
     </div>
-  </div>
   @endforeach
   <div class="comment-box">
     {!! Form::open(['route' => 'comment.store']) !!}
