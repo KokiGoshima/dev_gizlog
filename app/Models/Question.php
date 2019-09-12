@@ -54,9 +54,7 @@ class Question extends Model
         return $query->searchByCategory($category_num)
             ->searchByTitle($search_word)
             ->orderBy('created_at', 'desc')
-            ->with('comments')
-            ->with('user')
-            ->with('tagCategory')
+            ->with(['comments', 'user', 'tagCategory'])
             ->get();
     }
 
@@ -92,9 +90,7 @@ class Question extends Model
     {
         return $this->where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')
-            ->with('comments')
-            ->with('tagCategory')
-            ->with('user')
+            ->with(['comments', 'tagCategory'])
             ->get();
     }
 

@@ -47,7 +47,7 @@ class QuestionController extends Controller
     public function create()
     {
         $tag_categories = $this->tag_category->all();
-        $category_array = $this->setCategoryArray();
+        $category_array = $this->setCategoryArray($tag_categories);
         return view('user.question.create', compact('tag_categories', 'category_array'));
     }
 
@@ -86,8 +86,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
+        $tag_categories = $this->tag_category->all();
         $question = $this->question->find($id);
-        $category_array = $this->setCategoryArray();
+        $category_array = $this->setCategoryArray($tag_categories);
         return view('user.question.edit', compact('question', 'category_array'));
     }
 
@@ -145,12 +146,11 @@ class QuestionController extends Controller
     * @param void
     * @return array
     */
-    public function setCategoryArray()
+    public function setCategoryArray($tag_categories)
     {
-        $categories = $this->tag_category->all();
         $res = [];
         $res[''] = 'Select category';
-        foreach ($categories as $category) {
+        foreach ($tag_categories as $category) {
             $res[$category->id] = $category->name;
         }
         return $res;
