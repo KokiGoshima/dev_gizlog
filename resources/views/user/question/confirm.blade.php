@@ -24,7 +24,7 @@
   </div>
   <div class="btn-bottom-wrapper">
 
-    @if (strpos(url()->previous(), 'create') !== false)
+    @if (empty($request->id))
        {!! Form::open(['route' => 'question.store']) !!}
     @else
        {!! Form::open(['route' => ['question.update', $request->id], 'method' => 'PUT']) !!}
