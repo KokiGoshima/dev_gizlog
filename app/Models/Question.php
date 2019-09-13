@@ -49,9 +49,9 @@ class Question extends Model
     * @param int|string|null $search_word
     * @return Collection
     */
-    public function scopeGetQuestions($query, $category_num, $search_word)
+    public function getQuestions($category_num, $search_word)
     {
-        return $query->searchByCategory($category_num)
+        return $this->searchByCategory($category_num)
             ->searchByTitle($search_word)
             ->orderBy('created_at', 'desc')
             ->with(['comments', 'user', 'tagCategory'])
