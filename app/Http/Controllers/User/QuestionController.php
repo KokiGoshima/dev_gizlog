@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
+    const SELECT_BOX_DEFAULT_MESSAGE = 'Select Categories...';
+
     protected $question;
     protected $tag_category;
 
@@ -43,11 +45,12 @@ class QuestionController extends Controller
      *
      * @param void
      * @return \Illuminate\Http\Response
+     * @see QuestionController::categoryArray
      */
     public function create()
     {
         $tag_categories = $this->tag_category->all();
-        $category_array = $this->setCategoryArray($tag_categories);
+        $category_array = $this->categoryArray($tag_categories);
         return view('user.question.create', compact('tag_categories', 'category_array'));
     }
 
@@ -74,7 +77,6 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = $this->question->with(['comments.user'])->find($id);
-        $user = Auth::user();
         return view('user.question.show', compact('question', 'user'));
     }
 
@@ -102,7 +104,7 @@ class QuestionController extends Controller
     public function update(QuestionsRequest $request, $id)
     {
         $input = $request->all();
-        $this->question->user_id = Auth::id();
+        $input['user_id'] = Auth::id();
         $this->question->find($id)->fill($input)->save();
         return redirect()->route('question.mypage');
     }
@@ -115,8 +117,7 @@ class QuestionController extends Controller
      */
     public function confirm(QuestionsRequest $request)
     {
-        $user = Auth::user();
-        return view('user.question.confirm', compact('user', 'request'));
+        return view('user.question.confirm', compact('request'));
     }
 
     /**
@@ -142,18 +143,15 @@ class QuestionController extends Controller
         return view('user.question.mypage', compact('questions'));
     }
 
-/**
-    * @param void
+    /**
+    * @param Collection $tag_categories
     * @return array
     */
-    public function setCategoryArray($tag_categories)
+    public function categoryArray($tag_categories)
     {
-        $res = [];
-        $res[''] = 'Select category';
-        foreach ($tag_categories as $category) {
-            $res[$category->id] = $category->name;
-        }
-        return $res;
+        return $tag_categories
+            ->pluck('name', 'id')
+            ->prepend(self::SELECT_BOX_DEFAULT_MESSAGE, '');
     }
 
 }
