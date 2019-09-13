@@ -136,9 +136,9 @@ class QuestionController extends Controller
     * @return \Illuminate\Http\Response
     * @see Question::getMyQuestions
     */
-    public function showMypage()
+    public function showYourPage()
     {
-        $questions = $this->question->getMyQuestions();
+        $questions = $this->question->getYourQuestions(Auth::id());
         return view('user.question.mypage', compact('questions'));
     }
 

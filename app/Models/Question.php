@@ -86,9 +86,9 @@ class Question extends Model
     * @param void
     * @return Collection
     */
-    public function getMyQuestions()
+    public function getYourQuestions($yourUserId)
     {
-        return $this->where('user_id', Auth::id())
+        return $this->where('user_id', $yourUserId)
             ->orderBy('created_at', 'desc')
             ->with(['comments', 'tagCategory'])
             ->get();
