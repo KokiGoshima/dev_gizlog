@@ -135,11 +135,11 @@ class QuestionController extends Controller
     /**
     * @param void
     * @return \Illuminate\Http\Response
-    * @see Question::getYourQuestions
+    * @see Question::getMyQuestions
     */
     public function showMypage()
     {
-        $questions = $this->question->getYourQuestions();
+        $questions = $this->question->getMyQuestions();
         return view('user.question.mypage', compact('questions'));
     }
 

@@ -86,7 +86,7 @@ class Question extends Model
     * @param void
     * @return Collection
     */
-    public function getYourQuestions()
+    public function getMyQuestions()
     {
         return $this->where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')
