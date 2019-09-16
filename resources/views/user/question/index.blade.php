@@ -6,7 +6,11 @@
   {!! Form::open(['route' => 'question.index', 'method' => 'GET', 'id' => 'category-form']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
-        {!! Form::text('search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
+        @if(Session::has('search_word'))
+          {!! Form::text('search_word', session('search_word'), ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
+        @else
+          {!! Form::text('search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
+        @endif
         {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-icon', 'type' => 'submit']) !!}
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>

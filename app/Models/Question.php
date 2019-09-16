@@ -49,10 +49,10 @@ class Question extends Model
     * @param int|string|null $search_word
     * @return Collection
     */
-    public function getQuestions($category_num, $search_word)
+    public function getQuestions($category_num, $search_word, $request)
     {
         return $this->searchByCategory($category_num)
-            ->searchByTitle($search_word)
+            ->searchByTitle($search_word, $request)
             ->orderBy('created_at', 'desc')
             ->with(['comments', 'user', 'tagCategory'])
             ->get();
@@ -75,9 +75,11 @@ class Question extends Model
     * @param int|string|null $search_word
     * @return Illuminate\Database\Query\Builder
     */
-    public function scopeSearchByTitle($query, $search_word)
+    public function scopeSearchByTitle($query, $search_word, $request)
     {
         if (isset($search_word)){
+            $request->session()->flash('search_word', $request->search_word);
+            // dd($request->session());
             return $query->where('title', 'LIKE', '%'. $search_word .'%');
         }
     }
@@ -86,9 +88,9 @@ class Question extends Model
     * @param void
     * @return Collection
     */
-    public function getYourQuestions($yourUserId)
+    public function getUserQuestions($userId)
     {
-        return $this->where('user_id', $yourUserId)
+        return $this->where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->with(['comments', 'tagCategory'])
             ->get();
