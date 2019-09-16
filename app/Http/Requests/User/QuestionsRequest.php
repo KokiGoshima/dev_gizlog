@@ -33,9 +33,9 @@ class QuestionsRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => '入力必須項目です。',
-            'title.max' => '50文字以内で入力してください。',
-            'content.max' => '250文字以内で入力してください。',
+            // 'required' => '入力必須項目です。',
+            // 'title.max' => '50文字以内で入力してください。',
+            // 'content.max' => '250文字以内で入力してください。',
         ];
     }
 }

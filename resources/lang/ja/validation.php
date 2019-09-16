@@ -143,6 +143,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'tag_category_id' => 'タグカテゴリー',
+        'title' => 'タイトル',
+        'content' => '質問内容',
+    ],
 
 ];
