@@ -79,8 +79,7 @@ class Question extends Model
     {
         if (isset($search_word)){
             $request->session()->flash('search_word', $request->search_word);
-            // dd($request->session());
-            return $query->where('title', 'LIKE', '%'. $search_word .'%');
+            return $query->where('title', 'LIKE BINARY', '%'. $search_word .'%');
         }
     }
 
