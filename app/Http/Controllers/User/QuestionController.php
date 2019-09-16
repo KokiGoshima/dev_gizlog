@@ -36,7 +36,7 @@ class QuestionController extends Controller
         $tag_categories = $this->tag_category->all();
         $category_num = $request->tag_category_id;
         $search_word = $request->search_word;
-        $questions = $this->question->getQuestions($category_num, $search_word);
+        $questions = $this->question->getQuestions($category_num, $search_word, $request);
         return view('user.question.index', compact('tag_categories', 'category_num', 'questions'));
     }
 
@@ -136,9 +136,9 @@ class QuestionController extends Controller
     * @return \Illuminate\Http\Response
     * @see Question::getMyQuestions
     */
-    public function showYourPage()
+    public function showUserPage()
     {
-        $questions = $this->question->getYourQuestions(Auth::id());
+        $questions = $this->question->getUserQuestions(Auth::id());
         return view('user.question.mypage', compact('questions'));
     }
 
