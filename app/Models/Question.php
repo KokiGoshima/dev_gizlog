@@ -65,7 +65,7 @@ class Question extends Model
     */
     public function scopeSearchByCategory($query, $categoryNum)
     {
-        if ($categoryNum !== '0' && $categoryNum !== null){
+        if (!empty($categoryNum)){
             return $query->where('tag_category_id', $categoryNum);
         }
     }
@@ -77,7 +77,7 @@ class Question extends Model
     */
     public function scopeSearchByTitle($query, $searchWord, $request)
     {
-        if (isset($searchWord) && $searchWord !== ''){
+        if (!empty($searchWord)){
             $request->session()->flash('search_word', $request->search_word);
             return $query->where('title', 'LIKE BINARY', '%'. $searchWord .'%');
         }
