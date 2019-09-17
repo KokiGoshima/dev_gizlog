@@ -78,7 +78,7 @@ return [
     'max'                  => [
         'numeric' => ':attributeには、:max以下の数字を指定してください。',
         'file'    => ':attributeには、:max kB以下のファイルを指定してください。',
-        'string'  => ':attributeは、:max文字以下で指定してください。',
+        'string'  => ':attributeは、:max文字以下で記入してください。',
         'array'   => ':attributeは:max個以下指定してください。',
     ],
     'mimes'                => ':attributeには:valuesタイプのファイルを指定してください。',
@@ -94,7 +94,7 @@ return [
     'numeric'              => ':attributeには、数字を指定してください。',
     'present'              => ':attributeが存在していません。',
     'regex'                => ':attributeに正しい形式を指定してください。',
-    'required'             => ':attributeは必ず指定してください。',
+    'required'             => ':attributeは必ず記入してください。',
     'required_if'          => ':otherが:valueの場合、:attributeも指定してください。',
     'required_unless'      => ':otherが:valuesでない場合、:attributeを指定してください。',
     'required_with'        => ':valuesを指定する場合は、:attributeも指定してください。',
@@ -147,6 +147,7 @@ return [
         'tag_category_id' => 'タグカテゴリー',
         'title' => 'タイトル',
         'content' => '質問内容',
+        'comment' => 'コメント'
     ],
 
 ];
