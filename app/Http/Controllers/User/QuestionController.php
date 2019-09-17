@@ -36,8 +36,6 @@ class QuestionController extends Controller
         $categoryNum = $request->tag_category_id;
         $searchWord = $request->search_word;
         $questions = $this->question->getQuestions($categoryNum, $searchWord);
-        // return view('user.question.index', compact('tagCategories', 'categoryNum', 'questions'));
-        // $request->flashExcept('search_word');
         $request->flashOnly('search_word');
         return view('user.question.index', compact('tagCategories', 'questions'));
     }

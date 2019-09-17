@@ -78,7 +78,6 @@ class Question extends Model
     public function scopeSearchByTitle($query, $searchWord)
     {
         if (!empty($searchWord)){
-            // $request->session()->flash('search_word', $request->search_word);
             return $query->where('title', 'LIKE BINARY', '%'. $searchWord .'%');
         }
     }
