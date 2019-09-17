@@ -18,7 +18,6 @@ class QuestionController extends Controller
 
     public function __construct(Question $question, TagCategory $tag_category)
     {
-        $this->middleware('auth');
         $this->question = $question;
         $this->tag_category = $tag_category;
     }

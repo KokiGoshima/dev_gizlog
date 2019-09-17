@@ -40,11 +40,13 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('attendance/modify', ['as' => 'attendance.modify.store', 'uses' => 'AttendanceController@storeModifyRequest']);
     Route::get('attendance/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMypage']);
 
-    Route::get('question/mypage', 'QuestionController@showUserPage')->name('question.mypage');
-    Route::get('question/confirm', 'QuestionController@confirm')->name('question.confirm');
-    Route::resource('report', DailyReportController::class);
-    Route::resource('question', QuestionController::class);
-    Route::resource('comment', CommentController::class, ['only' => ['store']]);
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('question/mypage', 'QuestionController@showUserPage')->name('question.mypage');
+        Route::get('question/confirm', 'QuestionController@confirm')->name('question.confirm');
+        Route::resource('report', DailyReportController::class);
+        Route::resource('question', QuestionController::class);
+        Route::resource('comment', CommentController::class, ['only' => ['store']]);
+    });
 
 });
 
