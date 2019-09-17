@@ -49,10 +49,10 @@ class Question extends Model
     * @param int|string|null $searchWord
     * @return Collection
     */
-    public function getQuestions($categoryNum, $searchWord, $request)
+    public function getQuestions($categoryNum, $searchWord)
     {
         return $this->searchByCategory($categoryNum)
-            ->searchByTitle($searchWord, $request)
+            ->searchByTitle($searchWord)
             ->orderBy('created_at', 'desc')
             ->with(['comments', 'user', 'tagCategory'])
             ->get();
@@ -75,10 +75,10 @@ class Question extends Model
     * @param int|string|null $searchWord
     * @return Illuminate\Database\Query\Builder
     */
-    public function scopeSearchByTitle($query, $searchWord, $request)
+    public function scopeSearchByTitle($query, $searchWord)
     {
         if (!empty($searchWord)){
-            $request->session()->flash('search_word', $request->search_word);
+            // $request->session()->flash('search_word', $request->search_word);
             return $query->where('title', 'LIKE BINARY', '%'. $searchWord .'%');
         }
     }

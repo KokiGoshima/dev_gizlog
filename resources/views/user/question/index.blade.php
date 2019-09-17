@@ -6,11 +6,7 @@
   {!! Form::open(['route' => 'question.index', 'method' => 'GET', 'id' => 'category-form']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
-        @if(Session::has('search_word'))
-          {!! Form::text('search_word', session('search_word'), ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
-        @else
-          {!! Form::text('search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
-        @endif
+        {!! Form::text('search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
         {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-icon', 'type' => 'submit']) !!}
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -23,7 +19,7 @@
       @foreach($tagCategories as $tagCategory)
         <div class="btn {{ $tagCategory->name }}" id="{{ $tagCategory->id }}">{{ $tagCategory->name }}</div>
       @endforeach
-      {!! Form::input('hidden', 'tag_category_id', $categoryNum, ['id' => 'category-val']) !!}
+      {!! Form::input('hidden', 'tag_category_id', null, ['id' => 'category-val']) !!}
     </div>
   {!! Form::close() !!}
   <div class="content-wrapper table-responsive">
