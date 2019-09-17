@@ -90,7 +90,7 @@ class QuestionController extends Controller
     {
         $tagCategories = $this->tagCategory->all();
         $question = $this->question->find($id);
-        $categoryArray = $this->categoryArray($tagCategories);
+        $categoryArray = $this->makeCategoryArray($tagCategories);
         return view('user.question.edit', compact('question', 'categoryArray'));
     }
 
