@@ -77,7 +77,7 @@ class Question extends Model
     */
     public function scopeSearchByTitle($query, $search_word, $request)
     {
-        if (isset($search_word)){
+        if (isset($search_word) && $search_word !== ''){
             $request->session()->flash('search_word', $request->search_word);
             return $query->where('title', 'LIKE BINARY', '%'. $search_word .'%');
         }
