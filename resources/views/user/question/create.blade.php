@@ -7,7 +7,7 @@
     {!! Form::open(['route' => 'question.confirm', 'method' => 'GET']) !!}
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
        {!! Form::select('tag_category_id',
-         $category_array,
+         $categoryArray,
          0,
          ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id'])
         !!}

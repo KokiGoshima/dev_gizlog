@@ -9,7 +9,7 @@
     {!! Form::input('hidden', 'id', $question->id) !!}
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
         {!! Form::select('tag_category_id',
-         $category_array,
+         $categoryArray,
          $question->tagCategory->id,
          ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id'])
         !!}

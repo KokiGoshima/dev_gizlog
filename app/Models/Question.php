@@ -45,41 +45,41 @@ class Question extends Model
     }
 
    /**
-    * @param int $category_num
-    * @param int|string|null $search_word
+    * @param int $categoryNum
+    * @param int|string|null $searchWord
     * @return Collection
     */
-    public function getQuestions($category_num, $search_word, $request)
+    public function getQuestions($categoryNum, $searchWord, $request)
     {
-        return $this->searchByCategory($category_num)
-            ->searchByTitle($search_word, $request)
+        return $this->searchByCategory($categoryNum)
+            ->searchByTitle($searchWord, $request)
             ->orderBy('created_at', 'desc')
             ->with(['comments', 'user', 'tagCategory'])
             ->get();
     }
 
    /**
-    * @param Illuminate\Database\Query\Builder $query int $category_num
-    * @param int $category_num
+    * @param Illuminate\Database\Query\Builder $query int $categoryNum
+    * @param int $categoryNum
     * @return Illuminate\Database\Query\Builder
     */
-    public function scopeSearchByCategory($query, $category_num)
+    public function scopeSearchByCategory($query, $categoryNum)
     {
-        if ($category_num !== '0' && $category_num !== null){
-            return $query->where('tag_category_id', $category_num);
+        if ($categoryNum !== '0' && $categoryNum !== null){
+            return $query->where('tag_category_id', $categoryNum);
         }
     }
 
    /**
-    * @param Illuminate\Database\Query\Builder $query int $category_num
-    * @param int|string|null $search_word
+    * @param Illuminate\Database\Query\Builder $query int $categoryNum
+    * @param int|string|null $searchWord
     * @return Illuminate\Database\Query\Builder
     */
-    public function scopeSearchByTitle($query, $search_word, $request)
+    public function scopeSearchByTitle($query, $searchWord, $request)
     {
-        if (isset($search_word) && $search_word !== ''){
+        if (isset($searchWord) && $searchWord !== ''){
             $request->session()->flash('search_word', $request->search_word);
-            return $query->where('title', 'LIKE BINARY', '%'. $search_word .'%');
+            return $query->where('title', 'LIKE BINARY', '%'. $searchWord .'%');
         }
     }
 

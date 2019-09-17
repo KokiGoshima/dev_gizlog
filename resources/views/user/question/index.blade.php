@@ -20,10 +20,10 @@
     </div>
     <div class="category-wrap">
       <div class="btn all" id="0">all</div>
-      @foreach($tag_categories as $tag_category)
-        <div class="btn {{ $tag_category->name }}" id="{{ $tag_category->id }}">{{ $tag_category->name }}</div>
+      @foreach($tagCategories as $tagCategory)
+        <div class="btn {{ $tagCategory->name }}" id="{{ $tagCategory->id }}">{{ $tagCategory->name }}</div>
       @endforeach
-      {!! Form::input('hidden', 'tag_category_id', $category_num, ['id' => 'category-val']) !!}
+      {!! Form::input('hidden', 'tag_category_id', $categoryNum, ['id' => 'category-val']) !!}
     </div>
   {!! Form::close() !!}
   <div class="content-wrapper table-responsive">

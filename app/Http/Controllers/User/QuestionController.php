@@ -14,12 +14,12 @@ class QuestionController extends Controller
     const SELECT_BOX_DEFAULT_MESSAGE = 'Select Categories...';
 
     protected $question;
-    protected $tag_category;
+    protected $tagCategory;
 
-    public function __construct(Question $question, TagCategory $tag_category)
+    public function __construct(Question $question, TagCategory $tagCategory)
     {
         $this->question = $question;
-        $this->tag_category = $tag_category;
+        $this->tagCategory = $tagCategory;
     }
 
     /**
@@ -32,11 +32,11 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $tag_categories = $this->tag_category->all();
-        $category_num = $request->tag_category_id;
-        $search_word = $request->search_word;
-        $questions = $this->question->getQuestions($category_num, $search_word, $request);
-        return view('user.question.index', compact('tag_categories', 'category_num', 'questions'));
+        $tagCategories = $this->tagCategory->all();
+        $categoryNum = $request->tag_category_id;
+        $searchWord = $request->search_word;
+        $questions = $this->question->getQuestions($categoryNum, $searchWord, $request);
+        return view('user.question.index', compact('tagCategories', 'categoryNum', 'questions'));
     }
 
     /**
@@ -48,9 +48,9 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $tag_categories = $this->tag_category->all();
-        $category_array = $this->categoryArray($tag_categories);
-        return view('user.question.create', compact('tag_categories', 'category_array'));
+        $tagCategories = $this->tagCategory->all();
+        $categoryArray = $this->categoryArray($tagCategories);
+        return view('user.question.create', compact('tagCategories', 'categoryArray'));
     }
 
     /**
@@ -87,10 +87,10 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $tag_categories = $this->tag_category->all();
+        $tagCategories = $this->tagCategory->all();
         $question = $this->question->find($id);
-        $category_array = $this->categoryArray($tag_categories);
-        return view('user.question.edit', compact('question', 'category_array'));
+        $categoryArray = $this->categoryArray($tagCategories);
+        return view('user.question.edit', compact('question', 'categoryArray'));
     }
 
     /**
@@ -142,12 +142,12 @@ class QuestionController extends Controller
     }
 
     /**
-    * @param Collection $tag_categories
+    * @param Collection $tagCategories
     * @return array
     */
-    public function categoryArray($tag_categories)
+    public function categoryArray($tagCategories)
     {
-        return $tag_categories
+        return $tagCategories
             ->pluck('name', 'id')
             ->prepend(self::SELECT_BOX_DEFAULT_MESSAGE, '');
     }
