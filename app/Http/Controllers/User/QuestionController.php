@@ -49,7 +49,7 @@ class QuestionController extends Controller
     public function create()
     {
         $tagCategories = $this->tagCategory->all();
-        $categoryArray = $this->categoryArray($tagCategories);
+        $categoryArray = $this->makeCategoryArray($tagCategories);
         return view('user.question.create', compact('tagCategories', 'categoryArray'));
     }
 
@@ -145,7 +145,7 @@ class QuestionController extends Controller
     * @param Collection $tagCategories
     * @return array
     */
-    public function categoryArray($tagCategories)
+    private function makeCategoryArray($tagCategories)
     {
         return $tagCategories
             ->pluck('name', 'id')
