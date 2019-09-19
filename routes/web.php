@@ -42,6 +42,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
         Route::get('/', 'AttendanceController@index')->name('index');
         Route::get('/absence', 'AttendanceController@showAbsenceForm')->name('absence');
         Route::get('/modify', 'AttendanceController@showModifyForm')->name('modify');
+        Route::get('/mypage', 'AttendanceController@showMypageForm')->name('mypage');
     });
 
 });

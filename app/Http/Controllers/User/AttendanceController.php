@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use Auth;
 
 class AttendanceController extends Controller
 {
@@ -34,6 +35,13 @@ class AttendanceController extends Controller
     public function showModifyForm()
     {
         return view('user.attendance.modify');
+    }
+
+    public function showMypageForm()
+    {
+        $user = Auth::user();
+        $allAttendance = $user->allAttendance;
+        return view('user.attendance.mypage', compact('user', 'allAttendance'));
     }
 
     /**
