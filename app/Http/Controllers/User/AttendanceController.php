@@ -22,6 +22,11 @@ class AttendanceController extends Controller
         return view('user.attendance.absence');
     }
 
+    public function showModifyForm()
+    {
+        return view('user.attendance.modify');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
