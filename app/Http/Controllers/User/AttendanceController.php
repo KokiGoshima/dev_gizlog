@@ -4,9 +4,18 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 
 class AttendanceController extends Controller
 {
+    protected $attendance;
+
+    public function __construct(Attendance $attendance)
+    {
+        $this->middleware('auth');
+        $this->attendance = $attendance;
+    }
+
     /**
      * Display a listing of the resource.
      *
