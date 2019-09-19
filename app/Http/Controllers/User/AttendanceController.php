@@ -17,6 +17,11 @@ class AttendanceController extends Controller
         return view('user.attendance.index');
     }
 
+    public function showAbsenceForm()
+    {
+        return view('user.attendance.absence');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -82,4 +87,5 @@ class AttendanceController extends Controller
     {
         //
     }
+
 }

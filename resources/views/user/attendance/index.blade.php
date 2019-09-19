@@ -17,7 +17,7 @@
   </div>
   <ul class="button-wrap">
     <li>
-      <a class="at-btn absence" href="/attendance/absence">欠席登録</a>
+      <a class="at-btn absence" href="{{ route('attendance.absence') }}">欠席登録</a>
     </li>
     <li>
       <a class="at-btn modify" href="/attendance/modify">修正申請</a>

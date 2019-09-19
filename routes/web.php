@@ -40,6 +40,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
 
     Route::group(['prefix' => 'attendance', 'as' => 'attendance.'], function () {
         Route::get('/', 'AttendanceController@index')->name('index');
+        Route::get('/absence', 'AttendanceController@showAbsenceForm')->name('absence');
     });
 
 });
