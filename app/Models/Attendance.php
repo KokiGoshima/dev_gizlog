@@ -9,6 +9,15 @@ class Attendance extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'date',
+        'start_time',
+        'end_time',
+        'absence_reason',
+        'correction_reason',
+    ]
+
     protected $dates = [
         'deleted_at',
     ];
