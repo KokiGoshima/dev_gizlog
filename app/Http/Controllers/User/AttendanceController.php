@@ -44,6 +44,11 @@ class AttendanceController extends Controller
         return view('user.attendance.mypage', compact('user', 'allAttendance'));
     }
 
+    public function reportAttendance()
+    {
+        dd(123);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
