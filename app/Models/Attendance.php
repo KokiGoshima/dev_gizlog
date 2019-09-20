@@ -16,7 +16,7 @@ class Attendance extends Model
         'end_time',
         'absence_reason',
         'correction_reason',
-    ]
+    ];
 
     protected $dates = [
         'deleted_at',
