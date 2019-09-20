@@ -29,6 +29,34 @@ class UsersTableSeeder extends Seeder
                 'email'         => 'foo@gmail.com',
                 'avatar'        => null,
                 'created_at'    => Carbon::create(2017, 7, 16),
+            ],
+            [
+                'name'          => '五島 晃希',
+                'slack_user_id' => 'DDDDDDDDD',
+                'email'         => 'moo@gmail.com',
+                'avatar'        => null,
+                'created_at'    => Carbon::create(2017, 3, 16),
+            ],
+            [
+                'name'          => '田中 まさし',
+                'slack_user_id' => 'EEEEEEEEE',
+                'email'         => 'doo@gmail.com',
+                'avatar'        => null,
+                'created_at'    => Carbon::create(2017, 2, 01),
+            ],
+            [
+                'name'          => '室 剛',
+                'slack_user_id' => 'FFFFFFFFF',
+                'email'         => 'goo@gmail.com',
+                'avatar'        => null,
+                'created_at'    => Carbon::create(2017, 6, 15),
+            ],
+            [
+                'name'          => '菅原 まひろ',
+                'slack_user_id' => 'GGGGGGGGG',
+                'email'         => 'woo@gmail.com',
+                'avatar'        => null,
+                'created_at'    => Carbon::create(2017, 3, 27),
             ]
         ]);
     }
