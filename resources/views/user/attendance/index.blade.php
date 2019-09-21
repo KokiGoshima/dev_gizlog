@@ -33,9 +33,9 @@
     <div class="register-text-wrap"><p>12:38 で出社時間を登録しますか？</p></div>
     <div class="register-btn-wrap">
       {!! Form::open(['route' => 'attendance.reportAttendance']) !!}
-        {!! Form::hidden('start_time', '2019-07-03 12:38:41', ['id' => 'date-time-target']) !!}
+        {!! Form::hidden('start_time', Carbon::now()->format('H:i:s'), ['id' => 'date-time-target']) !!}
         {!! Form::hidden('user_id', '4') !!}
-        {!! Form::hidden('date', '2019-07-03') !!}
+        {!! Form::hidden('date', Carbon::now()->format('Y/m/d')) !!}
         <a href="#close" class="cancel-btn">Cancel</a>
         {!! Form::submit('Yes', ['class' => 'yes-btn']) !!}
       {!! Form::close() !!}
