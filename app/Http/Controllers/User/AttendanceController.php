@@ -25,7 +25,8 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        return view('user.attendance.index');
+        $todayAttendance = $this->attendance->findTodayAttendance();
+        return view('user.attendance.index', compact('todayAttendance'));
     }
 
     public function showAbsenceForm()
@@ -48,6 +49,7 @@ class AttendanceController extends Controller
     public function reportAttendance(Request $request)
     {
         $input = $request->all();
+        $input['user_id'] = Auth::id();
         $this->attendance->fill($input)->save();
         return redirect()->route('attendance.index');
     }

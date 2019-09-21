@@ -13,7 +13,11 @@
     </div>
   </div>
   <div class="button-holder">
+    @if(empty($todayAttendance->start_time))
       <a class="button start-btn" id="register-attendance" href=#openModal>出社時間登録</a>
+    @else
+      <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a>
+    @endif
   </div>
   <ul class="button-wrap">
     <li>
