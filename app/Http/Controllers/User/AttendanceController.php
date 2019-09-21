@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Auth;
+use Illuminate\Support\Carbon;
 
 class AttendanceController extends Controller
 {
@@ -44,9 +45,11 @@ class AttendanceController extends Controller
         return view('user.attendance.mypage', compact('user', 'allAttendance'));
     }
 
-    public function reportAttendance()
+    public function reportAttendance(Request $request)
     {
-        dd(123);
+        $input = $request->all();
+        $this->attendance->fill($input)->save();
+        return redirect()->route('attendance.index');
     }
 
     /**
