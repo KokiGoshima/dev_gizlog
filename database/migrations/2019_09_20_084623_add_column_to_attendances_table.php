@@ -14,8 +14,8 @@ class AddColumnToAttendancesTable extends Migration
     public function up()
     {
         Schema::table('attendances', function (Blueprint $table) {
-            $table->integer('absence_presence');
-            $table->integer('correction_presence');
+            $table->integer('absence_presence')->default(0);
+            $table->integer('correction_presence')->default(0);
         });
     }
 
@@ -27,8 +27,8 @@ class AddColumnToAttendancesTable extends Migration
     public function down()
     {
         Schema::table('attendances', function (Blueprint $table) {
-            $table->integer('absence_presence');
-            $table->integer('correction_presence');
+            $table->integer('absence_presence')->default(0);
+            $table->integer('correction_presence')->default(0);
         });
     }
 }
