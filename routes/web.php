@@ -43,7 +43,8 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
         Route::get('/absence', 'AttendanceController@showAbsenceForm')->name('absence');
         Route::get('/modify', 'AttendanceController@showModifyForm')->name('modify');
         Route::get('/mypage', 'AttendanceController@showMypageForm')->name('mypage');
-        Route::post('/absence', 'AttendanceController@reportAttendance')->name('reportAttendance');
+        Route::post('/arrival', 'AttendanceController@reportArrival')->name('reportArrival');
+        Route::post('/leaving', 'AttendanceController@reportLeaving')->name('reportLeaving');
     });
 
 });

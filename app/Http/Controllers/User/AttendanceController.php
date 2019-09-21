@@ -25,7 +25,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $todayAttendance = $this->attendance->findTodayAttendance();
+        $todayAttendance = $this->attendance->findTheDateUserAttendance(Carbon::now()->format('Y-m-d'));
         return view('user.attendance.index', compact('todayAttendance'));
     }
 
@@ -46,11 +46,19 @@ class AttendanceController extends Controller
         return view('user.attendance.mypage', compact('user', 'allAttendance'));
     }
 
-    public function reportAttendance(Request $request)
+    public function reportArrival(Request $request)
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->attendance->fill($input)->save();
+        return redirect()->route('attendance.index');
+    }
+
+    public function reportLeaving(Request $request)
+    {
+        $this->attendance->findTheDateUserAttendance($request->date)
+            ->fill(['end_time' => $request->end_time])
+            ->save();
         return redirect()->route('attendance.index');
     }
 

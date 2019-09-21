@@ -29,9 +29,9 @@ class Attendance extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function findTodayAttendance()
+    public function findTheDateUserAttendance($date)
     {
-        return $this->where('date', Carbon::now()->format('Y-m-d'))
+        return $this->where('date', $date)
             ->where('user_id', Auth::id())
             ->first();
     }
