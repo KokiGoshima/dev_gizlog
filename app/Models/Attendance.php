@@ -23,6 +23,8 @@ class Attendance extends Model
     protected $dates = [
         'deleted_at',
         'date',
+        'start_time',
+        'end_time',
     ];
 
     public function user()

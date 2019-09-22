@@ -34,11 +34,18 @@
       <tbody>
       @foreach($allAttendance as $attendance)
       <tr class="row">
-        {{-- <td class="col-xs-2">07/01 (Mon)</td> --}}
         <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
-        <td class="col-xs-3">08:29</td>
-        <td class="col-xs-3">19:30</td>
-        <td class="col-xs-2">出社</td>
+        <td class="col-xs-2">@if (isset($attendance->start_time)){{ $attendance->start_time->format('h:m') }}@else {{ '-' }} @endif</td>
+        <td class="col-xs-2">@if (isset($attendance->end_time)){{ $attendance->end_time->format('h:m') }}@else {{ '-' }} @endif</td>
+        <td class="col-xs-2">
+          @if (isset($attendance->start_time) && isset($attendance->end_time))
+            {{ '出勤' }}
+          @elseif (isset($attendance->start_time) && $attendance->end_time === null)
+            {{ '研修中' }}
+          @else
+            {{ '欠席' }}
+          @endif
+        </td>
         <td class="col-xs-2">-</td>
       </tr>
       @endforeach
