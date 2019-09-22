@@ -35,8 +35,8 @@
       @foreach($allUserAttendance as $attendance)
       <tr class="row @if (empty($attendance->start_time) && empty($attendance->end_time)) bg-danger @endif">
         <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
-        <td class="col-xs-2">@if (isset($attendance->start_time)){{ $attendance->start_time->format('h:m') }}@else {{ '-' }} @endif</td>
-        <td class="col-xs-2">@if (isset($attendance->end_time)){{ $attendance->end_time->format('h:m') }}@else {{ '-' }} @endif</td>
+        <td class="col-xs-2">@if (isset($attendance->start_time)){{ $attendance->start_time->format('H:i') }}@else {{ '-' }} @endif</td>
+        <td class="col-xs-2">@if (isset($attendance->end_time)){{ $attendance->end_time->format('H:i') }}@else {{ '-' }} @endif</td>
         <td class="col-xs-2">
           @if (isset($attendance->start_time) && isset($attendance->end_time))
             {{ '出勤' }}
@@ -47,7 +47,7 @@
           @endif
         </td>
         <td class="col-xs-2">
-          @if(isset($attendance->correction_reason))
+          @if($attendance->correction_presence === 1)
             {{ '申請中' }}
           @else
             {{ '-' }}
