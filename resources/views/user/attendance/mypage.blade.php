@@ -16,7 +16,7 @@
       <p>累計学習時間</p>
       <div class="study-hour-box clearfix">
         <div class="userinfo-box"><img src={{ Auth::user()->avatar }}></div>
-        <p class="study-hour"><span>18</span>時間</p>
+        <p class="study-hour"><span>{{ $TotalLearningHours }}</span>時間</p>
       </div>
     </div>
   </div>
