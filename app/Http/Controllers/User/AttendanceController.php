@@ -37,7 +37,7 @@ class AttendanceController extends Controller
 
     public function registerAbsence(AttendanceRequest $request)
     {
-        $todayAttendance = $this->attendance->findTheDateUserAttendance(Carbon::now()->format('Y-m-d'));
+        $todayAttendance = $this->attendance->findTheDateUserAttendance($request->date);
         if(isset($todayAttendance)) {
             $todayAttendance->fill(['absence_reason' => $request->absence_reason])->save();
         }else {
@@ -55,7 +55,15 @@ class AttendanceController extends Controller
 
     public function registerCorrection(AttendanceRequest $request)
     {
-        dd(123);
+        $todayAttendance = $this->attendance->findTheDateUserAttendance($request->date);
+        if(isset($todayAttendance)) {
+            $todayAttendance->fill(['correction_reason' => $request->correction_reason])->save();
+        }else {
+            $data = $request->all();
+            $data['user_id'] = Auth::id();
+            $this->attendance->fill($data)->save();
+        }
+        return redirect()->route('attendance.index');
     }
 
     public function showMypageForm()
