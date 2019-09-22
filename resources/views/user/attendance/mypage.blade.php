@@ -46,7 +46,13 @@
             {{ '欠席' }}
           @endif
         </td>
-        <td class="col-xs-2">-</td>
+        <td class="col-xs-2">
+          @if(isset($attendance->correction_reason))
+            {{ '申請中' }}
+          @else
+            {{ '-' }}
+          @endif
+        </td>
       </tr>
       @endforeach
       {{-- <tr class="row absent-row">
