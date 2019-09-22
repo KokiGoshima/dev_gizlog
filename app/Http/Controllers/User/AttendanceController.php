@@ -62,9 +62,14 @@ class AttendanceController extends Controller
 
     public function reportArrival(Request $request)
     {
+        $todayAttendance = $this->attendance->findTheDateUserAttendance(Carbon::now()->format('Y-m-d'));
         $input = $request->all();
         $input['user_id'] = Auth::id();
-        $this->attendance->fill($input)->save();
+        if(isset($todayAttendance)) {
+            $todayAttendance->fill(['start_time' => $request->start_time])->save();
+        }else {
+            $this->attendance->fill($input)->save();
+        }
         return redirect()->route('attendance.index');
     }
 
