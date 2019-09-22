@@ -6,8 +6,9 @@
   <div class="container">
     {!! Form::open(['route' => 'attendance.registerAbsence']) !!}
     {!! Form::hidden('date', Carbon::now()->format('Y-m-d')) !!}
-      <div class="form-group">
+      <div class="form-group @if(!empty($errors->first('absence_reason'))) has-error @endif">
         {!! Form::textarea('absence_reason', null, ['class' => 'form-control', 'placeholder' => '欠席理由を入力してください。']) !!}
+        <span class="help-block">{{ $errors->first('absence_reason') }}</span>
       </div>
       {!! Form::submit('登録', ['class' => 'btn btn-success pull-right', 'name' => 'confirm']) !!}
     {!! Form::close() !!}
