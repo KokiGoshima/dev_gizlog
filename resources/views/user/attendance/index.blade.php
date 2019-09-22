@@ -13,12 +13,12 @@
     </div>
   </div>
   <div class="button-holder">
-    @if (empty($todayAttendance->start_time) && empty($todayAttendance->end_time))
+    @if (empty($todayAttendance->start_time) && empty($todayAttendance->end_time) && empty($todayAttendance->absence_presence))
       <a class="button start-btn" id="register-attendance" href=#openModal>出社時間登録</a>
-    @elseif (isset($todayAttendance->start_time) && empty($todayAttendance->end_time))
-      <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a>
-    @else
+    @elseif(isset($todayAttendance->start_time) && isset($todayAttendance->end_time) || !empty($todayAttendance->absence_presence))
       <a class="button disabled" id="register-attendance" href=#openModal>退社済み</a>
+    @else
+      <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a>
     @endif
   </div>
   <ul class="button-wrap">
