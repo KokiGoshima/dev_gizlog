@@ -66,7 +66,7 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
-    public function showMypageForm()
+    public function showMypage()
     {
         $user = Auth::user();
         $allAttendance = $user->allAttendance;

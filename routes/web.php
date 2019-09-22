@@ -44,7 +44,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
         Route::post('/absence', 'AttendanceController@registerAbsence')->name('registerAbsence');
         Route::get('/correction', 'AttendanceController@showCorrectionForm')->name('correction');
         Route::post('/correction', 'AttendanceController@registerCorrection')->name('registerCorrection');
-        Route::get('/mypage', 'AttendanceController@showMypageForm')->name('mypage');
+        Route::get('/mypage', 'AttendanceController@showMypage')->name('mypage');
         Route::post('/arrival', 'AttendanceController@reportArrival')->name('reportArrival');
         Route::post('/leaving', 'AttendanceController@reportLeaving')->name('reportLeaving');
     });
