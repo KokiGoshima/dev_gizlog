@@ -127,8 +127,8 @@ return [
     */
 
     'custom' => [
-        '属性名' => [
-            'ルール名' => 'カスタムメッセージ',
+        'date' => [
+            'before' => '今日以前の日付を指定してください',
         ],
     ],
 
@@ -146,7 +146,7 @@ return [
     'attributes' => [
         'absence_reason' => '欠席理由',
         'date' => '日付',
-        'correction_reason' => '修正申請の内容'
+        'correction_reason' => '修正申請の内容',
     ],
 
 ];

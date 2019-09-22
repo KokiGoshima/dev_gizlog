@@ -26,7 +26,7 @@ class AttendanceRequest extends FormRequest
         return [
             'correction_reason' => 'sometimes|required|max:500',
             'absence_reason'   => 'sometimes|required|max:500',
-            'date'            => 'sometimes|required',
+            'date'            => 'sometimes|required|before:tomorrow',
         ];
     }
 
