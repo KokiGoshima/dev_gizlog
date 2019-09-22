@@ -70,7 +70,7 @@ class AttendanceController extends Controller
     {
         $user = Auth::user();
         $allAttendance = $user->allAttendance;
-        return view('user.attendance.mypage', compact('user', 'allAttendance'));
+        return view('user.attendance.mypage', compact('allAttendance'));
     }
 
     public function reportArrival(Request $request)
