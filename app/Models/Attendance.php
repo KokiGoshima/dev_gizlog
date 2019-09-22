@@ -38,4 +38,12 @@ class Attendance extends Model
             ->where('user_id', Auth::id())
             ->first();
     }
+
+    public function CountAllUserAttendance($user)
+    {
+        return $user->allAttendance()
+            ->whereNotNull('start_time')
+            ->whereNotNull('end_time')
+            ->count();
+    }
 }

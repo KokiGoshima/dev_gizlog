@@ -69,8 +69,9 @@ class AttendanceController extends Controller
     public function showMypage()
     {
         $user = Auth::user();
-        $allAttendance = $user->allAttendance;
-        return view('user.attendance.mypage', compact('allAttendance'));
+        $allUserAttendance = $user->allAttendance;
+        $allUserAttendanceCount = $this->attendance->CountAllUserAttendance($user);
+        return view('user.attendance.mypage', compact('allUserAttendance', 'allUserAttendanceCount'));
     }
 
     public function reportArrival(Request $request)
