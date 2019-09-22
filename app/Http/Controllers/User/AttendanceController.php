@@ -40,6 +40,8 @@ class AttendanceController extends Controller
         $todayAttendance = $this->attendance->findTheDateUserAttendance($request->date);
         $data = $request->all();
         $data['absence_presence'] = 1;
+        $data['start_time'] = null;
+        $data['end_time'] = null;
         if(isset($todayAttendance)) {
             $todayAttendance->fill($data)->save();
         }else {
@@ -102,9 +104,11 @@ class AttendanceController extends Controller
     {
         $TotalLearningMinutes = 0;
         foreach ($allUserAttendance as $attendance) {
-            $dt1 = $attendance->start_time;
-            $dt2 = $attendance->end_time;
-            $TotalLearningMinutes += $dt1->diffInMinutes($dt2);
+            if(isset($attendance->start_time) && isset($attendance->end_time)) {
+                $dt1 = $attendance->start_time;
+                $dt2 = $attendance->end_time;
+                $TotalLearningMinutes += $dt1->diffInMinutes($dt2);
+            }
         }
         $TotalLearningHours = round($TotalLearningMinutes / 60, 0);
         return $TotalLearningHours;
