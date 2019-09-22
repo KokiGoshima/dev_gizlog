@@ -33,17 +33,17 @@
       </thead>
       <tbody>
       @foreach($allAttendance as $attendance)
-      <tr class="row">
+      <tr class="row @if (empty($attendance->start_time) && empty($attendance->end_time)) bg-danger @endif">
         <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
         <td class="col-xs-2">@if (isset($attendance->start_time)){{ $attendance->start_time->format('h:m') }}@else {{ '-' }} @endif</td>
         <td class="col-xs-2">@if (isset($attendance->end_time)){{ $attendance->end_time->format('h:m') }}@else {{ '-' }} @endif</td>
         <td class="col-xs-2">
           @if (isset($attendance->start_time) && isset($attendance->end_time))
             {{ '出勤' }}
-          @elseif (isset($attendance->start_time) && $attendance->end_time === null)
-            {{ '研修中' }}
-          @else
+          @elseif (empty($attendance->start_time) && empty($attendance->end_time))
             {{ '欠席' }}
+          @else
+            {{ '研修中' }}
           @endif
         </td>
         <td class="col-xs-2">
