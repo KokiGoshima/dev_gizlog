@@ -38,10 +38,11 @@ class AttendanceController extends Controller
     public function registerAbsence(AttendanceRequest $request)
     {
         $todayAttendance = $this->attendance->findTheDateUserAttendance($request->date);
+        $data = $request->all();
+        $data['absence_presence'] = 1;
         if(isset($todayAttendance)) {
-            $todayAttendance->fill(['absence_reason' => $request->absence_reason])->save();
+            $todayAttendance->fill($data)->save();
         }else {
-            $data = $request->all();
             $data['user_id'] = Auth::id();
             $this->attendance->fill($data)->save();
         }
@@ -56,7 +57,7 @@ class AttendanceController extends Controller
     public function registerCorrection(AttendanceRequest $request)
     {
         $data = $request->all();
-        $data['correction_presence'] = '1';
+        $data['correction_presence'] = 1;
         $todayAttendance = $this->attendance->findTheDateUserAttendance($request->date);
         if(isset($todayAttendance)) {
             $todayAttendance->fill($data)->save();
