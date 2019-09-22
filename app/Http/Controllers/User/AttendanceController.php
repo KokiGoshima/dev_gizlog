@@ -48,9 +48,9 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
-    public function showModifyForm()
+    public function showCorrectionForm()
     {
-        return view('user.attendance.modify');
+        return view('user.attendance.correction');
     }
 
     public function showMypageForm()
