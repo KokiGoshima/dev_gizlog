@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Auth;
 use Illuminate\Support\Carbon;
+use App\Http\Requests\User\AttendanceRequest;
 
 class AttendanceController extends Controller
 {
@@ -32,6 +33,19 @@ class AttendanceController extends Controller
     public function showAbsenceForm()
     {
         return view('user.attendance.absence');
+    }
+
+    public function registerAbsence(AttendanceRequest $request)
+    {
+        $todayAttendance = $this->attendance->findTheDateUserAttendance(Carbon::now()->format('Y-m-d'));
+        if(isset($todayAttendance)) {
+            $todayAttendance->fill(['absence_reason' => $request->absence_reason])->save();
+        }else {
+            $data = $request->all();
+            $data['user_id'] = Auth::id();
+            $this->attendance->fill($data)->save();
+        }
+        return redirect()->route('attendance.index');
     }
 
     public function showModifyForm()
