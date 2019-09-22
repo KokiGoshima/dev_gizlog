@@ -53,6 +53,11 @@ class AttendanceController extends Controller
         return view('user.attendance.correction');
     }
 
+    public function registerCorrection(AttendanceRequest $request)
+    {
+        dd(123);
+    }
+
     public function showMypageForm()
     {
         $user = Auth::user();

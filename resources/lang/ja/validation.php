@@ -145,6 +145,8 @@ return [
 
     'attributes' => [
         'absence_reason' => '欠席理由',
+        'date' => '日付',
+        'correction_reason' => '修正申請の内容'
     ],
 
 ];
