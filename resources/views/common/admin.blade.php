@@ -69,7 +69,7 @@
       <div class="navbar-collapse collapse">
         <ul class="nav-left-list">
           <li>
-            <a href="/admin/attendance"><i class="fa fa-briefcase">勤怠</i></a>
+            <a href="{{ route('admin.attendance.index') }}"><i class="fa fa-briefcase">勤怠</i></a>
           </li>
           <li>
             <a href="/admin/report"><i class="fa fa-pencil-square-o">日報</i></a>
