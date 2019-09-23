@@ -30,14 +30,22 @@
           </tr>
         </thead>
         <tbody>
+          @foreach($hasArrivedUsersAttendances as $attendance)
           <tr class="row">
-            <td class="col-xs-1"><img src="https://avatars.slack-edge.com/2019-01-25/532734044915_486bec3294a9f7b34291_192.png" class="avatar-img"></td>
-            <td class="col-xs-2">Kiyoshi Sakata</td>
-            <td class="col-xs-2">2019/07/02</td>
-            <td class="col-xs-3">09:45</td>
-            <td class="col-xs-2">-</td>
+            <td class="col-xs-1"><img src="{{ $attendance->user->avatar }}" class="avatar-img"></td>
+            <td class="col-xs-2">{{ $attendance->user->name }}</td>
+            <td class="col-xs-2">{{ $attendance->date->format('Y/m/d') }}</td>
+            <td class="col-xs-3">{{ $attendance->start_time->format('h:i') }}</td>
+            <td class="col-xs-2">
+              @if($attendance->correction_presence === 1)
+                {{ 'あり' }}
+              @else
+                {{ '-' }}
+              @endif
+            </td>
             <td class="col-xs-2"><a href="" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
@@ -74,11 +82,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="row">
-            <td class="col-xs-1"><img src="https://avatars.slack-edge.com/2019-01-25/532734044915_486bec3294a9f7b34291_192.png" class="avatar-img"></td>
-            <td class="col-xs-7">Shohei Kanatani</td>
-            <td class="col-xs-3"><a href="" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
-          </tr>
+          @foreach($absentUsersAttendances as $attendance)
+            <tr class="row">
+              <td class="col-xs-1"><img src="{{ $attendance->user->avatar }}" class="avatar-img"></td>
+              <td class="col-xs-7">{{ $attendance->user->name }}</td>
+              <td class="col-xs-3"><a href="" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+            </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
