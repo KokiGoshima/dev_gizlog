@@ -10,7 +10,7 @@
       <p>想定出席人数</p>
       <div class="study-hour-box clearfix">
         <div class="userinfo-box"><i class="fa fa-user fa-2x" aria-hidden="true"></i></div>
-        <p class="study-hour"><span>3</span>人</p>
+        <p class="study-hour"><span>{{ $user->count() }}</span>人</p>
       </div>
     </div>
   </div>

@@ -22,6 +22,7 @@ class AttendanceController extends Controller
     public function index()
     {
         $date = Carbon::today()->format('Y-m-d');
+        $user = $this->user;
 
         $hasArrivedUsersAttendances = $this->attendance->findHasArrivedUsersAttendances($date);
         $absentUsersAttendances = $this->attendance->findAbsentUsersAttendances($date);
@@ -29,7 +30,7 @@ class AttendanceController extends Controller
         $allUserIdExceptHasNotArrivedUsers = $this->getAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances);
         $hasNotArrivedUsers = $this->user->findHasNotArrivedUsers($allUserIdExceptHasNotArrivedUsers);
 
-        return view('admin.attendance.index', compact('hasArrivedUsersAttendances', 'absentUsersAttendances', 'hasNotArrivedUsers'));
+        return view('admin.attendance.index', compact('hasArrivedUsersAttendances', 'absentUsersAttendances', 'hasNotArrivedUsers', 'user'));
     }
 
     private function getAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances)
