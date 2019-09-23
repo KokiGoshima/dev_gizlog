@@ -19,29 +19,21 @@ class AttendanceController extends Controller
     public function index()
     {
         $date = Carbon::today()->format('Y-m-d');
-        $allUserIdExceptHasNotArrivedUsers = [];
 
         $hasArrivedUsersAttendances = $this->attendance->findHasArrivedUsersAttendances($date);
         $absentUsersAttendances = $this->attendance->findAbsentUsersAttendances($date);
-        $hasNotArrivedUsersAttendances = $this->attendance->findHasNotArrivedUsersAttendances();
 
-        $allUserIdExceptHasNotArrivedUsers = $this->pluckAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances);
-        dd($allUserIdExceptHasNotArrivedUsers);
+        $allUserIdExceptHasNotArrivedUsers = $this->getAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances);
+        $hasNotArrivedUsersAttendances = $this->attendance->findHasNotArrivedUsersAttendances();
 
         return view('admin.attendance.index', compact('hasArrivedUsersAttendances', 'hasNotArrivedUsersAttendances', 'absentUsersAttendances'));
     }
 
-    private function pluckAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances)
+    private function getAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances)
     {
-        $allUserIdExceptHasNotArrivedUsers = [];
-        $plucked = $hasArrivedUsersAttendances->pluck('user_id')->all();
-        foreach ($plucked as $userId) {
-            $allUserIdExceptHasNotArrivedUsers[] = $userId;
-        }
-        $plucked = $absentUsersAttendances->pluck('user_id')->all();
-        foreach ($plucked as $userId) {
-            $allUserIdExceptHasNotArrivedUsers[] = $userId;
-        }
-        return $allUserIdExceptHasNotArrivedUsers;
+        $userId = [];
+        $userId[] = $hasArrivedUsersAttendances->pluck('user_id')->all();
+        $userId[] = $absentUsersAttendances->pluck('user_id')->all();
+        return array_flatten($userId);
     }
 }
