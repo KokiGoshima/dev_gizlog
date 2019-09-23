@@ -6,14 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Support\Carbon;
+use App\Models\User;
 
 class AttendanceController extends Controller
 {
     protected $attendance;
+    protected $user;
 
-    public function __construct(Attendance $attendance)
+    public function __construct(Attendance $attendance, User $user)
     {
         $this->attendance = $attendance;
+        $this->user = $user;
     }
 
     public function index()
@@ -24,9 +27,9 @@ class AttendanceController extends Controller
         $absentUsersAttendances = $this->attendance->findAbsentUsersAttendances($date);
 
         $allUserIdExceptHasNotArrivedUsers = $this->getAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances);
-        $hasNotArrivedUsersAttendances = $this->attendance->findHasNotArrivedUsersAttendances();
+        $hasNotArrivedUsers = $this->user->findHasNotArrivedUsers($allUserIdExceptHasNotArrivedUsers);
 
-        return view('admin.attendance.index', compact('hasArrivedUsersAttendances', 'hasNotArrivedUsersAttendances', 'absentUsersAttendances'));
+        return view('admin.attendance.index', compact('hasArrivedUsersAttendances', 'absentUsersAttendances', 'hasNotArrivedUsers'));
     }
 
     private function getAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances)

@@ -63,11 +63,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="row">
-            <td class="col-xs-1"><img src="https://avatars.slack-edge.com/2019-01-11/521652138498_a80d324258d73c87ad2e_192.jpg" class="avatar-img"></td>
-            <td class="col-xs-7">Daichi Ando</td>
-            <td class="col-xs-4"><a href="" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
-          </tr>
+          @foreach($hasNotArrivedUsers as $user)
+            <tr class="row">
+              <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
+              <td class="col-xs-7">{{ $user->name }}</td>
+              <td class="col-xs-4"><a href="" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+            </tr>
+          @endforeach
         </tbody>
       </table>
     </div>

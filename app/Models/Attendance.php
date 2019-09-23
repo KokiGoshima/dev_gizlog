@@ -61,12 +61,6 @@ class Attendance extends Model
             ->get();
     }
 
-    public function findHasNotArrivedUsersAttendances()
-    {
-        // return $this->whereNotNull('start_time')
-        //     ->whereNotNull('end_time')
-        //     ->get();
-    }
 
     public function findAbsentUsersAttendances($date)
     {
@@ -75,8 +69,5 @@ class Attendance extends Model
             ->with('user')
             ->get();
     }
-
-
-
 
 }

@@ -72,5 +72,10 @@ class User extends Authenticatable
             $this->withTrashed()->where('user_info_id', $userInfoId)->update(['deleted_at' => null]);
         });
     }
+
+    public function findHasNotArrivedUsers($allUserIdExceptHasNotArrivedUsers)
+    {
+        return $this->whereNotIn('id', $allUserIdExceptHasNotArrivedUsers)->get();
+    }
 }
 
