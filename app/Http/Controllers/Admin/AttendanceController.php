@@ -43,6 +43,7 @@ class AttendanceController extends Controller
 
     public function show($user_id)
     {
-        dd($user_id);
+        
+        return view('admin.attendance.user');
     }
 }
