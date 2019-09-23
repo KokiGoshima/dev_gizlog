@@ -40,4 +40,9 @@ class AttendanceController extends Controller
         $userId[] = $absentUsersAttendances->pluck('user_id')->all();
         return array_flatten($userId);
     }
+
+    public function show($user_id)
+    {
+        dd($user_id);
+    }
 }
