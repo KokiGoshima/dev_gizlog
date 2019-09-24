@@ -26,7 +26,7 @@
       <div class="my-info">
         <p>研修開始日</p>
         <div class="study-hour-box clearfix">
-          <p class="study-hour study-date"><span>2017/04/03</span></p>
+          <p class="study-hour study-date"><span>{{ $theDayUserCreated }}</span></p>
         </div>
       </div>
     </div>

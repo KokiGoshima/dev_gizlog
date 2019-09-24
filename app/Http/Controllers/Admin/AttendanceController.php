@@ -50,6 +50,7 @@ class AttendanceController extends Controller
         $countLate = $user->allAttendance()
             ->whereTime('start_time', '>', '10:00:00')
             ->count();
-        return view('admin.attendance.user', compact('user', 'countAbsence', 'countLate'));
+        $theDayUserCreated = $user->created_at->format('Y/m/d');
+        return view('admin.attendance.user', compact('user', 'countAbsence', 'countLate', 'theDayUserCreated'));
     }
 }
