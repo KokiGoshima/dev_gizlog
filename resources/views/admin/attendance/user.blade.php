@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="btn-wrapper">
-    <a href="" class="btn btn-icon">
+    <a href="{{ route('admin.attendance.create') }}" class="btn btn-icon">
       <i class="fa fa-plus" aria-hidden="true"></i>
     </a>
   </div>

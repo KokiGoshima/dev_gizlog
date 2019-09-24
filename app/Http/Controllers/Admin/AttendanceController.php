@@ -53,4 +53,9 @@ class AttendanceController extends Controller
         $theDayUserCreated = $user->created_at->format('Y/m/d');
         return view('admin.attendance.user', compact('user', 'countAbsence', 'countLate', 'theDayUserCreated'));
     }
+
+    public function create()
+    {
+        return view('admin.attendance.create');
+    }
 }
