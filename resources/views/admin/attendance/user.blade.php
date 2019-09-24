@@ -5,22 +5,22 @@
 <div class="main-wrap">
   <div class="user-info-box clearfix">
     <div class="left-info">
-      <img src="https://avatars.slack-edge.com/2019-01-25/532734044915_486bec3294a9f7b34291_192.png"><p class="user-name">Shohei Kanatani</p>
-      <i class="fa fa-envelope-o" aria-hidden="true"><p class="user-email">gizumo@test.com</p></i>
+      <img src="{{ $user->avatar }}"><p class="user-name">{{ $user->name }}</p>
+      <i class="fa fa-envelope-o" aria-hidden="true"><p class="user-email">{{ $user->email }}</p></i>
     </div>
     <div class="right-info">
       <div class="my-info absence-info">
         <p>欠席回数</p>
         <div class="study-hour-box clearfix">
           <div class="userinfo-box"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></div>
-          <p class="study-hour"><span>1</span>回</p>
+          <p class="study-hour"><span>{{ $countAbsence }}</span>回</p>
         </div>
       </div>
       <div class="my-info day-info">
         <p>遅刻回数</p>
         <div class="study-hour-box clearfix">
           <div class="userinfo-box"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></div>
-          <p class="study-hour"><span>1</span>回</p>
+          <p class="study-hour"><span>{{ $countLate }}</span>回</p>
         </div>
       </div>
       <div class="my-info">

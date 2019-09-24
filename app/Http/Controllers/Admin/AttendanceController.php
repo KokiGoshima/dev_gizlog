@@ -43,7 +43,13 @@ class AttendanceController extends Controller
 
     public function show($user_id)
     {
-        
-        return view('admin.attendance.user');
+        $user = $this->user->find($user_id);
+        $countAbsence = $user->allAttendance()
+            ->where('absence_presence', 1)
+            ->count();
+        $countLate = $user->allAttendance()
+            ->whereTime('start_time', '>', '10:00:00')
+            ->count();
+        return view('admin.attendance.user', compact('user', 'countAbsence', 'countLate'));
     }
 }
