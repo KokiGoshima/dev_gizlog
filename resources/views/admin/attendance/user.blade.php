@@ -50,45 +50,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="row absent-row">
-          <td class="col-xs-1">07/03</td>
-          <td class="col-xs-1">Wed</td>
-          <td class="col-xs-2">欠席</td>
-          <td class="col-xs-2">-</td>
-          <td class="col-xs-2">-</td>
-          <td class="col-xs-2">-</td>
-          <td class="col-xs-2">
-            <a href="" class="btn btn-sucssess btn-small">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-          </td>
-        </tr>
-        <tr class="row ">
-          <td class="col-xs-1">07/02</td>
-          <td class="col-xs-1">Tue</td>
-          <td class="col-xs-2">出社</td>
-          <td class="col-xs-2">10:03</td>
-          <td class="col-xs-2">19:30</td>
-          <td class="col-xs-2"><span class="attention">あり</span></td>
-          <td class="col-xs-2">
-            <a href="" class="btn btn-sucssess btn-small">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-          </td>
-        </tr>
-        <tr class="row ">
-          <td class="col-xs-1">07/01</td>
-          <td class="col-xs-1">Mon</td>
-          <td class="col-xs-2">出社</td>
-          <td class="col-xs-2">09:29</td>
-          <td class="col-xs-2">19:58</td>
-          <td class="col-xs-2">-</td>
-          <td class="col-xs-2">
-            <a href="" class="btn btn-sucssess btn-small">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-          </td>
-        </tr>
+        @foreach($user->allAttendance as $attendance)
+          <tr class="row {{ $attendance->absence_presence === 1 ? "absent-row" : "" }}">
+            <td class="col-xs-1">{{ $attendance->date->format('m/d') }}</td>
+            <td class="col-xs-1">{{ $attendance->date->format('D') }}</td>
+            <td class="col-xs-2">{{ $attendance->absence_presence === 1 ? "欠席" : "-" }}</td>
+            <td class="col-xs-2">{{ isset($attendance->start_time) ? $attendance->start_time : "-" }}</td>
+            <td class="col-xs-2">{{ isset($attendance->end_time) ? $attendance->end_time : "-" }}</td>
+            <td class="col-xs-2">{{ $attendance->correction_presence === 1 ? "あり" : "-" }}</td>
+            <td class="col-xs-2">
+              <a href="" class="btn btn-sucssess btn-small">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </a>
+            </td>
+          </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
