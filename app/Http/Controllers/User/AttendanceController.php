@@ -26,7 +26,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $todayAttendance = $this->attendance->findTheDateUserAttendance(Carbon::today()->format('Y-m-d'));
+        $todayAttendance = $this->attendance->findTheDateUserAttendance(Carbon::today()->format('Y-m-d'), Auth::id());
         return view('user.attendance.index', compact('todayAttendance'));
     }
 
@@ -38,7 +38,7 @@ class AttendanceController extends Controller
     public function registerAbsence(AttendanceRequest $request)
     {
         $today = Carbon::today()->format('Y-m-d');
-        $todayAttendance = $this->attendance->findTheDateUserAttendance($today);
+        $todayAttendance = $this->attendance->findTheDateUserAttendance($today, Auth::id());
         $data = $request->all();
         $data['date'] = $today;
         $data['absence_presence'] = 1;
@@ -62,7 +62,7 @@ class AttendanceController extends Controller
     {
         $data = $request->all();
         $data['correction_presence'] = 1;
-        $todayAttendance = $this->attendance->findTheDateUserAttendance($request->date);
+        $todayAttendance = $this->attendance->findTheDateUserAttendance($request->date, Auth::id());
         if(isset($todayAttendance)) {
             $todayAttendance->fill($data)->save();
         }else {
@@ -83,7 +83,7 @@ class AttendanceController extends Controller
 
     public function reportArrival(Request $request)
     {
-        $todayAttendance = $this->attendance->findTheDateUserAttendance(Carbon::today()->format('Y-m-d'));
+        $todayAttendance = $this->attendance->findTheDateUserAttendance(Carbon::today()->format('Y-m-d'), Auth::id());
         $input = $request->all();
         $input['user_id'] = Auth::id();
         if(isset($todayAttendance)) {
@@ -96,7 +96,7 @@ class AttendanceController extends Controller
 
     public function reportLeaving(Request $request)
     {
-        $this->attendance->findTheDateUserAttendance($request->date)
+        $this->attendance->findTheDateUserAttendance($request->date, Auth::id())
             ->fill(['end_time' => $request->end_time])
             ->save();
         return redirect()->route('attendance.index');
