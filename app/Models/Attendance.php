@@ -39,7 +39,7 @@ class Attendance extends Model
     public function findTheDateUserAttendance($date, $user_id)
     {
         return $this->where('date', $date)
-            ->where('user_id', Auth::id())
+            ->where('user_id', $user_id)
             ->first();
     }
 

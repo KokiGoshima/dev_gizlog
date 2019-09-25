@@ -42,7 +42,11 @@ class AttendanceRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator){
-            if($this->filled(['start_time', 'end_time'])) {
+            if($this->filled(['date'])) {
+                if(app()->make('App\Models\Attendance')->findTheDateUserAttendance($this->date, $this->user_id)) {
+                    $validator->errors()->add('checkDate', $this->date. '日の勤怠情報はすでに存在しています。');
+                }
+            }elseif($this->filled(['start_time', 'end_time'])) {
                 if($this->input('end_time') <= $this->input('start_time')) {
                     $validator->errors()->add('checkTime', '出社時間は退社時間よりも早い時間で登録してください');
                 }

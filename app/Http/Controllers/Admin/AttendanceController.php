@@ -64,8 +64,8 @@ class AttendanceController extends Controller
     public function store(AttendanceRequest $request, $user_id)
     {
         $inputs = $request->all();
-        $inputs['start_time'] = Carbon::today()->format('Y-m-d'). ' '. $request->start_time. ':00';
-        $inputs['end_time'] = Carbon::today()->format('Y-m-d'). ' '. $request->end_time. ':00';
+        $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
+        $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
         $inputs['user_id'] = $user_id;
         $this->attendance->fill($inputs)->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
