@@ -37,8 +37,10 @@ class AttendanceController extends Controller
 
     public function registerAbsence(AttendanceRequest $request)
     {
-        $todayAttendance = $this->attendance->findTheDateUserAttendance($request->date);
+        $today = Carbon::today()->format('Y-m-d');
+        $todayAttendance = $this->attendance->findTheDateUserAttendance($today);
         $data = $request->all();
+        $data['date'] = $today;
         $data['absence_presence'] = 1;
         $data['start_time'] = null;
         $data['end_time'] = null;
