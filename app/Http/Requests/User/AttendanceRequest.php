@@ -26,7 +26,9 @@ class AttendanceRequest extends FormRequest
         return [
             'correction_reason' => 'sometimes|required|max:500',
             'absence_reason'   => 'sometimes|required|max:500',
-            'date'            => 'sometimes|required|before:tomorrow',
+            'date'            => 'sometimes|required|before:today',
+            'start_time' => 'required',
+            'end_time' => 'required',
         ];
     }
 
@@ -35,6 +37,17 @@ class AttendanceRequest extends FormRequest
         return [
             //
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator){
+            if($this->filled(['start_time', 'end_time'])) {
+                if($this->input('end_time') <= $this->input('start_time')) {
+                    $validator->errors()->add('checkTime', '出社時間は退社時間よりも早い時間で登録してください');
+                }
+            }
+        });
     }
 }
 

@@ -18,6 +18,15 @@
     </div>
   </div>
   <div class="attendance-modify-box">
+    <ul>
+      @if($errors->any())
+        <ul>
+          @foreach($errors->all() as $message)
+            <li class="text-left text-danger" style="padding-left: 30px;">{{ $message }}</li>
+          @endforeach
+        </ul>
+      @endif
+    </ul>
     {!! Form::open(['route' => ['admin.attendance.store', $user->id]]) !!}
       <div class="form-group date-form">
         {!! Form::date('date', null, ['class' => 'form-control']) !!}
