@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Support\Carbon;
 use App\Models\User;
+use App\Http\Requests\User\AttendanceRequest;
 
 class AttendanceController extends Controller
 {
@@ -60,8 +61,13 @@ class AttendanceController extends Controller
         return view('admin.attendance.create', compact('user'));
     }
 
-    public function store($user_id)
+    public function store(AttendanceRequest $request, $user_id)
     {
-        dd($user_id);
+        $inputs = $request->all();
+        $inputs['start_time'] = Carbon::today()->format('Y-m-d'). ' '. $request->start_time. ':00';
+        $inputs['end_time'] = Carbon::today()->format('Y-m-d'). ' '. $request->end_time. ':00';
+        $inputs['user_id'] = $user_id;
+        $this->attendance->fill($inputs)->save();
+        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
     }
 }

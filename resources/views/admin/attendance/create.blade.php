@@ -23,11 +23,11 @@
         {!! Form::date('date', null, ['class' => 'form-control']) !!}
       </div>
       <div class="form-group">
-        <input class="form-control" name="" type="time">
+        {!! Form::time('start_time', null, ['class' => 'form-control']) !!}
       </div>
       <p class="to-time">to</p>
       <div class="form-group">
-        <input class="form-control" name="" type="time">
+        {!! Form::time('end_time', null, ['class' => 'form-control']) !!}
       </div>
       <button class="btn btn-modify" type="submit">作成</button>
     </form>
