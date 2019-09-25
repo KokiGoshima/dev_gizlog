@@ -5,22 +5,22 @@
 <div class="main-wrap">
   <div class="user-info-box clearfix">
     <div class="left-info">
-      <img src="https://avatars.slack-edge.com/2019-01-25/532734044915_486bec3294a9f7b34291_192.png"><p class="user-name">Shohei Kanatani</p>
-      <i class="fa fa-envelope-o" aria-hidden="true"><p class="user-email">gizumo@test.com</p></i>
+      <img src="{{ $user->avatar }}"><p class="user-name">{{ $user->name }}</p>
+      <i class="fa fa-envelope-o" aria-hidden="true"><p class="user-email">{{ $user->email }}</p></i>
     </div>
     <div class="right-info">
       <div class="my-info">
         <p>研修開始日</p>
         <div class="study-hour-box clearfix">
-          <p class="study-hour study-date"><span>2019/07/02</span></p>
+          <p class="study-hour study-date"><span>{{ $user->created_at->format('Y/m/d') }}</span></p>
         </div>
       </div>
     </div>
   </div>
   <div class="attendance-modify-box">
-    <form>
+    {!! Form::open(['route' => ['admin.attendance.store', $user->id]]) !!}
       <div class="form-group date-form">
-        <input class="form-control" name="" type="date">
+        {!! Form::date('date', null, ['class' => 'form-control']) !!}
       </div>
       <div class="form-group">
         <input class="form-control" name="" type="time">

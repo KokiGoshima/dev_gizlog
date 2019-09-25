@@ -63,8 +63,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
     Route::group(['prefix' => 'attendance', 'as' => 'attendance.'], function () {
         Route::get('/', 'AttendanceController@index')->name('index');
-        Route::get('/create', 'AttendanceController@create')->name('create');
-        Route::get('/{user_id}', 'AttendanceController@show')->name('show');
+        Route::get('/create/{user_id}', 'AttendanceController@create')->name('create');
+        Route::post('/store/{user_id}', 'AttendanceController@store')->name('store');
+        Route::get('/{user_id}', 'AttendanceController@showUserPage')->name('showUserPage');
     });
 
     Route::get('report', function () {

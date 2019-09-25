@@ -43,7 +43,7 @@
                 {{ '-' }}
               @endif
             </td>
-            <td class="col-xs-2"><a href="{{ route('admin.attendance.show', $attendance->user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+            <td class="col-xs-2"><a href="{{ route('admin.attendance.showUserPage', $attendance->user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
           </tr>
           @endforeach
         </tbody>
@@ -67,7 +67,7 @@
             <tr class="row">
               <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
               <td class="col-xs-7">{{ $user->name }}</td>
-              <td class="col-xs-4"><a href="{{ route('admin.attendance.show', $user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+              <td class="col-xs-4"><a href="{{ route('admin.attendance.showUserPage', $user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
             </tr>
           @endforeach
         </tbody>
@@ -88,7 +88,7 @@
             <tr class="row">
               <td class="col-xs-1"><img src="{{ $attendance->user->avatar }}" class="avatar-img"></td>
               <td class="col-xs-7">{{ $attendance->user->name }}</td>
-              <td class="col-xs-3"><a href="{{ route('admin.attendance.show', $attendance->user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+              <td class="col-xs-3"><a href="{{ route('admin.attendance.showUserPage', $attendance->user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
             </tr>
           @endforeach
         </tbody>

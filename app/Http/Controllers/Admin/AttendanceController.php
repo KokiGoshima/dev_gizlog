@@ -41,7 +41,7 @@ class AttendanceController extends Controller
         return array_flatten($userId);
     }
 
-    public function show($user_id)
+    public function showUserPage($user_id)
     {
         $user = $this->user->find($user_id);
         $countAbsence = $user->allAttendance()
@@ -54,8 +54,14 @@ class AttendanceController extends Controller
         return view('admin.attendance.user', compact('user', 'countAbsence', 'countLate', 'theDayUserCreated'));
     }
 
-    public function create()
+    public function create($user_id)
     {
-        return view('admin.attendance.create');
+        $user = $this->user->find($user_id);
+        return view('admin.attendance.create', compact('user'));
+    }
+
+    public function store($user_id)
+    {
+        dd($user_id);
     }
 }
