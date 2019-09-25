@@ -38,11 +38,10 @@
       <div class="form-group">
         {!! Form::time('end_time', null, ['class' => 'form-control']) !!}
       </div>
-      <button class="btn btn-modify" type="submit">作成</button>
-    </form>
-    <form>
-      <button class="btn btn-danger" type="submit">欠席</button>
-    </form>
+      {!! Form::button('作成', ['type' => 'submit', 'class' => 'btn btn-modify']) !!}
+      {!! Form::button('欠席', ['type' => 'submit', 'class' => 'btn btn-danger', 'id' => 'create-absence']) !!}
+      {!! Form::hidden('absence_presence', null, ['id' => 'absence-presence']) !!}
+    {!! Form::close() !!}
   </div>
 </div>
 

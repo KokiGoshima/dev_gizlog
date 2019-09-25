@@ -64,9 +64,15 @@ class AttendanceController extends Controller
     public function store(AttendanceRequest $request, $user_id)
     {
         $inputs = $request->all();
-        $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
-        $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
         $inputs['user_id'] = $user_id;
+        if(empty($request->absence_presence)) {
+            $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
+            $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
+        }else {
+            $inputs['absence_presence'] = $request->absence_presence;
+            $inputs['start_time'] = null;
+            $inputs['end_time'] = null;
+        }
         $this->attendance->fill($inputs)->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
     }
