@@ -66,6 +66,7 @@ class AttendanceController extends Controller
         $inputs = $request->all();
         $inputs['user_id'] = $user_id;
         if(empty($request->absence_presence)) {
+            $inputs['absence_presence'] = 0;
             $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
             $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
         }else {
