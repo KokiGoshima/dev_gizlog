@@ -57,6 +57,7 @@ class Attendance extends Model
     {
         return $this->where('date', $date)
             ->whereNotNull('start_time')
+            ->orderBy('start_time', 'asc')
             ->with('user')
             ->get();
     }
