@@ -36,21 +36,31 @@
     </div>
   @endif
   <div class="attendance-modify-box">
+    <ul>
+      @if($errors->any())
+        <ul>
+          @foreach($errors->all() as $message)
+            <li class="text-left text-danger" style="padding-left: 130px;">{{ $message }}</li>
+          @endforeach
+        </ul>
+      @endif
+    </ul>
     {!! Form::open(['route' => ['admin.attendance.update', $user->id, $attendance->id], 'method' => 'PUT']) !!}
+    {!! Form::hidden('date', $attendance->date->format('Y-m-d')) !!}
       <div class="form-group">
-        <input class="form-control" name="" type="time" value="10:56">
-        <span class="help-block"></span>
+        {!! Form::time('start_time', $attendance->start_time, ['class' => 'form-control']) !!}
       </div>
       <p class="to-time">to</p>
       <div class="form-group">
-        <input class="form-control" name="end_time" type="time" value="19:26">
-        <span class="help-block"></span>
+        {!! Form::time('end_time', $attendance->end_time, ['class' => 'form-control']) !!}
       </div>
-      <button type="submit" class="btn btn-modify">修正</button>
-    </form>
-    <form>
-      <button type="submit" class="btn btn-danger">欠席</button>
-    </form>
+      {{-- <button type="submit" class="btn btn-modify">修正</button> --}}
+      {!! Form::button('修正', ['type' => 'submit', 'class' => 'btn btn-modify']) !!}
+    {!! Form::close() !!}
+    {!! Form::open(['route' => ['admin.attendance.storeAbsence', $user->id]]) !!}
+      {!! Form::button('欠席', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
+      {!! Form::hidden('date', $attendance->date->format('Y-m-d')) !!}
+    {!! Form::close() !!}
   </div>
 </div>
 

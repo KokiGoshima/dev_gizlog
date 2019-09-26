@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Http\Requests\Admin\AttendanceRequest;
 use App\Http\Requests\Admin\AbsentRequest;
+use App\Http\Requests\Admin\AttendanceUpdateRequest;
 
 class AttendanceController extends Controller
 {
@@ -88,8 +89,13 @@ class AttendanceController extends Controller
         return view('admin.attendance.edit', compact('user', 'attendance'));
     }
 
-    public function update($user_id, $attendance_id)
+    public function update(AttendanceUpdateRequest $request, $user_id, $attendance_id)
     {
-        dd($attendance_id);
+        $inputs = $request->all();
+        $inputs['user_id'] = $user_id;
+        $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
+        $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
+        $this->attendance->find($attendance_id)->fill($inputs)->save();
+        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
     }
 }
