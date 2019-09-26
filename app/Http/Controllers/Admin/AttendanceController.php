@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Support\Carbon;
 use App\Models\User;
-use App\Http\Requests\User\AttendanceRequest;
+use App\Http\Requests\Admin\AttendanceRequest;
 use App\Http\Requests\Admin\AbsentRequest;
 
 class AttendanceController extends Controller
