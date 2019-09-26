@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Http\Requests\User\AttendanceRequest;
+use App\Http\Requests\Admin\AbsentRequest;
 
 class AttendanceController extends Controller
 {
@@ -65,15 +66,17 @@ class AttendanceController extends Controller
     {
         $inputs = $request->all();
         $inputs['user_id'] = $user_id;
-        if(empty($request->absence_presence)) {
-            $inputs['absence_presence'] = 0;
-            $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
-            $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
-        }else {
-            $inputs['absence_presence'] = $request->absence_presence;
-            $inputs['start_time'] = null;
-            $inputs['end_time'] = null;
-        }
+        $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
+        $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
+        $this->attendance->fill($inputs)->save();
+        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
+    }
+
+    public function storeAbsence(AbsentRequest $request, $user_id)
+    {
+        $inputs = $request->all();
+        $inputs['user_id'] = $user_id;
+        $inputs['absence_presence'] = 1;
         $this->attendance->fill($inputs)->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
     }

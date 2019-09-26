@@ -39,8 +39,10 @@
         {!! Form::time('end_time', null, ['class' => 'form-control']) !!}
       </div>
       {!! Form::button('作成', ['type' => 'submit', 'class' => 'btn btn-modify']) !!}
+    {!! Form::close() !!}
+    {!! Form::open(['route' => ['admin.attendance.storeAbsence', $user->id]]) !!}
       {!! Form::button('欠席', ['type' => 'submit', 'class' => 'btn btn-danger', 'id' => 'create-absence']) !!}
-      {!! Form::hidden('absence_presence', null, ['id' => 'absence-presence']) !!}
+      {!! Form::hidden('date', null, ['id' => 'date-target']) !!}
     {!! Form::close() !!}
   </div>
 </div>

@@ -27,9 +27,9 @@ $(function(){
   });
 
   // 個別勤怠作成において欠席勤怠作成用
-  $('#create-absence').on('click', function(){
-    $('#absence-presence').val(1);
-  });
+  // $('#create-absence').on('click', function(){
+  //   $('#absence-presence').val(1);
+  // });
 
 
 
