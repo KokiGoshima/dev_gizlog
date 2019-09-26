@@ -69,7 +69,7 @@
             <td class="col-xs-2">{{ isset($attendance->end_time) ? $attendance->end_time : "-" }}</td>
             <td class="col-xs-2">{{ $attendance->correction_presence === 1 ? "あり" : "-" }}</td>
             <td class="col-xs-2">
-              <a href="" class="btn btn-sucssess btn-small">
+              <a href="{{ route('admin.attendance.edit', $user->id) }}" class="btn btn-sucssess btn-small">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </a>
             </td>

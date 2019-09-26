@@ -80,4 +80,9 @@ class AttendanceController extends Controller
         $this->attendance->fill($inputs)->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
     }
+
+    public function edit($user_id)
+    {
+        return view('admin.attendance.edit');
+    }
 }

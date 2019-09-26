@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
         Route::get('/', 'AttendanceController@index')->name('index');
         Route::get('/{user_id}', 'AttendanceController@showUserPage')->name('showUserPage');
         Route::get('/create/{user_id}', 'AttendanceController@create')->name('create');
+        Route::get('/edit/{user_id}', 'AttendanceController@edit')->name('edit');
         Route::post('/store/{user_id}', 'AttendanceController@store')->name('store');
         Route::post('/storeAbsence/{user_id}', 'AttendanceController@storeAbsence')->name('storeAbsence');
     });
