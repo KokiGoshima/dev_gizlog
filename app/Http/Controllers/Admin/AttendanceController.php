@@ -81,8 +81,15 @@ class AttendanceController extends Controller
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
     }
 
-    public function edit($user_id)
+    public function edit($user_id, $attendance_id)
     {
-        return view('admin.attendance.edit');
+        $user = $this->user->find($user_id);
+        $attendance = $this->attendance->find($attendance_id);
+        return view('admin.attendance.edit', compact('user', 'attendance'));
+    }
+
+    public function update($user_id, $attendance_id)
+    {
+        dd($attendance_id);
     }
 }
