@@ -35,7 +35,7 @@
             <td class="col-xs-1"><img src="{{ $attendance->user->avatar }}" class="avatar-img"></td>
             <td class="col-xs-2">{{ $attendance->user->name }}</td>
             <td class="col-xs-2">{{ $attendance->date->format('Y/m/d') }}</td>
-            <td class="col-xs-3">{{ $attendance->start_time->format('h:i') }}</td>
+            <td class="col-xs-3">{{ $attendance->start_time->format('H:i') }}</td>
             <td class="col-xs-2">
               @if($attendance->correction_presence === 1)
                 {{ 'あり' }}
