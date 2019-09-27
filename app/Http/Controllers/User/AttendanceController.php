@@ -41,13 +41,13 @@ class AttendanceController extends Controller
     {
         $todayAttendance = $this->attendance->findTodayUserAttendance($this->today, Auth::id());
         $data = $request->all();
-        $data['date'] = $this->today;
         $data['absence_presence'] = 1;
         $data['start_time'] = null;
         $data['end_time'] = null;
         if(isset($todayAttendance)) {
             $todayAttendance->fill($data)->save();
         }else {
+            $data['date'] = $this->today;
             $data['user_id'] = Auth::id();
             $this->attendance->fill($data)->save();
         }
