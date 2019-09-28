@@ -36,13 +36,6 @@ class Attendance extends Model
 
     // User側で用いるメソッド
 
-    public function findTodayUserAttendance($date, $user_id)
-    {
-        return $this->where('date', $date)
-            ->where('user_id', $user_id)
-            ->first();
-    }
-
     public function CountAllUserAttendance($user)
     {
         return $user->allAttendance()

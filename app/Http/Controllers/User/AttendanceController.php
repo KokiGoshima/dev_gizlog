@@ -28,7 +28,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $todayAttendance = $this->attendance->findTodayUserAttendance($this->today, Auth::id());
+        $todayAttendance = Auth::user()->attendance;
         return view('user.attendance.index', compact('todayAttendance'));
     }
 
@@ -39,7 +39,7 @@ class AttendanceController extends Controller
 
     public function registerAbsence(AttendanceRequest $request)
     {
-        $todayAttendance = $this->attendance->findTodayUserAttendance($this->today, Auth::id());
+        $todayAttendance = Auth::user()->attendance;;
         $data = $request->all();
         $data['absence_presence'] = 1;
         $data['start_time'] = null;
@@ -63,7 +63,7 @@ class AttendanceController extends Controller
     {
         $data = $request->all();
         $data['correction_presence'] = 1;
-        $todayAttendance = $this->attendance->findTodayUserAttendance($request->date, Auth::id());
+        $todayAttendance = Auth::user()->attendance;;
         if(isset($todayAttendance)) {
             $todayAttendance->fill($data)->save();
         }else {
@@ -84,7 +84,7 @@ class AttendanceController extends Controller
 
     public function reportArrival(Request $request)
     {
-        $todayAttendance = $this->attendance->findTodayUserAttendance($this->today, Auth::id());
+        $todayAttendance = Auth::user()->attendance;;
         $input = $request->all();
         $input['user_id'] = Auth::id();
         if(isset($todayAttendance)) {
@@ -97,9 +97,7 @@ class AttendanceController extends Controller
 
     public function reportLeaving(Request $request)
     {
-        $this->attendance->findTodayUserAttendance($request->date, Auth::id())
-            ->fill(['end_time' => $request->end_time])
-            ->save();
+        Auth::user()->attendance->fill(['end_time' => $request->end_time])->save();
         return redirect()->route('attendance.index');
     }
 
