@@ -85,11 +85,11 @@ class AttendanceController extends Controller
     public function reportArrival(Request $request)
     {
         $todayAttendance = Auth::user()->attendance;;
-        $input = $request->all();
-        $input['user_id'] = Auth::id();
         if(isset($todayAttendance)) {
             $todayAttendance->fill(['start_time' => $request->start_time])->save();
         }else {
+            $input = $request->all();
+            $input['user_id'] = Auth::id();
             $this->attendance->fill($input)->save();
         }
         return redirect()->route('attendance.index');
