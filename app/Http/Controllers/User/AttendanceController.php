@@ -23,7 +23,7 @@ class AttendanceController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
+     * @param void
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -32,11 +32,19 @@ class AttendanceController extends Controller
         return view('user.attendance.index', compact('todayAttendance'));
     }
 
+    /**
+     * @param void
+     * @return \Illuminate\Http\Response
+     */
     public function showAbsenceForm()
     {
         return view('user.attendance.absence');
     }
 
+    /**
+     * @param AttendanceRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function registerAbsence(AttendanceRequest $request)
     {
         $todayAttendance = Auth::user()->attendance;;
@@ -54,11 +62,19 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
+    /**
+     * @param void
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function showCorrectionForm()
     {
         return view('user.attendance.correction');
     }
 
+    /**
+     * @param AttendanceRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function registerCorrection(AttendanceRequest $request)
     {
         $data = $request->all();
@@ -73,6 +89,11 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
+    /**
+     * @param void
+     * @return \Illuminate\Http\Response
+     * @see Attendance::CountAllAttendance
+     */
     public function showMypage()
     {
         $user = Auth::user();
@@ -82,6 +103,10 @@ class AttendanceController extends Controller
         return view('user.attendance.mypage', compact('allAttendance', 'numOfAllAttendance', 'TotalLearningHours'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function reportArrival(Request $request)
     {
         $todayAttendance = Auth::user()->attendance;
@@ -95,6 +120,10 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function reportLeaving(Request $request)
     {
         $todayAttendance = Auth::user()->attendance;
@@ -102,6 +131,10 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
+    /**
+     * @param collection $allAttendance
+     * @return integer $TotalLearningHours
+     */
     public function CalculateTotalLearningHours($allAttendance)
     {
         $TotalLearningMinutes = 0;
