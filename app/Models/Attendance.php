@@ -36,6 +36,10 @@ class Attendance extends Model
 
     // User側で用いるメソッド
 
+    /**
+     * @param UserInstance $user
+     * @return integer
+     */
     public function CountAllAttendance($user)
     {
         return $user->allAttendance()
