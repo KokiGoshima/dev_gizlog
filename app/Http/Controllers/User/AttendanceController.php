@@ -84,7 +84,7 @@ class AttendanceController extends Controller
 
     public function reportArrival(Request $request)
     {
-        $todayAttendance = Auth::user()->attendance;;
+        $todayAttendance = Auth::user()->attendance;
         if(isset($todayAttendance)) {
             $todayAttendance->fill(['start_time' => $request->start_time])->save();
         }else {
@@ -97,7 +97,8 @@ class AttendanceController extends Controller
 
     public function reportLeaving(Request $request)
     {
-        Auth::user()->attendance->fill(['end_time' => $request->end_time])->save();
+        $todayAttendance = Auth::user()->attendance;
+        $todayAttendance->fill(['end_time' => $request->end_time])->save();
         return redirect()->route('attendance.index');
     }
 
