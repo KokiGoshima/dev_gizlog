@@ -76,10 +76,10 @@ class AttendanceController extends Controller
     public function showMypage()
     {
         $user = Auth::user();
-        $allUserAttendance = $user->allAttendance;
-        $allUserAttendanceCount = $this->attendance->CountAllUserAttendance($user);
-        $TotalLearningHours = $this->CalculateTotalLearningHours($allUserAttendance);
-        return view('user.attendance.mypage', compact('allUserAttendance', 'allUserAttendanceCount', 'TotalLearningHours'));
+        $allAttendance = $user->allAttendance;
+        $numOfAllAttendance = $this->attendance->CountAllAttendance($user);
+        $TotalLearningHours = $this->CalculateTotalLearningHours($allAttendance);
+        return view('user.attendance.mypage', compact('allAttendance', 'numOfAllAttendance', 'TotalLearningHours'));
     }
 
     public function reportArrival(Request $request)
@@ -101,10 +101,10 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
-    public function CalculateTotalLearningHours($allUserAttendance)
+    public function CalculateTotalLearningHours($allAttendance)
     {
         $TotalLearningMinutes = 0;
-        foreach ($allUserAttendance as $attendance) {
+        foreach ($allAttendance as $attendance) {
             if(isset($attendance->start_time) && isset($attendance->end_time)) {
                 $dt1 = $attendance->start_time;
                 $dt2 = $attendance->end_time;

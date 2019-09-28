@@ -36,7 +36,7 @@ class Attendance extends Model
 
     // User側で用いるメソッド
 
-    public function CountAllUserAttendance($user)
+    public function CountAllAttendance($user)
     {
         return $user->allAttendance()
             ->whereNotNull('start_time')
