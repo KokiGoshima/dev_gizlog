@@ -32,52 +32,31 @@
         </tr>
       </thead>
       <tbody>
-      @foreach($allAttendance as $attendance)
-      <tr class="row @if ($attendance->absence_presence === 1) bg-danger @endif">
-        <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
-        <td class="col-xs-2">@if (isset($attendance->start_time)){{ $attendance->start_time->format('H:i') }}@else {{ '-' }} @endif</td>
-        <td class="col-xs-2">@if (isset($attendance->end_time)){{ $attendance->end_time->format('H:i') }}@else {{ '-' }} @endif</td>
-        <td class="col-xs-2">
-          @if (isset($attendance->start_time) && isset($attendance->end_time))
-            {{ '出勤' }}
-          @elseif ($attendance->absence_presence === 1)
-            {{ '欠席' }}
-          @elseif (isset($attendance->start_time) && empty($attendance->end_time))
-            {{ '研修中' }}
-          @else
-            {{ '-' }}
-          @endif
-        </td>
-        <td class="col-xs-2">
-          @if($attendance->correction_presence === 1)
-            {{ '申請中' }}
-          @else
-            {{ '-' }}
-          @endif
-        </td>
-      </tr>
-      @endforeach
-      {{-- <tr class="row absent-row">
-        <td class="col-xs-2">07/02 (Tue)</td>
-        <td class="col-xs-3">-</td>
-        <td class="col-xs-3">-</td>
-        <td class="col-xs-2">欠席</td>
-        <td class="col-xs-2">-</td>
-      </tr>
-      <tr class="row">
-        <td class="col-xs-2">07/03 (Wed)</td>
-        <td class="col-xs-3">10:44</td>
-        <td class="col-xs-3">19:37</td>
-        <td class="col-xs-2">出社</td>
-        <td class="col-xs-2">申請中</td>
-      </tr>
-      <tr class="row">
-        <td class="col-xs-2">07/04 (Thr)</td>
-        <td class="col-xs-3">08:52</td>
-        <td class="col-xs-3">-</td>
-        <td class="col-xs-2">研修中</td>
-        <td class="col-xs-2">-</td>
-      </tr> --}}
+        @foreach($allAttendance as $attendance)
+        <tr class="row {{ $attendance->absence_presence === 1 ? "danger" : "-" }}">
+          <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
+          <td class="col-xs-2">{{ isset($attendance->start_time) ? $attendance->start_time->format('H:i') : '-'  }}</td>
+          <td class="col-xs-2">{{ isset($attendance->end_time) ? $attendance->end_time->format('H:i') : '-' }}</td>
+          <td class="col-xs-2">
+            @if (isset($attendance->start_time) && isset($attendance->end_time))
+              {{ '出勤' }}
+            @elseif ($attendance->absence_presence === 1)
+              {{ '欠席' }}
+            @elseif (isset($attendance->start_time) && empty($attendance->end_time))
+              {{ '研修中' }}
+            @else
+              {{ '-' }}
+            @endif
+          </td>
+          <td class="col-xs-2">
+            @if($attendance->correction_presence === 1)
+              {{ '申請中' }}
+            @else
+              {{ '-' }}
+            @endif
+          </td>
+        </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
