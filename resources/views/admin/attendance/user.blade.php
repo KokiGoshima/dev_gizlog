@@ -13,14 +13,14 @@
         <p>欠席回数</p>
         <div class="study-hour-box clearfix">
           <div class="userinfo-box"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></div>
-          <p class="study-hour"><span>{{ $countAbsence }}</span>回</p>
+          <p class="study-hour"><span>{{ $numOfAbsence }}</span>回</p>
         </div>
       </div>
       <div class="my-info day-info">
         <p>遅刻回数</p>
         <div class="study-hour-box clearfix">
           <div class="userinfo-box"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></div>
-          <p class="study-hour"><span>{{ $countLate }}</span>回</p>
+          <p class="study-hour"><span>{{ $numOfLate }}</span>回</p>
         </div>
       </div>
       <div class="my-info">

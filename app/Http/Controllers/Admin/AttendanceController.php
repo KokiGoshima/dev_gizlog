@@ -36,14 +36,10 @@ class AttendanceController extends Controller
     public function showUserPage($user_id)
     {
         $user = $this->user->find($user_id);
-        $countAbsence = $user->allAttendance()
-            ->where('absence_presence', 1)
-            ->count();
-        $countLate = $user->allAttendance()
-            ->whereTime('start_time', '>', '10:00:00')
-            ->count();
+        $numOfAbsence = $user->countAbsence();
+        $numOfLate = $user->countLate();
         $theDayUserCreated = $user->created_at->format('Y/m/d');
-        return view('admin.attendance.user', compact('user', 'countAbsence', 'countLate', 'theDayUserCreated'));
+        return view('admin.attendance.user', compact('user', 'numOfAbsence', 'numOfLate', 'theDayUserCreated'));
     }
 
     public function create($user_id)

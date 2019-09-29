@@ -92,5 +92,18 @@ class User extends Authenticatable
     {
         return $this->doesntHave('attendance');
     }
-}
 
+    public function countAbsence()
+    {
+        return $this->allAttendance()
+            ->where('absence_presence', 1)
+            ->count();
+    }
+
+    public function countLate()
+    {
+        return $this->allAttendance()
+            ->whereTime('start_time', '>', '10:00:00')
+            ->count();
+    }
+}
