@@ -54,7 +54,6 @@
       <div class="form-group">
         {!! Form::time('end_time', $attendance->end_time, ['class' => 'form-control']) !!}
       </div>
-      {{-- <button type="submit" class="btn btn-modify">修正</button> --}}
       {!! Form::button('修正', ['type' => 'submit', 'class' => 'btn btn-modify']) !!}
     {!! Form::close() !!}
     {!! Form::open(['route' => ['admin.attendance.updateAbsence', $user->id, $attendance->id], 'method' => 'put']) !!}
