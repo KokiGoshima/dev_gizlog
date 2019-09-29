@@ -39,4 +39,3 @@ class AttendanceRequest extends FormRequest
     }
 
 }
-

@@ -48,4 +48,3 @@ class AttendanceUpdateRequest extends FormRequest
         });
     }
 }
-

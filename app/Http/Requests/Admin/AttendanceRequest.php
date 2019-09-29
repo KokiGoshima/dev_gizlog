@@ -57,4 +57,3 @@ class AttendanceRequest extends FormRequest
         });
     }
 }
-
