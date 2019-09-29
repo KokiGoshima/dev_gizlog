@@ -33,66 +33,66 @@ class AttendanceController extends Controller
         return view('admin.attendance.index', compact('hasArrivedUsers', 'absentUsers', 'hasNotArrivedUsers', 'user'));
     }
 
-    public function showUserPage($user_id)
+    public function showUserPage($userId)
     {
-        $user = $this->user->find($user_id);
+        $user = $this->user->find($userId);
         $numOfAbsence = $user->countAbsence();
         $numOfLate = $user->countLate();
         $theDayUserCreated = $user->created_at->format('Y/m/d');
         return view('admin.attendance.user', compact('user', 'numOfAbsence', 'numOfLate', 'theDayUserCreated'));
     }
 
-    public function create($user_id)
+    public function create($userId)
     {
-        $user = $this->user->find($user_id);
+        $user = $this->user->find($userId);
         return view('admin.attendance.create', compact('user'));
     }
 
-    public function store(AttendanceRequest $request, $user_id)
+    public function store(AttendanceRequest $request, $userId)
     {
         $inputs = $request->all();
-        $inputs['user_id'] = $user_id;
+        $inputs['user_id'] = $userId;
         $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
         $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
         $this->attendance->fill($inputs)->save();
-        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
+        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
-    public function storeAbsence(AbsentRequest $request, $user_id)
+    public function storeAbsence(AbsentRequest $request, $userId)
     {
         $inputs = $request->all();
-        $inputs['user_id'] = $user_id;
+        $inputs['user_id'] = $userId;
         $inputs['absence_presence'] = 1;
         $this->attendance->fill($inputs)->save();
-        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
+        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
-    public function edit($user_id, $attendance_id)
+    public function edit($userId, $attendance_id)
     {
-        $user = $this->user->find($user_id);
+        $user = $this->user->find($userId);
         $attendance = $this->attendance->find($attendance_id);
         return view('admin.attendance.edit', compact('user', 'attendance'));
     }
 
-    public function update(AttendanceUpdateRequest $request, $user_id, $attendance_id)
+    public function update(AttendanceUpdateRequest $request, $userId, $attendance_id)
     {
         $inputs = $request->all();
-        $inputs['user_id'] = $user_id;
+        $inputs['user_id'] = $userId;
         $inputs['absence_presence'] = 0;
         $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
         $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
         $this->attendance->find($attendance_id)->fill($inputs)->save();
-        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
+        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
-    public function updateAbsence(Request $request, $user_id, $attendance_id)
+    public function updateAbsence(Request $request, $userId, $attendance_id)
     {
         $inputs = $request->all();
-        $inputs['user_id'] = $user_id;
+        $inputs['user_id'] = $userId;
         $inputs['absence_presence'] = 1;
         $inputs['start_time'] = null;
         $inputs['end_time'] = null;
         $this->attendance->find($attendance_id)->fill($inputs)->save();
-        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $user_id]);
+        return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 }
