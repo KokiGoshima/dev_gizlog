@@ -27,21 +27,10 @@ class AttendanceController extends Controller
         $date = Carbon::today()->format('Y-m-d');
         $user = $this->user;
 
-        $hasArrivedUsersAttendances = $this->attendance->findHasArrivedUsersAttendances($date);
-        $absentUsersAttendances = $this->attendance->findAbsentUsersAttendances($date);
-
-        $allUserIdExceptHasNotArrivedUsers = $this->getAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances);
-        $hasNotArrivedUsers = $this->user->findHasNotArrivedUsers($allUserIdExceptHasNotArrivedUsers);
-
-        return view('admin.attendance.index', compact('hasArrivedUsersAttendances', 'absentUsersAttendances', 'hasNotArrivedUsers', 'user'));
-    }
-
-    private function getAllUserIdExceptHasNotArrivedUsers($hasArrivedUsersAttendances, $absentUsersAttendances)
-    {
-        $userId = [];
-        $userId[] = $hasArrivedUsersAttendances->pluck('user_id')->all();
-        $userId[] = $absentUsersAttendances->pluck('user_id')->all();
-        return array_flatten($userId);
+        $hasArrivedUsers = $this->user->findHasArrivedUsers()->get();
+        $absentUsers = $this->user->findAbsentUsers()->get();
+        $hasNotArrivedUsers = $this->user->findHasNotArrivedUsers()->get();
+        return view('admin.attendance.index', compact('hasArrivedUsers', 'absentUsers', 'hasNotArrivedUsers', 'user'));
     }
 
     public function showUserPage($user_id)

@@ -73,9 +73,24 @@ class User extends Authenticatable
         });
     }
 
-    public function findHasNotArrivedUsers($allUserIdExceptHasNotArrivedUsers)
+    public function findHasArrivedUsers()
     {
-        return $this->whereNotIn('id', $allUserIdExceptHasNotArrivedUsers)->get();
+        return $this->whereHas('attendance', function($query){
+            $query->whereNotNull('start_time');
+            })
+            ->with('attendance');
+    }
+
+    public function findabsentUsers()
+    {
+        return $this->whereHas('attendance', function($query){
+            $query->where('absence_presence', 1);
+            });
+    }
+
+    public function findHasNotArrivedUsers()
+    {
+        return $this->doesntHave('attendance');
     }
 }
 

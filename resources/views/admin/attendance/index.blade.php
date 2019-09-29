@@ -30,20 +30,20 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($hasArrivedUsersAttendances as $attendance)
+          @foreach($hasArrivedUsers as $user)
           <tr class="row">
-            <td class="col-xs-1"><img src="{{ $attendance->user->avatar }}" class="avatar-img"></td>
-            <td class="col-xs-2">{{ $attendance->user->name }}</td>
-            <td class="col-xs-2">{{ $attendance->date->format('Y/m/d') }}</td>
-            <td class="col-xs-3">{{ $attendance->start_time->format('H:i') }}</td>
+            <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
+            <td class="col-xs-2">{{ $user->name }}</td>
+            <td class="col-xs-2">{{ $user->attendance->date->format('Y/m/d') }}</td>
+            <td class="col-xs-3">{{ $user->attendance->start_time->format('H:i') }}</td>
             <td class="col-xs-2">
-              @if($attendance->correction_presence === 1)
+              @if($user->attendance->correction_presence === 1)
                 {{ 'あり' }}
               @else
                 {{ '-' }}
               @endif
             </td>
-            <td class="col-xs-2"><a href="{{ route('admin.attendance.showUserPage', $attendance->user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+            <td class="col-xs-2"><a href="{{ route('admin.attendance.showUserPage', $user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
           </tr>
           @endforeach
         </tbody>
@@ -84,11 +84,11 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($absentUsersAttendances as $attendance)
+          @foreach($absentUsers as $user)
             <tr class="row">
-              <td class="col-xs-1"><img src="{{ $attendance->user->avatar }}" class="avatar-img"></td>
-              <td class="col-xs-7">{{ $attendance->user->name }}</td>
-              <td class="col-xs-3"><a href="{{ route('admin.attendance.showUserPage', $attendance->user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+              <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
+              <td class="col-xs-7">{{ $user->name }}</td>
+              <td class="col-xs-3"><a href="{{ route('admin.attendance.showUserPage', $user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
             </tr>
           @endforeach
         </tbody>

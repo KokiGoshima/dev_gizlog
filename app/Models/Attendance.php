@@ -34,8 +34,6 @@ class Attendance extends Model
         return $this->belongsTo(User::class);
     }
 
-    // User側で用いるメソッド
-
     /**
      * @param UserInstance $user
      * @return integer
@@ -46,26 +44,6 @@ class Attendance extends Model
             ->whereNotNull('start_time')
             ->whereNotNull('end_time')
             ->count();
-    }
-
-    // Admin側で用いるメソッド
-
-    public function findHasArrivedUsersAttendances($date)
-    {
-        return $this->where('date', $date)
-            ->whereNotNull('start_time')
-            ->orderBy('start_time', 'asc')
-            ->with('user')
-            ->get();
-    }
-
-
-    public function findAbsentUsersAttendances($date)
-    {
-        return $this->where('date', $date)
-            ->where('absence_presence', 1)
-            ->with('user')
-            ->get();
     }
 
 }
