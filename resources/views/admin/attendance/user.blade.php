@@ -51,13 +51,13 @@
       </thead>
       <tbody>
         @foreach ($user->allAttendance as $attendance)
-          <tr class="row {{ $attendance->absence_presence === 1 ? "absent-row" : "" }}">
+          <tr class="row {{ $attendance->absence_flag === 1 ? "absent-row" : "" }}">
             <td class="col-xs-1">{{ $attendance->date->format('m/d') }}</td>
             <td class="col-xs-1">{{ $attendance->date->format('D') }}</td>
             <td class="col-xs-2">
               @if (isset($attendance->start_time) && isset($attendance->end_time))
                 {{ '出勤' }}
-              @elseif ($attendance->absence_presence === 1)
+              @elseif ($attendance->absence_flag === 1)
                 {{ '欠席' }}
               @elseif (isset($attendance->start_time) && empty($attendance->end_time))
                 {{ '研修中' }}
@@ -67,7 +67,7 @@
             </td>
             <td class="col-xs-2">{{ isset($attendance->start_time) ? $attendance->start_time : "-" }}</td>
             <td class="col-xs-2">{{ isset($attendance->end_time) ? $attendance->end_time : "-" }}</td>
-            <td class="col-xs-2">{{ $attendance->correction_presence === 1 ? "あり" : "-" }}</td>
+            <td class="col-xs-2">{{ $attendance->correction_flag === 1 ? "あり" : "-" }}</td>
             <td class="col-xs-2">
               <a href="{{ route('admin.attendance.edit', [$user->id, $attendance->id]) }}" class="btn btn-sucssess btn-small">
                 <i class="fa fa-pencil" aria-hidden="true"></i>

@@ -84,7 +84,7 @@ class User extends Authenticatable
     public function findAbsentUsers()
     {
         return $this->whereHas('attendance', function($query){
-            $query->where('absence_presence', 1);
+            $query->where('absence_flag', 1);
             });
     }
 
@@ -96,7 +96,7 @@ class User extends Authenticatable
     public function countAbsence()
     {
         return $this->allAttendance()
-            ->where('absence_presence', 1)
+            ->where('absence_flag', 1)
             ->count();
     }
 

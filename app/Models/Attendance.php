@@ -18,8 +18,8 @@ class Attendance extends Model
         'end_time',
         'absence_reason',
         'correction_reason',
-        'absence_presence',
-        'correction_presence',
+        'absence_flag',
+        'correction_flag',
     ];
 
     protected $dates = [

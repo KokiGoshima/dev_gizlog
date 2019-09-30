@@ -37,7 +37,7 @@
               <td class="col-xs-2">{{ $user->attendance->date->format('Y/m/d') }}</td>
               <td class="col-xs-3">{{ $user->attendance->start_time->format('H:i') }}</td>
               <td class="col-xs-2">
-                @if ($user->attendance->correction_presence === 1)
+                @if ($user->attendance->correction_flag === 1)
                   {{ 'あり' }}
                 @else
                   {{ '-' }}

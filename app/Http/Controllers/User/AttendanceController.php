@@ -49,7 +49,7 @@ class AttendanceController extends Controller
     {
         $todayAttendance = Auth::user()->attendance;;
         $data = $request->all();
-        $data['absence_presence'] = 1;
+        $data['absence_flag'] = 1;
         $data['start_time'] = null;
         $data['end_time'] = null;
         if (isset($todayAttendance)) {
@@ -78,7 +78,7 @@ class AttendanceController extends Controller
     public function registerCorrection(AttendanceRequest $request)
     {
         $data = $request->all();
-        $data['correction_presence'] = 1;
+        $data['correction_flag'] = 1;
         $todayAttendance = Auth::user()->attendance;;
         if (isset($todayAttendance)) {
             $todayAttendance->fill($data)->save();

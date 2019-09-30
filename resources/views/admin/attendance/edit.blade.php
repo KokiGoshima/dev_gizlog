@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  @if ($attendance->correction_presence === 1)
+  @if ($attendance->correction_flag === 1)
     <div class="request-box">
       <div class="request-title">
         <img src="{{ $user->avatar }}" class="avatar-img">
