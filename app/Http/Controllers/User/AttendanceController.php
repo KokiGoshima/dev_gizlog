@@ -13,6 +13,8 @@ class AttendanceController extends Controller
 {
     protected $attendance;
     protected $today;
+    const IS_ABSENCE = 1;
+    const IS_CORRECTION = 1;
 
     public function __construct(Attendance $attendance)
     {
@@ -49,7 +51,7 @@ class AttendanceController extends Controller
     {
         $todayAttendance = Auth::user()->attendance;;
         $data = $request->all();
-        $data['absence_flag'] = 1;
+        $data['absence_flag'] = self::IS_ABSENCE;
         $data['start_time'] = null;
         $data['end_time'] = null;
         if (isset($todayAttendance)) {
@@ -78,7 +80,7 @@ class AttendanceController extends Controller
     public function registerCorrection(AttendanceRequest $request)
     {
         $data = $request->all();
-        $data['correction_flag'] = 1;
+        $data['correction_flag'] = self::IS_CORRECTION;
         $todayAttendance = Auth::user()->attendance;;
         if (isset($todayAttendance)) {
             $todayAttendance->fill($data)->save();
@@ -100,7 +102,7 @@ class AttendanceController extends Controller
         $allAttendance = $user->allAttendance;
         $numOfAllAttendance = $this->attendance->countAllAttendance($user);
         $TotalLearningHours = $this->calculateTotalLearningHours($allAttendance);
-        return view('user.attendance.mypage', compact('allAttendance', 'numOfAllAttendance', 'TotalLearningHours'));
+        return view('user.attendance.mypage', compact('allAttendance', 'numOfAllAttendance', 'TotalLearningHours', 'IS_ABSENCE'));
     }
 
     /**

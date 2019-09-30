@@ -33,7 +33,7 @@
       </thead>
       <tbody>
         @foreach ($allAttendance as $attendance)
-        <tr class="row {{ $attendance->absence_flag === 1 ? "danger" : "-" }}">
+        <tr class="row {{ $attendance->absence_flag === 1 ? "danger" : "" }}">
           <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
           <td class="col-xs-2">{{ isset($attendance->start_time) ? $attendance->start_time->format('H:i') : '-'  }}</td>
           <td class="col-xs-2">{{ isset($attendance->end_time) ? $attendance->end_time->format('H:i') : '-' }}</td>
