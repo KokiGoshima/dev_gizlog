@@ -12,7 +12,6 @@ use App\Http\Requests\User\AttendanceRequest;
 class AttendanceController extends Controller
 {
     protected $attendance;
-    protected $today;
     const IS_ABSENCE = 1;
     const IS_CORRECTION = 1;
 
@@ -20,7 +19,6 @@ class AttendanceController extends Controller
     {
         $this->middleware('auth');
         $this->attendance = $attendance;
-        $this->today = Carbon::today()->format('Y-m-d');
     }
 
     /**
@@ -57,7 +55,7 @@ class AttendanceController extends Controller
         if (isset($todayAttendance)) {
             $todayAttendance->fill($data)->save();
         } else {
-            $data['date'] = $this->today;
+            $data['date'] = Carbon::today()->format('Y-m-d');
             $data['user_id'] = Auth::id();
             $this->attendance->fill($data)->save();
         }
