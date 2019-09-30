@@ -15,7 +15,7 @@
   <div class="button-holder">
     @if (empty($todayAttendance->start_time) && empty($todayAttendance->end_time) && empty($todayAttendance->absence_presence))
       <a class="button start-btn" id="register-attendance" href=#openModal>出社時間登録</a>
-    @elseif(isset($todayAttendance->start_time) && isset($todayAttendance->end_time) || !empty($todayAttendance->absence_presence))
+    @elseif (isset($todayAttendance->start_time) && isset($todayAttendance->end_time) || !empty($todayAttendance->absence_presence))
       <a class="button disabled" id="register-attendance" href=#openModal>退社済み</a>
     @else
       <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a>
@@ -36,7 +36,7 @@
 
 <div id="openModal" class="modalDialog">
   <div>
-    @if(empty($todayAttendance->start_time))
+    @if (empty($todayAttendance->start_time))
       <div class="register-text-wrap"><p>12:38 で出社時間を登録しますか？</p></div>
       <div class="register-btn-wrap">
         {!! Form::open(['route' => 'attendance.reportArrival']) !!}

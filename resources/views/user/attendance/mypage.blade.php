@@ -32,7 +32,7 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($allAttendance as $attendance)
+        @foreach ($allAttendance as $attendance)
         <tr class="row {{ $attendance->absence_presence === 1 ? "danger" : "-" }}">
           <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
           <td class="col-xs-2">{{ isset($attendance->start_time) ? $attendance->start_time->format('H:i') : '-'  }}</td>
@@ -49,7 +49,7 @@
             @endif
           </td>
           <td class="col-xs-2">
-            @if($attendance->correction_presence === 1)
+            @if ($attendance->correction_presence === 1)
               {{ '申請中' }}
             @else
               {{ '-' }}

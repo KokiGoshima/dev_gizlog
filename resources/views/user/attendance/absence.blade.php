@@ -5,7 +5,7 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => 'attendance.registerAbsence']) !!}
-      <div class="form-group @if(!empty($errors->first('absence_reason'))) has-error @endif">
+      <div class="form-group @if (!empty($errors->first('absence_reason'))) has-error @endif">
         {!! Form::textarea('absence_reason', null, ['class' => 'form-control', 'placeholder' => '欠席理由を入力してください。']) !!}
         <span class="help-block">{{ $errors->first('absence_reason') }}</span>
       </div>

@@ -34,11 +34,7 @@ class Attendance extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @param UserInstance $user
-     * @return integer
-     */
-    public function CountAllAttendance($user)
+    public function countAllAttendance($user)
     {
         return $user->allAttendance()
             ->whereNotNull('start_time')
@@ -51,7 +47,7 @@ class Attendance extends Model
         $result = $this->where('date', $date)
             ->where('user_id', $userId)
             ->get();
-        if($result->isNotEmpty()){
+        if ($result->isNotEmpty()) {
             return $result;
         } else {
             return  false;

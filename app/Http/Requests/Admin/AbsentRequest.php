@@ -38,8 +38,8 @@ class AbsentRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator){
-            if($this->filled('date')) {
-                if(app()->make('App\Models\Attendance')->findTheDayUserAttendance($this->date, $this->user_id)) {
+            if ($this->filled('date')) {
+                if (app()->make('App\Models\Attendance')->findTheDayUserAttendance($this->date, $this->user_id)) {
                     $validator->errors()->add('checkDate', $this->date. '日の勤怠情報はすでに存在しています。');
                 }
             }

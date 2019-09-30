@@ -22,6 +22,13 @@ class AttendanceController extends Controller
         $this->user = $user;
     }
 
+    /**
+     * @param void
+     * @return \Illuminate\Http\Response
+     * @see User::findHasArrivedUsers
+     * @see User::findAbsentUsers
+     * @see User::findHasNotArrivedUsers
+     */
     public function index()
     {
         $date = Carbon::today()->format('Y-m-d');
@@ -33,6 +40,12 @@ class AttendanceController extends Controller
         return view('admin.attendance.index', compact('hasArrivedUsers', 'absentUsers', 'hasNotArrivedUsers', 'user'));
     }
 
+    /**
+     * @param integer $userId
+     * @return \Illuminate\Http\Response
+     * @see User::countAbsence
+     * @see User::countLate
+     */
     public function showUserPage($userId)
     {
         $user = $this->user->find($userId);
@@ -42,12 +55,21 @@ class AttendanceController extends Controller
         return view('admin.attendance.user', compact('user', 'numOfAbsence', 'numOfLate', 'theDayUserCreated'));
     }
 
+    /**
+     * @param integer $userId
+     * @return \Illuminate\Http\Response
+     */
     public function create($userId)
     {
         $user = $this->user->find($userId);
         return view('admin.attendance.create', compact('user'));
     }
 
+    /**
+     * @param AttendanceRequest $request
+     * @param integer $userId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(AttendanceRequest $request, $userId)
     {
         $inputs = $request->all();
@@ -58,6 +80,11 @@ class AttendanceController extends Controller
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
+    /**
+     * @param AbsentRequest $request
+     * @param integer $userId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeAbsence(AbsentRequest $request, $userId)
     {
         $inputs = $request->all();
@@ -67,32 +94,49 @@ class AttendanceController extends Controller
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
-    public function edit($userId, $attendance_id)
+    /**
+     * @param integer $userId
+     * @param integer $attendanceId
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($userId, $attendanceId)
     {
         $user = $this->user->find($userId);
-        $attendance = $this->attendance->find($attendance_id);
+        $attendance = $this->attendance->find($attendanceId);
         return view('admin.attendance.edit', compact('user', 'attendance'));
     }
 
-    public function update(AttendanceUpdateRequest $request, $userId, $attendance_id)
+    /**
+     * @param AttendanceUpdateRequest $request
+     * @param integer $userId
+     * @param integer $attendanceId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(AttendanceUpdateRequest $request, $userId, $attendanceId)
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;
         $inputs['absence_presence'] = 0;
         $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
         $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
-        $this->attendance->find($attendance_id)->fill($inputs)->save();
+        $this->attendance->find($attendanceId)->fill($inputs)->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
-    public function updateAbsence(Request $request, $userId, $attendance_id)
+    /**
+     * @param Request $request
+     * @param integer $userId
+     * @param integer $attendanceId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateAbsence(Request $request, $userId, $attendanceId)
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;
         $inputs['absence_presence'] = 1;
         $inputs['start_time'] = null;
         $inputs['end_time'] = null;
-        $this->attendance->find($attendance_id)->fill($inputs)->save();
+        $this->attendance->find($attendanceId)->fill($inputs)->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 }

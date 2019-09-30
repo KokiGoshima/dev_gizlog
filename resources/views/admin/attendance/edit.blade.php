@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  @if(isset($attendance->correction_reason))
+  @if ($attendance->correction_presence === 1)
     <div class="request-box">
       <div class="request-title">
         <img src="{{ $user->avatar }}" class="avatar-img">
@@ -37,9 +37,9 @@
   @endif
   <div class="attendance-modify-box">
     <ul>
-      @if($errors->any())
+      @if ($errors->any())
         <ul>
-          @foreach($errors->all() as $message)
+          @foreach ($errors->all() as $message)
             <li class="text-left text-danger" style="padding-left: 130px;">{{ $message }}</li>
           @endforeach
         </ul>

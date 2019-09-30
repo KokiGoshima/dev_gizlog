@@ -19,9 +19,9 @@
   </div>
   <div class="attendance-modify-box">
     <ul>
-      @if($errors->any())
+      @if ($errors->any())
         <ul>
-          @foreach($errors->all() as $message)
+          @foreach ($errors->all() as $message)
             <li class="text-left text-danger" style="padding-left: 30px;">{{ $message }}</li>
           @endforeach
         </ul>

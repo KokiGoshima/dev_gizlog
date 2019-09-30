@@ -81,7 +81,7 @@ class User extends Authenticatable
             ->with('attendance');
     }
 
-    public function findabsentUsers()
+    public function findAbsentUsers()
     {
         return $this->whereHas('attendance', function($query){
             $query->where('absence_presence', 1);

@@ -30,21 +30,21 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($hasArrivedUsers as $user)
-          <tr class="row">
-            <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
-            <td class="col-xs-2">{{ $user->name }}</td>
-            <td class="col-xs-2">{{ $user->attendance->date->format('Y/m/d') }}</td>
-            <td class="col-xs-3">{{ $user->attendance->start_time->format('H:i') }}</td>
-            <td class="col-xs-2">
-              @if($user->attendance->correction_presence === 1)
-                {{ 'あり' }}
-              @else
-                {{ '-' }}
-              @endif
-            </td>
-            <td class="col-xs-2"><a href="{{ route('admin.attendance.showUserPage', $user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
-          </tr>
+          @foreach ($hasArrivedUsers as $user)
+            <tr class="row">
+              <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
+              <td class="col-xs-2">{{ $user->name }}</td>
+              <td class="col-xs-2">{{ $user->attendance->date->format('Y/m/d') }}</td>
+              <td class="col-xs-3">{{ $user->attendance->start_time->format('H:i') }}</td>
+              <td class="col-xs-2">
+                @if ($user->attendance->correction_presence === 1)
+                  {{ 'あり' }}
+                @else
+                  {{ '-' }}
+                @endif
+              </td>
+              <td class="col-xs-2"><a href="{{ route('admin.attendance.showUserPage', $user->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+            </tr>
           @endforeach
         </tbody>
       </table>
@@ -63,7 +63,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($hasNotArrivedUsers as $user)
+          @foreach ($hasNotArrivedUsers as $user)
             <tr class="row">
               <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
               <td class="col-xs-7">{{ $user->name }}</td>
@@ -84,7 +84,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($absentUsers as $user)
+          @foreach ($absentUsers as $user)
             <tr class="row">
               <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
               <td class="col-xs-7">{{ $user->name }}</td>
