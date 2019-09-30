@@ -34,14 +34,6 @@ class Attendance extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function countAllAttendance($user)
-    {
-        return $user->allAttendance()
-            ->whereNotNull('start_time')
-            ->whereNotNull('end_time')
-            ->count();
-    }
-
     public function findTheDayUserAttendance($date, $userId)
     {
         $result = $this->where('date', $date)

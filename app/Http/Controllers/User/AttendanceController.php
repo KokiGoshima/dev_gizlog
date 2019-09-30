@@ -81,13 +81,13 @@ class AttendanceController extends Controller
     /**
      * @param void
      * @return \Illuminate\Http\Response
-     * @see Attendance::countAllAttendance
+     * @see User::countTotalAttendanceTimes
      */
     public function showMypage()
     {
         $user = Auth::user();
         $allAttendance = $user->allAttendance;
-        $numOfAllAttendance = $this->attendance->countAllAttendance($user);
+        $numOfAllAttendance = $user->countTotalAttendanceTimes($user);
         $TotalLearningHours = $this->calculateTotalLearningHours($allAttendance);
         return view('user.attendance.mypage', compact('allAttendance', 'numOfAllAttendance', 'TotalLearningHours', 'IS_ABSENCE'));
     }

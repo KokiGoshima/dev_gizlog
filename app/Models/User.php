@@ -73,6 +73,15 @@ class User extends Authenticatable
         });
     }
 
+    public function countTotalAttendanceTimes($user)
+    {
+        return $user->allAttendance()
+                ->whereNotNull('start_time')
+                ->whereNotNull('end_time')
+                ->count();
+    }
+
+
     public function findHasArrivedUsers()
     {
         return $this->whereHas('attendance', function($query){
