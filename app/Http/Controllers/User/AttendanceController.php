@@ -44,6 +44,7 @@ class AttendanceController extends Controller
     /**
      * @param AttendanceRequest $request
      * @return \Illuminate\Http\RedirectResponse
+     * @see Attendance::insertInputsInfo
      */
     public function registerAbsence(AttendanceRequest $request)
     {
@@ -51,10 +52,7 @@ class AttendanceController extends Controller
         $inputs['absence_flag'] = self::IS_ABSENCE;
         $inputs['start_time'] = null;
         $inputs['end_time'] = null;
-        $this->attendance->updateOrCreate(
-            ['user_id' => Auth::id(), 'date' => Carbon::today()->format('Y-m-d')],
-            $inputs
-        );
+        $this->attendance->insertInputsInfo($inputs, Carbon::today()->format('Y-m-d'));
         return redirect()->route('attendance.index');
     }
 
@@ -70,15 +68,13 @@ class AttendanceController extends Controller
     /**
      * @param AttendanceRequest $request
      * @return \Illuminate\Http\RedirectResponse
+     * @see Attendance::insertInputsInfo
      */
     public function registerCorrection(AttendanceRequest $request)
     {
         $inputs = $request->all();
         $inputs['correction_flag'] = self::IS_CORRECTION;
-        $this->attendance->updateOrCreate(
-            ['user_id' => Auth::id(), 'date' => $request->date],
-            $inputs
-        );
+        $this->attendance->insertInputsInfo($inputs, $request->date);
         return redirect()->route('attendance.index');
     }
 
@@ -99,11 +95,12 @@ class AttendanceController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @see Attendance::insertInputsInfo
      */
     public function reportArrival(Request $request)
     {
         $inputs = $request->all();
-        $this->attendance->insertStartTime($inputs);
+        $this->attendance->insertInputsInfo($inputs, Carbon::today()->format('Y-m-d'));
         return redirect()->route('attendance.index');
     }
 
