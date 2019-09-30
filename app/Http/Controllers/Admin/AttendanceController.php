@@ -15,6 +15,8 @@ class AttendanceController extends Controller
 {
     protected $attendance;
     protected $user;
+    const IS_ABSENCE = 1;
+    const IS_NOT_ABSENCE = 0;
 
     public function __construct(Attendance $attendance, User $user)
     {
@@ -89,7 +91,7 @@ class AttendanceController extends Controller
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;
-        $inputs['absence_flag'] = 1;
+        $inputs['absence_flag'] = self::IS_ABSENCE;
         $this->attendance->fill($inputs)->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
@@ -116,7 +118,7 @@ class AttendanceController extends Controller
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;
-        $inputs['absence_flag'] = 0;
+        $inputs['absence_flag'] = self::IS_NOT_ABSENCE;
         $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
         $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
         $this->attendance->find($attendanceId)->fill($inputs)->save();
@@ -133,7 +135,7 @@ class AttendanceController extends Controller
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;
-        $inputs['absence_flag'] = 1;
+        $inputs['absence_flag'] = self::IS_ABSENCE;
         $inputs['start_time'] = null;
         $inputs['end_time'] = null;
         $this->attendance->find($attendanceId)->fill($inputs)->save();

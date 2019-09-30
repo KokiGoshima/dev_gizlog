@@ -31,6 +31,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    const IS_ABSENCE = 1;
+
     public function dailyReport()
     {
         return $this->hasMany(DailyReport::class, 'user_id');
@@ -93,7 +95,7 @@ class User extends Authenticatable
     public function findAbsentUsers()
     {
         return $this->whereHas('attendance', function($query){
-            $query->where('absence_flag', 1);
+            $query->where('absence_flag', self::IS_ABSENCE);
             });
     }
 
@@ -105,7 +107,7 @@ class User extends Authenticatable
     public function countAbsence()
     {
         return $this->allAttendance()
-            ->where('absence_flag', 1)
+            ->where('absence_flag', self::IS_ABSENCE)
             ->count();
     }
 
