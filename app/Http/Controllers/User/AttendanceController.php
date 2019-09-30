@@ -47,18 +47,14 @@ class AttendanceController extends Controller
      */
     public function registerAbsence(AttendanceRequest $request)
     {
-        $todayAttendance = Auth::user()->attendance;;
-        $data = $request->all();
-        $data['absence_flag'] = self::IS_ABSENCE;
-        $data['start_time'] = null;
-        $data['end_time'] = null;
-        if (isset($todayAttendance)) {
-            $todayAttendance->fill($data)->save();
-        } else {
-            $data['date'] = Carbon::today()->format('Y-m-d');
-            $data['user_id'] = Auth::id();
-            $this->attendance->fill($data)->save();
-        }
+        $inputs = $request->all();
+        $inputs['absence_flag'] = self::IS_ABSENCE;
+        $inputs['start_time'] = null;
+        $inputs['end_time'] = null;
+        $this->attendance->updateOrCreate(
+            ['user_id' => Auth::id(), 'date' => Carbon::today()->format('Y-m-d')],
+            $inputs
+        );
         return redirect()->route('attendance.index');
     }
 
@@ -77,15 +73,12 @@ class AttendanceController extends Controller
      */
     public function registerCorrection(AttendanceRequest $request)
     {
-        $data = $request->all();
-        $data['correction_flag'] = self::IS_CORRECTION;
-        $todayAttendance = Auth::user()->attendance;;
-        if (isset($todayAttendance)) {
-            $todayAttendance->fill($data)->save();
-        } else {
-            $data['user_id'] = Auth::id();
-            $this->attendance->fill($data)->save();
-        }
+        $inputs = $request->all();
+        $inputs['correction_flag'] = self::IS_CORRECTION;
+        $this->attendance->updateOrCreate(
+            ['user_id' => Auth::id(), 'date' => $request->date],
+            $inputs
+        );
         return redirect()->route('attendance.index');
     }
 
@@ -109,14 +102,8 @@ class AttendanceController extends Controller
      */
     public function reportArrival(Request $request)
     {
-        $todayAttendance = Auth::user()->attendance;
-        if (isset($todayAttendance)) {
-            $todayAttendance->fill(['start_time' => $request->start_time])->save();
-        } else {
-            $input = $request->all();
-            $input['user_id'] = Auth::id();
-            $this->attendance->fill($input)->save();
-        }
+        $inputs = $request->all();
+        $this->attendance->insertStartTime($inputs);
         return redirect()->route('attendance.index');
     }
 
@@ -126,8 +113,9 @@ class AttendanceController extends Controller
      */
     public function reportLeaving(Request $request)
     {
+        $inputs = $request->all();
         $todayAttendance = Auth::user()->attendance;
-        $todayAttendance->fill(['end_time' => $request->end_time])->save();
+        $todayAttendance->fill($inputs)->save();
         return redirect()->route('attendance.index');
     }
 

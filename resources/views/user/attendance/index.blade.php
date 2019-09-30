@@ -41,7 +41,6 @@
       <div class="register-btn-wrap">
         {!! Form::open(['route' => 'attendance.reportArrival']) !!}
           {!! Form::hidden('start_time', Carbon::now()->format('H:i:s'), ['id' => 'date-time-target']) !!}
-          {!! Form::hidden('date', Carbon::now()->format('Y-m-d')) !!}
           <a href="#close" class="cancel-btn">Cancel</a>
           {!! Form::submit('Yes', ['class' => 'yes-btn']) !!}
         {!! Form::close() !!}

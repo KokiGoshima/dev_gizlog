@@ -54,4 +54,12 @@ class Attendance extends Model
         }
     }
 
+    public function insertStartTime($inputs)
+    {
+        return $this->updateOrCreate(
+            ['user_id' => Auth::id(), 'date' => Carbon::today()->format('Y-m-d')],
+            $inputs
+        );
+    }
+
 }
