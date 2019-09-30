@@ -110,9 +110,8 @@ class AttendanceController extends Controller
      */
     public function reportLeaving(Request $request)
     {
-        $inputs = $request->all();
         $todayAttendance = Auth::user()->attendance;
-        $todayAttendance->fill($inputs)->save();
+        $todayAttendance->update(['end_time' => $request->end_time]);
         return redirect()->route('attendance.index');
     }
 
