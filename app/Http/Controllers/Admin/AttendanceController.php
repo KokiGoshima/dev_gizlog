@@ -38,8 +38,8 @@ class AttendanceController extends Controller
         $user = $this->user;
 
         $hasArrivedUsers = $this->user->findHasArrivedUsers()->get();
-        $absentUsers = $this->user->findAbsentUsers()->get();
         $hasNotArrivedUsers = $this->user->findHasNotArrivedUsers()->get();
+        $absentUsers = $this->user->findAbsentUsers()->get();
         return view('admin.attendance.index', compact('hasArrivedUsers', 'absentUsers', 'hasNotArrivedUsers', 'user'));
     }
 
