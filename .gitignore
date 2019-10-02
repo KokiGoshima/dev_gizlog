@@ -3,7 +3,6 @@
 /public/storage/
 /public/schedules/
 /storage/*.key
-/storage/debugbar/
 /vendor/
 /.idea
 /.vscode
