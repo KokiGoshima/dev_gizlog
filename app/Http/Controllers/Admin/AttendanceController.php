@@ -119,7 +119,7 @@ class AttendanceController extends Controller
         $inputs['absence_flag'] = self::IS_NOT_ABSENCE;
         $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
         $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
-        $this->attendance->find($attendanceId)->fill($inputs)->save();
+        $this->attendance->find($attendanceId)->update($inputs);
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
@@ -136,7 +136,7 @@ class AttendanceController extends Controller
         $inputs['absence_flag'] = self::IS_ABSENCE;
         $inputs['start_time'] = null;
         $inputs['end_time'] = null;
-        $this->attendance->find($attendanceId)->fill($inputs)->save();
+        $this->attendance->find($attendanceId)->update($inputs);
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 }
