@@ -104,14 +104,14 @@ class User extends Authenticatable
         return $this->doesntHave('attendance');
     }
 
-    public function countAbsence()
+    public function countTotalAbsenceTime()
     {
         return $this->allAttendance()
             ->where('absence_flag', self::IS_ABSENCE)
             ->count();
     }
 
-    public function countLate()
+    public function countTotalLateTime()
     {
         return $this->allAttendance()
             ->whereTime('start_time', '>', '10:00:00')
