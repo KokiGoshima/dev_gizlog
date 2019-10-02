@@ -20,6 +20,7 @@ class AttendanceController extends Controller
 
     public function __construct(Attendance $attendance, User $user)
     {
+        $this->middleware('auth:admin');
         $this->attendance = $attendance;
         $this->user = $user;
     }
