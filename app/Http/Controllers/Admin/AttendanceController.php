@@ -74,8 +74,8 @@ class AttendanceController extends Controller
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;
-        $inputs['start_time'] = $request->date. ' '. $request->start_time. ':00';
-        $inputs['end_time'] = $request->date. ' '. $request->end_time. ':00';
+        $inputs['start_time'] = $this->makeTimeStamp($request->date, $request->start_time);
+        $inputs['end_time'] = $this->makeTimeStamp($request->date, $request->start_time);
         $this->attendance->fill($inputs)->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
@@ -138,5 +138,10 @@ class AttendanceController extends Controller
         $inputs['end_time'] = null;
         $this->attendance->find($attendanceId)->update($inputs);
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
+    }
+
+    private function makeTimeStamp($date, $time)
+    {
+        return $date. ' '. $time. ':00';
     }
 }
