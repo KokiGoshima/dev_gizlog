@@ -84,25 +84,26 @@ class User extends Authenticatable
     }
 
 
-    public function findHasArrivedUsers()
+    public function scopeFindHasArrivedUsers($query)
     {
-        return $this->whereHas('attendance', function($query){
-            $query->whereNotNull('start_time');
+        return $query->whereHas('attendance', function($q){
+                $q->whereNotNull('start_time');
             })
             ->with('attendance');
     }
 
-    public function findAbsentUsers()
+    public function scopeFindHasNotArrivedUsers($query)
     {
-        return $this->whereHas('attendance', function($query){
-            $query->where('absence_flag', self::IS_ABSENCE);
+        return $query->doesntHave('attendance');
+    }
+
+    public function scopeFindAbsentUsers($query)
+    {
+        return $query->whereHas('attendance', function($query){
+                $query->where('absence_flag', self::IS_ABSENCE);
             });
     }
 
-    public function findHasNotArrivedUsers()
-    {
-        return $this->doesntHave('attendance');
-    }
 
     public function countTotalAbsenceTime()
     {
