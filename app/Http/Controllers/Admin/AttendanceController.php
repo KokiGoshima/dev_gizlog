@@ -52,7 +52,8 @@ class AttendanceController extends Controller
     public function showUserPage($userId)
     {
         $user = $this->user->find($userId);
-        return view('admin.attendance.user', compact('user'));
+        $attendances = $user->allAttendance()->paginate(10);
+        return view('admin.attendance.user', compact('user', 'attendances'));
     }
 
     /**

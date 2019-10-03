@@ -37,6 +37,8 @@
     </a>
   </div>
   <div class="content-wrapper table-responsive">
+    <p>件数：{{ $attendances->total() }}</p>
+    {{ $attendances->links() }}
     <table class="table">
       <thead>
         <tr class="row">
@@ -50,7 +52,7 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($user->allAttendance as $attendance)
+        @foreach ($attendances as $attendance)
           <tr class="row {{ $attendance->absence_flag === 1 ? "absent-row" : "" }}">
             <td class="col-xs-1">{{ $attendance->date->format('m/d') }}</td>
             <td class="col-xs-1">{{ $attendance->date->format('D') }}</td>
