@@ -120,16 +120,16 @@ class AttendanceController extends Controller
      */
     private function calculateTotalLearningHours($allAttendances)
     {
-        $TotalLearningMinutes = 0;
+        $totalLearningMinutes = 0;
         foreach ($allAttendances as $attendance) {
             if (isset($attendance->start_time) && isset($attendance->end_time)) {
                 $startTime = $attendance->start_time;
                 $endTime = $attendance->end_time;
-                $TotalLearningMinutes += $startTime->diffInMinutes($endTime);
+                $totalLearningMinutes += $startTime->diffInMinutes($endTime);
             }
         }
-        $TotalLearningHours = round($TotalLearningMinutes / 60, 0);
-        return $TotalLearningHours;
+        $totalLearningHours = round($totalLearningMinutes / 60, 0);
+        return $totalLearningHours;
     }
 
 }
