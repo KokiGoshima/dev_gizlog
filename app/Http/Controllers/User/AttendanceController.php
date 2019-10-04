@@ -126,7 +126,7 @@ class AttendanceController extends Controller
                 $totalLearningMinutes += $attendance->start_time->diffInMinutes($attendance->end_time);
             }
         }
-        $totalLearningHours = round($totalLearningMinutes / 60, 0);
+        $totalLearningHours = round($totalLearningMinutes / 60);
         return $totalLearningHours;
     }
 
