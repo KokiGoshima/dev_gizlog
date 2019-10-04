@@ -36,14 +36,9 @@ class Attendance extends Model
 
     public function findTheDayUserAttendance($date, $userId)
     {
-        $result = $this->where('date', $date)
+        return $result = $this->where('date', $date)
             ->where('user_id', $userId)
             ->get();
-        if ($result->isNotEmpty()) {
-            return $result;
-        } else {
-            return  false;
-        }
     }
 
     public function insertInputsInfo($inputs, $date)

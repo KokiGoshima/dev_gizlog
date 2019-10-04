@@ -37,7 +37,7 @@ class AttendanceRequest extends FormRequest
     {
         $validator->after(function ($validator){
             if ($this->filled('date')) {
-                if (app()->make('App\Models\Attendance')->findTheDayUserAttendance($this->date, $this->user_id)) {
+                if (app()->make('App\Models\Attendance')->findTheDayUserAttendance($this->date, $this->user_id)->isNotEmpty()) {
                     $validator->errors()->add('checkDate', $this->date. '日の勤怠情報はすでに存在しています。');
                 }
             }
