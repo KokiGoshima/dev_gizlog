@@ -41,9 +41,9 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::group(['prefix' => 'attendance', 'as' => 'attendance.'], function () {
         Route::get('/', 'AttendanceController@index')->name('index');
         Route::get('/absence', 'AttendanceController@showAbsenceForm')->name('absence');
-        Route::post('/absence', 'AttendanceController@registerAbsence')->name('registerAbsence');
+        Route::post('/absence', 'AttendanceController@storeAbsence')->name('registerAbsence');
         Route::get('/correction', 'AttendanceController@showCorrectionForm')->name('correction');
-        Route::post('/correction', 'AttendanceController@registerCorrection')->name('registerCorrection');
+        Route::post('/correction', 'AttendanceController@storeCorrection')->name('registerCorrection');
         Route::get('/mypage', 'AttendanceController@showMypage')->name('mypage');
         Route::post('/arrival', 'AttendanceController@reportArrival')->name('reportArrival');
         Route::post('/leaving', 'AttendanceController@reportLeaving')->name('reportLeaving');

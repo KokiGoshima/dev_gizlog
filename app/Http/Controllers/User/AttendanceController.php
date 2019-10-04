@@ -45,7 +45,7 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @see Attendance::insertInputsInfo
      */
-    public function registerAbsence(AttendanceRequest $request)
+    public function storeAbsence(AttendanceRequest $request)
     {
         $inputs = $request->all();
         $inputs['absence_flag'] = self::IS_ABSENCE;
@@ -69,7 +69,7 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @see Attendance::insertInputsInfo
      */
-    public function registerCorrection(AttendanceRequest $request)
+    public function storeCorrection(AttendanceRequest $request)
     {
         $inputs = $request->all();
         $inputs['correction_flag'] = self::IS_CORRECTION;
