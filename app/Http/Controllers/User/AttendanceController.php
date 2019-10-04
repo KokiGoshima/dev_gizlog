@@ -123,9 +123,7 @@ class AttendanceController extends Controller
         $totalLearningMinutes = 0;
         foreach ($allAttendances as $attendance) {
             if (isset($attendance->start_time) && isset($attendance->end_time)) {
-                $startTime = $attendance->start_time;
-                $endTime = $attendance->end_time;
-                $totalLearningMinutes += $startTime->diffInMinutes($endTime);
+                $totalLearningMinutes += $attendance->start_time->diffInMinutes($attendance->end_time);
             }
         }
         $totalLearningHours = round($totalLearningMinutes / 60, 0);
