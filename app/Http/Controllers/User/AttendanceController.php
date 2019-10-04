@@ -22,7 +22,6 @@ class AttendanceController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
      * @param void
      * @return \Illuminate\Http\Response
      */
