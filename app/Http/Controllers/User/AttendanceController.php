@@ -85,10 +85,10 @@ class AttendanceController extends Controller
     public function showMypage()
     {
         $user = Auth::user();
-        $allAttendance = $user->allAttendance;
-        $numOfAllAttendance = $user->countTotalAttendanceTimes($user);
-        $TotalLearningHours = $this->calculateTotalLearningHours($allAttendance);
-        return view('user.attendance.mypage', compact('allAttendance', 'numOfAllAttendance', 'TotalLearningHours', 'IS_ABSENCE'));
+        $allAttendances = $user->allAttendance;
+        $numOfAllAttendances = $user->countTotalAttendanceTimes($user);
+        $TotalLearningHours = $this->calculateTotalLearningHours($allAttendances);
+        return view('user.attendance.mypage', compact('allAttendances', 'numOfAllAttendances', 'TotalLearningHours', 'IS_ABSENCE'));
     }
 
     /**
@@ -118,10 +118,10 @@ class AttendanceController extends Controller
      * @param collection $allAttendance
      * @return integer $TotalLearningHours
      */
-    public function calculateTotalLearningHours($allAttendance)
+    private function calculateTotalLearningHours($allAttendances)
     {
         $TotalLearningMinutes = 0;
-        foreach ($allAttendance as $attendance) {
+        foreach ($allAttendances as $attendance) {
             if (isset($attendance->start_time) && isset($attendance->end_time)) {
                 $startTime = $attendance->start_time;
                 $endTime = $attendance->end_time;

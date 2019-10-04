@@ -9,7 +9,7 @@
       <p>学習経過日数</p>
       <div class="study-hour-box clearfix">
         <div class="userinfo-box"><img src={{ Auth::user()->avatar }}></div>
-        <p class="study-hour"><span>{{ $numOfAllAttendance }}</span>日</p>
+        <p class="study-hour"><span>{{ $numOfAllAttendances }}</span>日</p>
       </div>
     </div>
     <div class="my-info">
@@ -32,7 +32,7 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($allAttendance as $attendance)
+        @foreach ($allAttendances as $attendance)
         <tr class="row {{ $attendance->absence_flag === 1 ? "danger" : "" }}">
           <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
           <td class="col-xs-2">{{ isset($attendance->start_time) ? $attendance->start_time->format('H:i') : '-'  }}</td>
