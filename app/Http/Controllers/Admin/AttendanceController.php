@@ -34,7 +34,6 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $date = Carbon::today()->format('Y-m-d');
         $user = $this->user;
 
         $hasArrivedUsers = $this->user->findHasArrivedUsers()->get();
