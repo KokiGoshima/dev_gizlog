@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
 
 class AbsentRequest extends FormRequest
 {
@@ -24,18 +26,14 @@ class AbsentRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'sometimes|required|before:tomorrow',
+            'date' => [
+                'sometimes',
+                'required',
+                'before:tomorrow',
+                Rule::unique('attendances')->where('date', Carbon::today()->format('Y-m-d'))
+                    ->where('user_id', $this->route()->user_id)
+            ],
         ];
     }
 
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator){
-            if ($this->filled('date')) {
-                if (app()->make('App\Models\Attendance')->findTheDayUserAttendance($this->date, $this->user_id)) {
-                    $validator->errors()->add('checkDate', $this->date. '日の勤怠情報はすでに存在しています。');
-                }
-            }
-        });
-    }
 }

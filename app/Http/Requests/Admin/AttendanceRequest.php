@@ -4,6 +4,8 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
+use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
 
 class AttendanceRequest extends FormRequest
 {
@@ -27,21 +29,21 @@ class AttendanceRequest extends FormRequest
         return [
             'correction_reason' => 'sometimes|required|max:500',
             'absence_reason' => 'sometimes|required|max:500',
-            'date' => 'sometimes|required|before:tomorrow',
             'start_time' => 'sometimes|required',
             'end_time' => 'sometimes|required',
+            'date' => [
+                'sometimes',
+                'required',
+                'before:tomorrow',
+                Rule::unique('attendances')->where('date', Carbon::today()->format('Y-m-d'))
+                    ->where('user_id', $this->route()->user_id)
+            ],
         ];
     }
 
     public function withValidator($validator)
     {
         $validator->after(function ($validator){
-            if ($this->filled('date')) {
-                if (app()->make('App\Models\Attendance')->findTheDayUserAttendance($this->date, $this->user_id)->isNotEmpty()) {
-                    $validator->errors()->add('checkDate', $this->date. '日の勤怠情報はすでに存在しています。');
-                }
-            }
-
             if ($this->filled(['start_time', 'end_time'])) {
                 if ($this->input('end_time') <= $this->input('start_time')) {
                     $validator->errors()->add('checkTime', '出社時間は退社時間よりも早い時間で登録してください');
