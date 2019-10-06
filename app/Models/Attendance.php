@@ -29,6 +29,11 @@ class Attendance extends Model
         'end_time',
     ];
 
+    protected $casts = [
+        'absence_flag' => 'boolean',
+        'correction_flag' => 'boolean',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

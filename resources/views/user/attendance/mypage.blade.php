@@ -33,14 +33,14 @@
       </thead>
       <tbody>
         @foreach ($allAttendances as $attendance)
-        <tr class="row {{ $attendance->absence_flag === 1 ? "danger" : "" }}">
+        <tr class="row {{ $attendance->absence_flag === true ? "danger" : "" }}">
           <td class="col-xs-2">{{ $attendance->date->format('m/d (D)') }}</td>
           <td class="col-xs-2">{{ isset($attendance->start_time) ? $attendance->start_time->format('H:i') : '-'  }}</td>
           <td class="col-xs-2">{{ isset($attendance->end_time) ? $attendance->end_time->format('H:i') : '-' }}</td>
           <td class="col-xs-2">
             @if (isset($attendance->start_time) && isset($attendance->end_time))
               {{ '出勤' }}
-            @elseif ($attendance->absence_flag === 1)
+            @elseif ($attendance->absence_flag === true)
               {{ '欠席' }}
             @elseif (isset($attendance->start_time) && empty($attendance->end_time))
               {{ '研修中' }}
@@ -49,7 +49,7 @@
             @endif
           </td>
           <td class="col-xs-2">
-            @if ($attendance->correction_flag === 1)
+            @if ($attendance->correction_flag === true)
               {{ '申請中' }}
             @else
               {{ '-' }}
