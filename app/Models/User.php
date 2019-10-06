@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\Admin\AttendanceController;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Attendance;
 use App\Models\DailyReport;
@@ -30,8 +31,6 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
     ];
-
-    const IS_ABSENCE = 1;
 
     public function dailyReport()
     {
@@ -100,7 +99,7 @@ class User extends Authenticatable
     public function scopeFindAbsentUsers($query)
     {
         return $query->whereHas('attendance', function($query){
-                $query->where('absence_flag', self::IS_ABSENCE);
+                $query->where('absence_flag', AttendanceController::IS_ABSENCE);
             });
     }
 
@@ -108,7 +107,7 @@ class User extends Authenticatable
     public function countTotalAbsenceTime()
     {
         return $this->allAttendance()
-            ->where('absence_flag', self::IS_ABSENCE)
+            ->where('absence_flag', AttendanceController::IS_ABSENCE)
             ->count();
     }
 
