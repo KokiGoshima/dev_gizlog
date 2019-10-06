@@ -85,7 +85,7 @@ class AttendanceController extends Controller
      * @param integer $userId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeAbsence(AbsentRequest $request, $userId)
+    public function storeAbsence(AttendanceRequest $request, $userId)
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;
@@ -112,7 +112,7 @@ class AttendanceController extends Controller
      * @param integer $attendanceId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateAttendance(AttendanceUpdateRequest $request, $userId, $attendanceId)
+    public function updateAttendance(AttendanceRequest $request, $userId, $attendanceId)
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;
@@ -129,7 +129,7 @@ class AttendanceController extends Controller
      * @param integer $attendanceId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateToAbsence(Request $request, $userId, $attendanceId)
+    public function updateToAbsence(AttendanceRequest $request, $userId, $attendanceId)
     {
         $inputs = $request->all();
         $inputs['user_id'] = $userId;

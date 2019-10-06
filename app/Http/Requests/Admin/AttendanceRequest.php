@@ -42,8 +42,6 @@ class AttendanceRequest extends FormRequest
                 'sometimes',
                 'required',
                 'before:tomorrow',
-                Rule::unique('attendances')->where('date', Carbon::today()->format('Y-m-d'))
-                    ->where('user_id', $this->route()->user_id)
             ],
         ];
 
@@ -51,17 +49,12 @@ class AttendanceRequest extends FormRequest
             $rules['start_time'][] = new CheckTime($this);
         }
 
+        if (!strpos(url()->previous(), 'edit')) {
+            $rules['date'][] = Rule::unique('attendances')
+                ->where('date', $this->date)
+                ->where('user_id', $this->route()->user_id);
+        }
+
         return $rules;
     }
-
-    // public function withValidator($validator)
-    // {
-    //     $validator->after(function ($validator){
-    //         if ($this->filled(['start_time', 'end_time'])) {
-    //             if ($this->input('end_time') <= $this->input('start_time')) {
-    //                 $validator->errors()->add('checkTime', '出社時間は退社時間よりも早い時間で登録してください');
-    //             }
-    //         }
-    //     });
-    // }
 }
