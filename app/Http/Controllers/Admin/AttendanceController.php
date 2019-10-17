@@ -41,12 +41,12 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $user = $this->user;
+        $numOfAllUser = $this->user->count();
 
         $hasArrivedUsers = $this->user->findHasArrivedUsers()->get();
         $hasNotArrivedUsers = $this->user->findHasNotArrivedUsers()->get();
         $absentUsers = $this->user->findAbsentUsers()->get();
-        return view('admin.attendance.index', compact('hasArrivedUsers', 'absentUsers', 'hasNotArrivedUsers', 'user'));
+        return view('admin.attendance.index', compact('hasArrivedUsers', 'absentUsers', 'hasNotArrivedUsers', 'numOfAllUser'));
     }
 
     /**
