@@ -25,6 +25,11 @@ class AttendanceController extends Controller
     const IS_ABSENCE = 1;
     const IS_NOT_ABSENCE = 0;
 
+    /**
+    * 1ページに何件取得するかの値です。
+    */
+    const PER_PAGE = 10;
+
     public function __construct(Attendance $attendance, User $user)
     {
         $this->middleware('auth:admin');
@@ -58,7 +63,7 @@ class AttendanceController extends Controller
     public function showUserPage($userId)
     {
         $user = $this->user->find($userId);
-        $attendances = $user->allAttendance()->paginate(10);
+        $attendances = $user->allAttendance()->paginate(self::PER_PAGE);
         return view('admin.attendance.user', compact('user', 'attendances'));
     }
 
