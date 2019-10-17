@@ -126,12 +126,12 @@ class AttendanceController extends Controller
      */
     public function updateAttendance(AttendanceRequest $request, $userId, $attendanceId)
     {
-        $inputs = $request->all();
-        $inputs['user_id'] = $userId;
-        $inputs['absence_flag'] = self::IS_NOT_ABSENCE;
-        $inputs['start_time'] = $this->makeTimeStamp($request->date, $request->start_time);
-        $inputs['end_time'] = $this->makeTimeStamp($request->date, $request->end_time);
-        $this->attendance->find($attendanceId)->update($inputs);
+        $attendance = $this->attendance->find($attendanceId);
+        $attendance->user_id = $userId;
+        $attendance->absence_flag = self::IS_NOT_ABSENCE;
+        $attendance->start_time = $this->makeTimeStamp($request->date, $request->start_time);
+        $attendance->end_time = $this->makeTimeStamp($request->date, $request->end_time);
+        $attendance->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
