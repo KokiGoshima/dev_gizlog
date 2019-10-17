@@ -85,10 +85,14 @@ class User extends Authenticatable
 
     public function scopeFindHasArrivedUsers($query)
     {
-        return $query->whereHas('attendance', function($q){
-                $q->whereNotNull('start_time');
-            })
-            ->with('attendance');
+        // return $query->whereHas('attendance', function($q){
+        //         $q->whereNotNull('start_time');
+        //     })
+        //     ->with('attendance');
+            return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
+                ->where('date', Carbon::today()->format('Y-m-d'))
+                ->whereNotNull('start_time')
+                ->with('attendance');
     }
 
     public function scopeFindHasNotArrivedUsers($query)
