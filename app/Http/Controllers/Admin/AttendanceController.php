@@ -13,8 +13,15 @@ use App\Http\Requests\Admin\AttendanceUpdateRequest;
 
 class AttendanceController extends Controller
 {
+    /**
+    * 空のインズタンスが格納されます。
+    */
     protected $attendance;
     protected $user;
+
+    /**
+    * attendancesテーブルのabsence_flagカラムに入れるための値です。
+    */
     const IS_ABSENCE = 1;
     const IS_NOT_ABSENCE = 0;
 
