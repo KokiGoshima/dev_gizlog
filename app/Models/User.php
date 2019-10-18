@@ -85,26 +85,28 @@ class User extends Authenticatable
 
     public function scopeFindHasArrivedUsers($query)
     {
-        // return $query->whereHas('attendance', function($q){
-        //         $q->whereNotNull('start_time');
-        //     })
-        //     ->with('attendance');
-            return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
-                ->where('date', Carbon::today()->format('Y-m-d'))
-                ->whereNotNull('start_time')
-                ->with('attendance');
+        return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
+            ->where('date', Carbon::today()->format('Y-m-d'))
+            ->whereNotNull('start_time')
+            ->select('users.id', 'name', 'avatar')
+            ->with('attendance');
     }
 
     public function scopeFindHasNotArrivedUsers($query)
     {
-        return $query->doesntHave('attendance');
+        return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
+            ->where('date', '<>', Carbon::today()->format('Y-m-d'))
+            ->distinct()
+            ->select('users.id', 'name', 'avatar');
+
     }
 
     public function scopeFindAbsentUsers($query)
     {
-        return $query->whereHas('attendance', function($query){
-                $query->where('absence_flag', AttendanceController::IS_ABSENCE);
-            });
+        return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
+            ->where('date', Carbon::today()->format('Y-m-d'))
+            ->where('absence_flag', 1)
+            ->select('users.id', 'name', 'avatar');
     }
 
 
