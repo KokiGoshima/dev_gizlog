@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
                 return redirect('/login');
             }
 
-            if (in_array('admin', $guards)) {
+            if (in_array('admin', $guards, true)) {
                 return redirect('/admin/login');
             }
         }
