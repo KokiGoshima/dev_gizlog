@@ -14,20 +14,21 @@ use App\Http\Requests\Admin\AttendanceUpdateRequest;
 class AttendanceController extends Controller
 {
     /**
-    * 空のインズタンスが格納されます。
-    */
+     * @var Attendance $attendance 空のインズタンスが格納されます。
+     */
     protected $attendance;
     protected $user;
 
     /**
-    * attendancesテーブルのabsence_flagカラムに入れるための値です。
-    */
+     * 欠席である
+     * @var int
+     */
     const IS_ABSENCE = 1;
     const IS_NOT_ABSENCE = 0;
 
     /**
-    * 1ページに何件取得するかの値です。
-    */
+     * 1ページに何件取得するかの値です。
+     */
     const PER_PAGE = 10;
 
     public function __construct(Attendance $attendance, User $user)
