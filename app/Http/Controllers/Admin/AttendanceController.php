@@ -143,12 +143,13 @@ class AttendanceController extends Controller
      */
     public function updateToAbsence(AttendanceRequest $request, $userId, $attendanceId)
     {
-        $inputs = $request->all();
-        $inputs['user_id'] = $userId;
-        $inputs['absence_flag'] = self::IS_ABSENCE;
-        $inputs['start_time'] = null;
-        $inputs['end_time'] = null;
-        $this->attendance->find($attendanceId)->update($inputs);
+        $attendance = $this->attendance->find($attendanceId);
+        $attendance->user_id = $userId;
+        $attendance->date = $request->date;
+        $attendance->absence_flag = self::IS_ABSENCE;
+        $attendance->start_time = null;
+        $attendance->end_time = null;
+        $attendance->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }
 
