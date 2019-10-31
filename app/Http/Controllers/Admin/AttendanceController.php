@@ -147,8 +147,6 @@ class AttendanceController extends Controller
         $attendance->user_id = $userId;
         $attendance->date = $request->date;
         $attendance->absence_flag = self::IS_ABSENCE;
-        $attendance->start_time = null;
-        $attendance->end_time = null;
         $attendance->save();
         return redirect()->route('admin.attendance.showUserPage', ['user_id' => $userId]);
     }

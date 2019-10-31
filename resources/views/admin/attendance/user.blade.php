@@ -67,8 +67,8 @@
                 {{ '-' }}
               @endif
             </td>
-            <td class="col-xs-2">{{ isset($attendance->start_time) ? $attendance->start_time : "-" }}</td>
-            <td class="col-xs-2">{{ isset($attendance->end_time) ? $attendance->end_time : "-" }}</td>
+            <td class="col-xs-2">{{ isset($attendance->start_time) && $attendance->absence_flag === false ? $attendance->start_time : "-" }}</td>
+            <td class="col-xs-2">{{ isset($attendance->end_time) && $attendance->absence_flag === false ? $attendance->end_time : "-" }}</td>
             <td class="col-xs-2">{{ $attendance->correction_flag === true ? "あり" : "-" }}</td>
             <td class="col-xs-2">
               <a href="{{ route('admin.attendance.edit', [$user->id, $attendance->id]) }}" class="btn btn-sucssess btn-small">
