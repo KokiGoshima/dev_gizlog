@@ -34,8 +34,8 @@
             <tr class="row">
               <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
               <td class="col-xs-2">{{ $user->name }}</td>
-              <td class="col-xs-2">{{ $user->attendance->date->format('Y/m/d') }}</td>
-              <td class="col-xs-3">{{ $user->attendance->start_time->format('H:i') }}</td>
+              <td class="col-xs-2">{{ $user->date }}</td>
+              <td class="col-xs-3">{{ date("H:i", strtotime($user->start_time)) }}</td>
               <td class="col-xs-2">
                 @if ($user->attendance->correction_flag === true)
                   {{ 'あり' }}

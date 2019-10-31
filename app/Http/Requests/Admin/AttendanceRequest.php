@@ -30,19 +30,9 @@ class AttendanceRequest extends FormRequest
         $rules = [
             'correction_reason' => ['sometimes', 'required', 'max:500'],
             'absence_reason' => ['sometimes', 'required', 'max:500'],
-            'start_time' => [
-                'sometimes',
-                'required',
-            ],
-            'end_time' => [
-                'sometimes',
-                'required',
-            ],
-            'date' => [
-                'sometimes',
-                'required',
-                'before:tomorrow',
-            ],
+            'start_time' => ['sometimes','required'],
+            'end_time' => ['sometimes','required'],
+            'date' => ['sometimes','required','before:tomorrow'],
         ];
 
         if ($this->filled(['start_time', 'end_time'])) {

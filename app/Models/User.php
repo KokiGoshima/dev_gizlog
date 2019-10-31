@@ -87,9 +87,9 @@ class User extends Authenticatable
     {
         return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
             ->where('date', Carbon::today()->format('Y-m-d'))
-            ->whereNotNull('start_time')
-            ->select('users.id', 'name', 'avatar')
-            ->with('attendance');
+            ->whereNotNull('attendances.start_time')
+            ->select('users.id', 'users.name', 'users.avatar', 'attendances.date', 'attendances.start_time', 'attendances.correction_flag');
+            // ->with('attendance');
     }
 
     public function scopeFindHasNotArrivedUsers($query)
@@ -105,7 +105,7 @@ class User extends Authenticatable
     {
         return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
             ->where('date', Carbon::today()->format('Y-m-d'))
-            ->where('absence_flag', 1)
+            ->where('absence_flag', true)
             ->select('users.id', 'name', 'avatar');
     }
 
