@@ -49,8 +49,6 @@ class AttendanceController extends Controller
     {
         $inputs = $request->all();
         $inputs['absence_flag'] = self::IS_ABSENCE;
-        $inputs['start_time'] = null;
-        $inputs['end_time'] = null;
         $this->attendance->insertInputsInfo($inputs, Carbon::today()->format('Y-m-d'));
         return redirect()->route('attendance.index');
     }
@@ -96,7 +94,7 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @see Attendance::insertInputsInfo
      */
-    public function reportArrival(Request $request)
+    public function Arrive(Request $request)
     {
         $inputs = $request->all();
         $this->attendance->insertInputsInfo($inputs, Carbon::today()->format('Y-m-d'));
@@ -107,7 +105,7 @@ class AttendanceController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function reportLeaving(Request $request)
+    public function Leave(Request $request)
     {
         $todayAttendance = Auth::user()->attendance;
         $todayAttendance->update(['end_time' => $request->end_time]);
@@ -121,12 +119,13 @@ class AttendanceController extends Controller
     private function calculateTotalLearningHours($allAttendances)
     {
         $totalLearningMinutes = 0;
+        $hour = 60;
         foreach ($allAttendances as $attendance) {
             if (isset($attendance->start_time) && isset($attendance->end_time)) {
                 $totalLearningMinutes += $attendance->start_time->diffInMinutes($attendance->end_time);
             }
         }
-        $totalLearningHours = round($totalLearningMinutes / 60);
+        $totalLearningHours = round($totalLearningMinutes / $hour);
         return $totalLearningHours;
     }
 
