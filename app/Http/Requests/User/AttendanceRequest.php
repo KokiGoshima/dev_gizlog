@@ -25,9 +25,9 @@ class AttendanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'correction_reason' => 'sometimes|required|max:500',
-            'absence_reason' => 'sometimes|required|max:500',
-            'date' => 'sometimes|required|before:tomorrow',
+            'correction_reason' => ['sometimes', 'required', 'max:500'],
+            'absence_reason' => ['sometimes', 'required', 'max:500'],
+            'date' => ['sometimes', 'required', 'before:tomorrow'],
         ];
     }
 

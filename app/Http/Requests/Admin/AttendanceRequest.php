@@ -28,8 +28,8 @@ class AttendanceRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'correction_reason' => 'sometimes|required|max:500',
-            'absence_reason' => 'sometimes|required|max:500',
+            'correction_reason' => ['sometimes', 'required', 'max:500'],
+            'absence_reason' => ['sometimes', 'required', 'max:500'],
             'start_time' => [
                 'sometimes',
                 'required',
