@@ -37,7 +37,7 @@
               <td class="col-xs-2">{{ $user->date }}</td>
               <td class="col-xs-3">{{ date("H:i", strtotime($user->start_time)) }}</td>
               <td class="col-xs-2">
-                @if ($user->attendance->correction_flag === true)
+                @if ($user->correction_flag === true)
                   {{ 'あり' }}
                 @else
                   {{ '-' }}
