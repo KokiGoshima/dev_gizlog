@@ -109,6 +109,12 @@ class User extends Authenticatable
             ->select('users.id', 'name', 'avatar');
     }
 
+    public function scopeFindLateUsers($query)
+    {
+        return $this->allAttendance()
+        ->whereTime('start_time', '>', '10:00:00');
+    }
+
 
     public function countTotalAbsenceTime()
     {
@@ -119,8 +125,6 @@ class User extends Authenticatable
 
     public function countTotalLateTime()
     {
-        return $this->allAttendance()
-            ->whereTime('start_time', '>', '10:00:00')
-            ->count();
+        return $this->findLateUsers()->count();
     }
 }
