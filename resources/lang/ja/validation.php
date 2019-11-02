@@ -148,6 +148,8 @@ return [
         'absence_reason' => '欠席理由',
         'date' => '日付',
         'correction_reason' => '修正申請の内容',
+        'start_time' => '出社時刻',
+        'end_time' => '退社時刻',
     ],
 
 ];
