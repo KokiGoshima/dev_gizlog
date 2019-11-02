@@ -47,11 +47,17 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $hasArrivedUsers = $this->user->findHasArrivedUsers()->get();
-        $hasNotArrivedUsers = $this->user->findHasNotArrivedUsers()->get();
-        $absentUsers = $this->user->findAbsentUsers()->get();
-        $numOfAllUser = $hasArrivedUsers->count() + $hasNotArrivedUsers->count() + $absentUsers->count();
-        return view('admin.attendance.index', compact('hasArrivedUsers', 'absentUsers', 'hasNotArrivedUsers', 'numOfAllUser'));
+        // Todo
+        $users = $this->user->with('attendance')->get();
+        list($arrivedUsers, $notArrivedUsers) = $users->partition(function ($user) {
+            return !is_null($user->attendance);
+        });
+        list($absentUsers, $notAbdentUsers) = $arrivedUsers->partition(function ($user) {
+            return $user->attendance->absence_flag === true;
+        });
+
+        $numOfAllUser = $notAbdentUsers->count() + $notArrivedUsers->count() + $absentUsers->count();
+        return view('admin.attendance.index', compact('notAbdentUsers', 'absentUsers', 'notArrivedUsers', 'numOfAllUser'));
     }
 
     /**

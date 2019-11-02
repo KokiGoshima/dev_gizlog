@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($hasArrivedUsers as $user)
+          @foreach ($notAbdentUsers as $user)
             <tr class="row">
               <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
               <td class="col-xs-2">{{ $user->name }}</td>
@@ -63,7 +63,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($hasNotArrivedUsers as $user)
+          @foreach ($notArrivedUsers as $user)
             <tr class="row">
               <td class="col-xs-1"><img src="{{ $user->avatar }}" class="avatar-img"></td>
               <td class="col-xs-7">{{ $user->name }}</td>

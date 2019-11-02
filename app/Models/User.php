@@ -82,33 +82,6 @@ class User extends Authenticatable
                 ->count();
     }
 
-
-    public function scopeFindHasArrivedUsers($query)
-    {
-        return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
-            ->where('date', Carbon::today()->format('Y-m-d'))
-            ->whereNotNull('attendances.start_time')
-            ->select('users.id', 'users.name', 'users.avatar', 'attendances.date', 'attendances.start_time', 'attendances.correction_flag');
-            // ->with('attendance');
-    }
-
-    public function scopeFindHasNotArrivedUsers($query)
-    {
-        return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
-            ->where('date', '<>', Carbon::today()->format('Y-m-d'))
-            ->distinct()
-            ->select('users.id', 'name', 'avatar');
-
-    }
-
-    public function scopeFindAbsentUsers($query)
-    {
-        return $query->leftJoin('attendances', 'users.id', '=', 'attendances.user_id')
-            ->where('date', Carbon::today()->format('Y-m-d'))
-            ->where('absence_flag', true)
-            ->select('users.id', 'name', 'avatar');
-    }
-
     public function scopeFindLateUsers($query)
     {
         return $this->allAttendance()
